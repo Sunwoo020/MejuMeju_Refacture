@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import iphone from "@assets/images/iphone.png";
 import maintop1 from "@assets/images/maintop3.png";
@@ -15,21 +15,18 @@ import maintop10 from "@assets/images/cocktail5.jpg";
 import { useNavigate } from "react-router";
 
 const Homefirst = () => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isTakingPhoto, setIsTakingPhoto] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
+  //** 반응형 코드 지금은 활용 X **//
+  // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-    window.addEventListener("resize", handleResize);
+  // useEffect(() => {
+  //   const handleResize = () => setWindowWidth(window.innerWidth);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  //   window.addEventListener("resize", handleResize);
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
 
   const handlePrevImage = () => {
     setCurrentImage((prevImage) => (prevImage === 1 ? 10 : prevImage - 1));

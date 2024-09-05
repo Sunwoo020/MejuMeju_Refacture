@@ -1,11 +1,58 @@
 import React, { useEffect } from "react";
 
+// Kakao Maps API 관련 타입 정의
 declare global {
   interface Window {
-    kakao: any;
+    kakao: {
+      maps: {
+        LatLng: new (lat: number, lng: number) => LatLng;
+        Map: new (container: HTMLElement | null, options: MapOptions) => Map;
+        Marker: new (options: MarkerOptions) => Marker;
+        InfoWindow: new (options: InfoWindowOptions) => InfoWindow;
+        CustomOverlay: new (options: CustomOverlayOptions) => CustomOverlay;
+        event: {
+          addListener: (target: Marker | Map, type: string, callback: () => void) => void;
+        };
+      };
+    };
     closeOverlay: () => void;
   }
 }
+interface LatLng {
+  getLat: () => number;
+  getLng: () => number;
+}
+interface MapOptions {
+  center: LatLng;
+  level: number;
+}
+interface Map {
+  setCenter: (latlng: LatLng) => void;
+}
+interface MarkerOptions {
+  map: Map;
+  position: LatLng;
+  data?: string | object;
+}
+interface Marker {
+  setMap: (map: Map | null) => void;
+}
+interface InfoWindowOptions {
+  content: string | HTMLElement;
+  removable?: boolean;
+}
+interface InfoWindow {
+  open: (map: Map, marker: Marker) => void;
+  close: () => void;
+}
+interface CustomOverlayOptions {
+  content: string | HTMLElement;
+  position: LatLng;
+}
+interface CustomOverlay {
+  setMap: (map: Map | null) => void;
+}
+
 interface Shopitem {
   address: string;
   choice: boolean;
@@ -31,7 +78,6 @@ const MapComponent = ({ shoplist, setSelect }: ShopProps) => {
     };
     const map = new window.kakao.maps.Map(container, options);
 
-    //사용자 현재위치 정보
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
         const lat = position.coords.latitude,
@@ -49,7 +95,7 @@ const MapComponent = ({ shoplist, setSelect }: ShopProps) => {
       displayMarker(locPosition, message);
     }
 
-    function displayMarker(locPosition: any, message: any) {
+    function displayMarker(locPosition: LatLng, message: string) {
       const marker = new window.kakao.maps.Marker({
         map: map,
         position: locPosition,
@@ -65,11 +111,11 @@ const MapComponent = ({ shoplist, setSelect }: ShopProps) => {
       map.setCenter(locPosition);
     }
 
-    shoplist.forEach((el: any) => {
+    shoplist.forEach((el: Shopitem) => {
       const marker = new window.kakao.maps.Marker({
         map: map,
         position: new window.kakao.maps.LatLng(el.lat, el.lng),
-        data: el.data,
+        data: el,
       });
 
       const content =
