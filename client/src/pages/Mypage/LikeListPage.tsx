@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
@@ -123,12 +123,10 @@ function decodeAuthToken(authToken: string) {
 
 const LikePage = () => {
   const [likelist, setLikelist] = useState<Likeitem[]>([]);
-  const [totalLength, setTotalLength] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [userName, setUserName] = useState<string>("");
 
   const navigate = useNavigate();
-  const totalPages = Math.ceil(totalLength / 5);
   const paginationData = likelist.slice(5 * (currentPage - 1), 5 * currentPage);
   const authToken = localStorage.getItem("authToken");
 
@@ -150,7 +148,6 @@ const LikePage = () => {
       })
       .then((res) => {
         setLikelist(res.data.data);
-        setTotalLength(res.data.data.length);
       })
       .catch((err) => console.error(err));
   };
@@ -169,7 +166,7 @@ const LikePage = () => {
           "ngrok-skip-browser-warning": "69420",
         },
       })
-      .then((res) => {
+      .then(() => {
         LikeGetHandle();
       })
       .catch((err) => console.error(err));
@@ -196,7 +193,7 @@ const LikePage = () => {
           },
         },
       )
-      .then((res) => navigate("/cart"))
+      .then(() => navigate("/cart"))
       .catch((err) => console.error(err));
   };
 
