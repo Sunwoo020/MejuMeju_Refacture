@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -14,6 +14,13 @@ interface Orderitem {
   titleKor: string;
   quantity: number;
   itemId: number;
+}
+interface Order {
+  orderedAt: string;
+  orderStatus: string;
+  pickupDate: string;
+  orderId: number;
+  itemOrders: Orderitem[];
 }
 interface ReveiwUpdateProps {
   itemId: number;
@@ -140,14 +147,12 @@ function decodeAuthToken(authToken: string) {
 const OrderPage = () => {
   const [orderlist, setOrderlist] = useState<Orderitem[]>([]);
   const [filterlist, setFilterlist] = useState<Orderitem[]>([]);
-  const [totalLength, setTotalLength] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [choiceFronDay, setChoiceFronDay] = useState<string>("");
   const [choiceBackDay, setChoiceBackDay] = useState<string>("");
   const [userName, setUserName] = useState<string>("");
 
   const navigate = useNavigate();
-  const totalPages = Math.ceil(totalLength / 5);
   const paginationData = filterlist.slice(5 * (currentPage - 1), 5 * currentPage);
 
   const Search = () => {
@@ -192,7 +197,7 @@ const OrderPage = () => {
           },
         },
       )
-      .then((res) => {
+      .then(() => {
         window.location.reload();
       })
       .catch((err) => console.error(err));
@@ -209,7 +214,9 @@ const OrderPage = () => {
         },
       })
       .then((res) => {
-        const data = res.data.data.slice().sort((a: any, b: any) => +new Date(b.orderedAt) - +new Date(a.orderedAt));
+        const data = res.data.data
+          .slice()
+          .sort((a: Order, b: Order) => +new Date(b.orderedAt) - +new Date(a.orderedAt));
         const newData = [];
         for (let i = 0; i < data.length; i++) {
           for (let j = 0; j < data[i].itemOrders.length; j++) {
