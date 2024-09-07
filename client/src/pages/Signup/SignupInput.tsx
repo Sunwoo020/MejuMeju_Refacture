@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import { useState, useEffect, ChangeEvent } from "react";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import axios from "axios";
 import { ButtonDark, ButtonLight } from "@components/Common/Button";
 import Alert from "@components/Common/AlertModal";
@@ -8,84 +9,42 @@ import * as styles from "@pages/Signup/styles";
 
 const url = `${process.env.REACT_APP_API_URL}`;
 
+interface FormData {
+  name: string;
+  nick: string;
+  birth: string;
+  number: string;
+  email: string;
+  code: string;
+  password: string;
+  passwordCheck: string;
+}
+
 const SignupInput = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [name, setName] = useState("");
-  const [nick, setNick] = useState("");
-  const [birth, setBirth] = useState("");
-  const [number, setNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [code, setCode] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordCheck, setPasswordCheck] = useState("");
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm<FormData>();
   const [alertMessage, setAlertMessage] = useState("");
-  const [isDisabled, setIsDisabled] = useState(true);
   const [showAlert, setShowAlert] = useState(false);
   const [isOk, setIsOk] = useState(false);
   const [type, setType] = useState<string | null>(null);
 
-  const onName = (e: ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-  const onNick = (e: ChangeEvent<HTMLInputElement>) => {
-    setNick(e.target.value);
-  };
-  const onBirth = (e: ChangeEvent<HTMLInputElement>) => {
-    const today = new Date();
-    const birthDay = new Date(e.target.value);
-    let age = today.getFullYear() - birthDay.getFullYear();
-    if (
-      birthDay.getMonth() > today.getMonth() ||
-      (birthDay.getMonth() === today.getMonth() && birthDay.getDate() > today.getDate())
-    ) {
-      age = age - 1;
-    }
-    if (age <= 19) {
-      setAlertMessage("성인이 아닙니다!");
-      setShowAlert(true);
-    } else {
-      setBirth(e.target.value);
-    }
-  };
-
-  const onNumber = (e: ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value.replace(/[^\d]/g, "").match(/(\d{0,3})(\d{0,4})(\d{0,4})/);
-    if (val) {
-      setNumber(
-        !val[2] ? val[1] : val[3] ? `${val[1]}-${val[2]}-${val[3]}` : val[2] ? `${val[1]}-${val[2]}` : `${val[1]}`,
-      );
-    }
-  };
-  const onEmail = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-  const onCode = (e: ChangeEvent<HTMLInputElement>) => {
-    setCode(e.target.value);
-  };
-  const onPassword = (e: ChangeEvent<HTMLInputElement>) => {
-    const val = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[\!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(e.target.value);
-    if (val) {
-      setPassword(e.target.value);
-      setIsDisabled(false);
-    } else {
-      setIsDisabled(true);
-    }
-  };
-  const onPasswordCheck = (e: ChangeEvent<HTMLInputElement>) => {
-    setPasswordCheck(e.target.value);
-  };
-
-  const onClickSign = () => {
+  const onSubmit = (data: FormData) => {
     const accessToken = location.state.access;
     const refreshToken = location.state.refresh;
 
     if (type === "oauth" && accessToken && refreshToken) {
       const body = {
-        realName: name,
-        displayName: nick,
-        phone: number,
-        birthDate: birth,
+        realName: data.name,
+        displayName: data.nick,
+        phone: data.number,
+        birthDate: data.birth,
       };
 
       axios
@@ -105,21 +64,21 @@ const SignupInput = () => {
           setShowAlert(true);
         });
     } else {
-      if (password !== passwordCheck) {
+      if (data.password !== data.passwordCheck) {
         setAlertMessage("비밀번호와 비밀번호 확인이 같지 않습니다!");
         setShowAlert(true);
-      } else if (!(nick && code && name && birth && number)) {
+      } else if (!(data.nick && data.code && data.name && data.birth && data.number)) {
         setAlertMessage("모든 정보가 입력되어야 합니다!");
         setShowAlert(true);
       } else {
         const body = {
-          realName: name,
-          displayName: nick,
-          email: email,
-          password: password,
-          phone: number,
-          birthDate: birth,
-          mailKey: code,
+          realName: data.name,
+          displayName: data.nick,
+          email: data.email,
+          password: data.password,
+          phone: data.number,
+          birthDate: data.birth,
+          mailKey: data.code,
         };
 
         axios
@@ -141,17 +100,20 @@ const SignupInput = () => {
       }
     }
   };
+
   const getCode = () => {
-    const body = {
-      email,
-    };
+    const email = watch("email");
 
     axios
-      .post(`${url}/members/email`, body, {
-        headers: {
-          "Content-Type": "application/json",
+      .post(
+        `${url}/members/email`,
+        { email },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
-      })
+      )
       .then(() => {
         setAlertMessage("이메일 코드가 전송되었습니다!");
         setShowAlert(true);
@@ -166,10 +128,12 @@ const SignupInput = () => {
         }
       });
   };
+
   const okGotoLogin = () => {
     setShowAlert(false);
     navigate("/login");
   };
+
   useEffect(() => {
     const style = localStorage.getItem("oauthSign");
     if (style === "true") {
@@ -183,6 +147,7 @@ const SignupInput = () => {
     }
     localStorage.removeItem("oauthSign");
   }, []);
+
   return (
     <styles.Container>
       {showAlert ? (
@@ -224,18 +189,18 @@ const SignupInput = () => {
                       </ButtonDark>
                     </div>
                     <div className="input-container">
-                      <input onChange={onEmail} />
+                      <input {...register("email")} />
                       <div className="code">
                         <p className="label">인증코드</p>
-                        <input onChange={onCode} className="code-input" />
+                        <input {...register("code")} className="code-input" />
                       </div>
                     </div>
                   </styles.SingleInfo>
                   <styles.SingleInfo>
                     <div className="name password">비밀번호</div>
                     <form className="input-container">
-                      <input autoComplete="off" type="password" onChange={onPassword} />
-                      {isDisabled ? (
+                      <input autoComplete="off" type="password" {...register("password")} />
+                      {errors.password ? (
                         <styles.ValidPassword>문자, 숫자, 특수기호를 결합해 8자 이상</styles.ValidPassword>
                       ) : null}
                     </form>
@@ -245,13 +210,12 @@ const SignupInput = () => {
                     <form className="input-container">
                       <input
                         autoComplete="off"
-                        className={isDisabled ? "disable" : ""}
                         type="password"
-                        disabled={isDisabled}
-                        onChange={onPasswordCheck}
+                        {...register("passwordCheck")}
+                        className={errors.password ? "disable" : ""}
                       />
-                      {isDisabled ? (
-                        <styles.ValidPassword>먼저 비밀번호를 옳바르게 입력하세요</styles.ValidPassword>
+                      {errors.passwordCheck ? (
+                        <styles.ValidPassword>먼저 비밀번호를 올바르게 입력하세요</styles.ValidPassword>
                       ) : null}
                     </form>
                   </styles.SingleInfo>
@@ -261,25 +225,62 @@ const SignupInput = () => {
               <styles.SingleInfo>
                 <div className="name">이름</div>
                 <div className="input-container">
-                  <input onChange={onName} />
+                  <input {...register("name")} />
                 </div>
               </styles.SingleInfo>
               <styles.SingleInfo>
                 <div className="name">닉네임</div>
                 <div className="input-container">
-                  <input onChange={onNick} />
+                  <input {...register("nick")} />
                 </div>
               </styles.SingleInfo>
               <styles.SingleInfo>
                 <div className="name">생년월일</div>
                 <div className="input-container">
-                  <input value={birth} type="date" onChange={onBirth} />
+                  <input
+                    {...register("birth")}
+                    type="date"
+                    onChange={(e) => {
+                      const today = new Date();
+                      const birthDay = new Date(e.target.value);
+                      let age = today.getFullYear() - birthDay.getFullYear();
+                      if (
+                        birthDay.getMonth() > today.getMonth() ||
+                        (birthDay.getMonth() === today.getMonth() && birthDay.getDate() > today.getDate())
+                      ) {
+                        age = age - 1;
+                      }
+                      if (age <= 19) {
+                        setAlertMessage("성인이 아닙니다!");
+                        setShowAlert(true);
+                      } else {
+                        setValue("birth", e.target.value);
+                      }
+                    }}
+                  />
                 </div>
               </styles.SingleInfo>
               <styles.SingleInfo>
                 <div className="name">전화번호</div>
                 <div className="input-container">
-                  <input value={number} onChange={onNumber} />
+                  <input
+                    {...register("number")}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/[^\d]/g, "").match(/(\d{0,3})(\d{0,4})(\d{0,4})/);
+                      if (val) {
+                        setValue(
+                          "number",
+                          !val[2]
+                            ? val[1]
+                            : val[3]
+                            ? `${val[1]}-${val[2]}-${val[3]}`
+                            : val[2]
+                            ? `${val[1]}-${val[2]}`
+                            : `${val[1]}`,
+                        );
+                      }
+                    }}
+                  />
                 </div>
               </styles.SingleInfo>
             </styles.InfoTable>
@@ -288,7 +289,7 @@ const SignupInput = () => {
             <ButtonLight width="150px" height="45px" fontSize="18px" onClick={() => navigate("/signup")}>
               회원가입 선택
             </ButtonLight>
-            <ButtonDark width="150px" height="45px" fontSize="18px" onClick={onClickSign}>
+            <ButtonDark width="150px" height="45px" fontSize="18px" onClick={handleSubmit(onSubmit)}>
               회원가입
             </ButtonDark>
           </styles.BottomContainer>
