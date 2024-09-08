@@ -2,7 +2,6 @@ import axios from "axios";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { ButtonDark, ButtonLight } from "@components/Common/Button";
 import Alert from "@components/Common/AlertModal";
 import Term from "@components/SignupTerm/Term";
@@ -13,7 +12,7 @@ const SignupTerm = () => {
   const [detail, setDetail] = useState([false, false, false]);
   const [isNext, setIsNext] = useState(false);
   const [isAgreed, setIsAgreed] = useState([false, false, false, false]);
-  const [alertMessage, setAlertMessage] = useState(""); // 알람 메시지 상태
+  const [alertMessage, setAlertMessage] = useState("");
   const [isRead, setIsRead] = useState([true, true, true]);
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -32,12 +31,12 @@ const SignupTerm = () => {
           navigate("/");
         })
         .catch(() => {
-          localStorage.setItem("oauthSign", "true"); // 오어스로 회원가입 시도
+          localStorage.setItem("oauthSign", "true");
           setAlertMessage("회원가입을 진행해 주세요!");
           setIsNext(true);
         });
     } else {
-      localStorage.setItem("oauthSign", "false"); // 일반 회원가입 시도
+      localStorage.setItem("oauthSign", "false");
     }
   }, []);
   const clickDetail = (pos: number) => {
