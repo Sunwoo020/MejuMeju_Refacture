@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { ButtonDark, ButtonLight } from "@components/Common/Button";
 import Alert from "@components/Common/AlertModal";
-import * as styles from "@pages/Signup/styles";
+import * as styled from "./styles";
 
 const url = `${process.env.REACT_APP_API_URL}`;
 
@@ -149,7 +149,7 @@ const SignupInput = () => {
   }, []);
 
   return (
-    <styles.Container>
+    <styled.Container>
       {showAlert ? (
         <Alert
           text={alertMessage}
@@ -157,31 +157,31 @@ const SignupInput = () => {
         />
       ) : null}
       {type ? (
-        <styles.InputContainer>
-          <styles.TopContainer>
-            <styles.Title fontSize="28px" fontWeight="500">
+        <styled.InputContainer>
+          <styled.TopContainer>
+            <styled.Title fontSize="28px" fontWeight="500">
               회원가입
-            </styles.Title>
-            <styles.StepContainer>
-              <styles.Step type="off">
+            </styled.Title>
+            <styled.StepContainer>
+              <styled.Step type="off">
                 01<p className="text">약관동의</p>
-              </styles.Step>
+              </styled.Step>
               <MdOutlineKeyboardArrowRight size="22px" color="#A84448" />
-              <styles.Step type="on">
+              <styled.Step type="on">
                 02<p className="text">정보 입력</p>
-              </styles.Step>
-            </styles.StepContainer>
-          </styles.TopContainer>
-          <styles.MiddleContainer>
+              </styled.Step>
+            </styled.StepContainer>
+          </styled.TopContainer>
+          <styled.MiddleContainer>
             <div className="title">
-              <styles.Title fontSize="22px" fontWeight="400">
+              <styled.Title fontSize="22px" fontWeight="400">
                 기본정보
-              </styles.Title>
+              </styled.Title>
             </div>
-            <styles.InfoTable>
+            <styled.InfoTable>
               {type === "oauth" ? null : (
                 <>
-                  <styles.SingleInfo>
+                  <styled.SingleInfo>
                     <div className="name email">이메일</div>
                     <div className="code-pos">
                       <ButtonDark width="60px" height="30px" fontSize="12px" borderRadius="30px" onClick={getCode}>
@@ -195,17 +195,17 @@ const SignupInput = () => {
                         <input {...register("code")} className="code-input" />
                       </div>
                     </div>
-                  </styles.SingleInfo>
-                  <styles.SingleInfo>
+                  </styled.SingleInfo>
+                  <styled.SingleInfo>
                     <div className="name password">비밀번호</div>
                     <form className="input-container">
                       <input autoComplete="off" type="password" {...register("password")} />
                       {errors.password ? (
-                        <styles.ValidPassword>문자, 숫자, 특수기호를 결합해 8자 이상</styles.ValidPassword>
+                        <styled.ValidPassword>문자, 숫자, 특수기호를 결합해 8자 이상</styled.ValidPassword>
                       ) : null}
                     </form>
-                  </styles.SingleInfo>
-                  <styles.SingleInfo>
+                  </styled.SingleInfo>
+                  <styled.SingleInfo>
                     <div className="name">비밀번호 확인</div>
                     <form className="input-container">
                       <input
@@ -215,26 +215,26 @@ const SignupInput = () => {
                         className={errors.password ? "disable" : ""}
                       />
                       {errors.passwordCheck ? (
-                        <styles.ValidPassword>먼저 비밀번호를 올바르게 입력하세요</styles.ValidPassword>
+                        <styled.ValidPassword>먼저 비밀번호를 올바르게 입력하세요</styled.ValidPassword>
                       ) : null}
                     </form>
-                  </styles.SingleInfo>
+                  </styled.SingleInfo>
                 </>
               )}
 
-              <styles.SingleInfo>
+              <styled.SingleInfo>
                 <div className="name">이름</div>
                 <div className="input-container">
                   <input {...register("name")} />
                 </div>
-              </styles.SingleInfo>
-              <styles.SingleInfo>
+              </styled.SingleInfo>
+              <styled.SingleInfo>
                 <div className="name">닉네임</div>
                 <div className="input-container">
                   <input {...register("nick")} />
                 </div>
-              </styles.SingleInfo>
-              <styles.SingleInfo>
+              </styled.SingleInfo>
+              <styled.SingleInfo>
                 <div className="name">생년월일</div>
                 <div className="input-container">
                   <input
@@ -259,8 +259,8 @@ const SignupInput = () => {
                     }}
                   />
                 </div>
-              </styles.SingleInfo>
-              <styles.SingleInfo>
+              </styled.SingleInfo>
+              <styled.SingleInfo>
                 <div className="name">전화번호</div>
                 <div className="input-container">
                   <input
@@ -282,20 +282,20 @@ const SignupInput = () => {
                     }}
                   />
                 </div>
-              </styles.SingleInfo>
-            </styles.InfoTable>
-          </styles.MiddleContainer>
-          <styles.BottomContainer>
+              </styled.SingleInfo>
+            </styled.InfoTable>
+          </styled.MiddleContainer>
+          <styled.BottomContainer>
             <ButtonLight width="150px" height="45px" fontSize="18px" onClick={() => navigate("/signup")}>
               회원가입 선택
             </ButtonLight>
             <ButtonDark width="150px" height="45px" fontSize="18px" onClick={handleSubmit(onSubmit)}>
               회원가입
             </ButtonDark>
-          </styles.BottomContainer>
-        </styles.InputContainer>
+          </styled.BottomContainer>
+        </styled.InputContainer>
       ) : null}
-    </styles.Container>
+    </styled.Container>
   );
 };
 

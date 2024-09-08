@@ -1,99 +1,10 @@
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { TfiFacebook } from "react-icons/tfi";
 import { FcGoogle } from "react-icons/fc";
 import { RiKakaoTalkFill } from "react-icons/ri";
+import * as styled from "./styles";
 const url = `${process.env.REACT_APP_API_URL}`;
 
-type TypeProps = {
-  type: string;
-};
-
-const Container = styled.div`
-  height: 100vh;
-  ${({ theme }) => theme.common.flexCenterCol};
-  gap: 20px;
-  .go-login {
-    ${({ theme }) => theme.common.flexCenterRow};
-    gap: 10px;
-    font-size: 14px;
-    color: #b2b2b2;
-  }
-  .click-to-login {
-    color: ${({ theme }) => theme.colors.themeColor};
-    cursor: pointer;
-    :hover {
-      text-decoration: underline;
-    }
-  }
-`;
-const SelectionContainer = styled.div`
-  color: white;
-  padding: 60px 70px;
-  @media screen and (max-width: 768px) {
-    padding: 40px 20px;
-  }
-  max-width: 600px;
-  width: 100%;
-  ${({ theme }) => theme.common.flexCenterCol};
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: 2px;
-  gap: 20px;
-  background-color: white;
-  @media ${({ theme }) => theme.breakpoints.mobileMax} {
-    background-color: inherit;
-    border: none;
-    gap: 10px;
-  }
-`;
-const BasicSignupBox = styled.div`
-  ${({ theme }) => theme.common.flexCenterCol};
-  width: 100%;
-  padding: 25px 0px;
-  height: 65px;
-  background-color: ${({ theme }) => theme.colors.themeColor};
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: 2px;
-  cursor: pointer;
-`;
-const Contour = styled.hr`
-  width: 100%;
-  border-color: ${({ theme }) => theme.colors.border};
-`;
-
-const OAuthSignUpBox = styled.div<TypeProps>`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  background-color: ${({ type }) => (type === "google" ? "white" : type === "facebook" ? "#3b5998" : "#ffeb00")};
-  color: ${({ type }) => (type === "google" || type === "kakao" ? "black" : "white")};
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  .desc {
-    font-size: 18px;
-    width: calc(100% - 65px);
-    text-align: center;
-    @media ${({ theme }) => theme.breakpoints.mobileMax} {
-      font-size: 14px;
-    }
-  }
-  border-radius: 2px;
-  cursor: pointer;
-`;
-const OAuthIconContainer = styled.div`
-  ${({ theme }) => theme.common.flexCenterCol};
-  height: 65px;
-  width: 65px;
-  padding: 5px;
-  border-right: 1px solid ${({ theme }) => theme.colors.border};
-  .icon {
-    width: 35px;
-  }
-  @media screen and (max-width: 768px) {
-    height: 55px;
-  }
-`;
 const SignupSelection = () => {
   const navigate = useNavigate();
   const toLogin = () => {
@@ -114,36 +25,36 @@ const SignupSelection = () => {
     window.location.assign(`${url}/oauth2/authorization/kakao`);
   };
   return (
-    <Container>
-      <SelectionContainer>
-        <BasicSignupBox onClick={toSignTerm}>쇼핑몰 회원가입</BasicSignupBox>
-        <Contour />
-        <OAuthSignUpBox onClick={googleOAuthHandler} type="google">
-          <OAuthIconContainer>
+    <styled.MainContainer>
+      <styled.SelectionContainer>
+        <styled.BasicSignupBox onClick={toSignTerm}>쇼핑몰 회원가입</styled.BasicSignupBox>
+        <styled.Contour />
+        <styled.OAuthSignUpBox onClick={googleOAuthHandler} type="google">
+          <styled.OAuthIconContainer>
             <FcGoogle size="35" color="black" />
-          </OAuthIconContainer>
+          </styled.OAuthIconContainer>
           <div className="desc">구글로 회원가입</div>
-        </OAuthSignUpBox>
-        <OAuthSignUpBox onClick={facebookOAuthHandler} type="facebook">
-          <OAuthIconContainer>
+        </styled.OAuthSignUpBox>
+        <styled.OAuthSignUpBox onClick={facebookOAuthHandler} type="facebook">
+          <styled.OAuthIconContainer>
             <TfiFacebook size="30" color="white" />
-          </OAuthIconContainer>
+          </styled.OAuthIconContainer>
           <div className="desc">페이스북으로 회원가입</div>
-        </OAuthSignUpBox>
-        <OAuthSignUpBox onClick={kakaoOAuthHandler} type="kakao">
-          <OAuthIconContainer>
+        </styled.OAuthSignUpBox>
+        <styled.OAuthSignUpBox onClick={kakaoOAuthHandler} type="kakao">
+          <styled.OAuthIconContainer>
             <RiKakaoTalkFill size="35" color="black" />
-          </OAuthIconContainer>
+          </styled.OAuthIconContainer>
           <div className="desc">카카오톡으로 시작하기</div>
-        </OAuthSignUpBox>
-      </SelectionContainer>
+        </styled.OAuthSignUpBox>
+      </styled.SelectionContainer>
       <div className="go-login">
         이미 회원이신가요?
         <div onClick={toLogin} className="click-to-login">
           로그인
         </div>
       </div>
-    </Container>
+    </styled.MainContainer>
   );
 };
 export default SignupSelection;
