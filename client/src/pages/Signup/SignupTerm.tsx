@@ -1,26 +1,12 @@
-import styled from "styled-components";
 import axios from "axios";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-//components
 import { ButtonDark, ButtonLight } from "@components/Common/Button";
 import Alert from "@components/Common/AlertModal";
 import Term from "@components/SignupTerm/Term";
-
-type StepProps = {
-  type: string;
-};
-type TitleProps = {
-  fontSize: string;
-  fontWeight: string;
-};
-
-const BottomContainer = styled.div`
-  ${({ theme }) => theme.common.flexCenterRow}
-  gap: 15px;
-`;
+import * as styled from "./styles";
 
 const SignupTerm = () => {
   const navigate = useNavigate();
@@ -77,28 +63,28 @@ const SignupTerm = () => {
   };
 
   return (
-    <Container>
+    <styled.Container1>
       {isNext ? <Alert text={alertMessage} onClickOk={() => setIsNext(false)} /> : null}
-      <TermContainer>
-        <TopContainer>
-          <Title fontSize="28px" fontWeight="500">
+      <styled.TermContainer>
+        <styled.TopContainer1>
+          <styled.Title1 fontSize="28px" fontWeight="500">
             회원가입
-          </Title>
-          <StepContainer>
-            <Step type="on">
+          </styled.Title1>
+          <styled.StepContainer1>
+            <styled.Step1 type="on">
               01<p className="text">약관동의</p>
-            </Step>
+            </styled.Step1>
             <MdOutlineKeyboardArrowRight size="22px" color="#A84448" />
-            <Step type="off">
+            <styled.Step1 type="off">
               02<p className="text">정보 입력</p>
-            </Step>
-          </StepContainer>
-        </TopContainer>
-        <MiddleContainer>
+            </styled.Step1>
+          </styled.StepContainer1>
+        </styled.TopContainer1>
+        <styled.MiddleContainer1>
           <div className="title">
-            <Title fontSize="22px" fontWeight="400">
+            <styled.Title1 fontSize="22px" fontWeight="400">
               약관동의
-            </Title>
+            </styled.Title1>
           </div>
           <p style={{ color: "gray" }}>모든 약관을 읽어야 합니다</p>
           <div className="check-container">
@@ -140,115 +126,18 @@ const SignupTerm = () => {
             </div>
           </div>
           {detail[2] ? <Term pos={2} setIsRead={setIsRead} /> : null}
-        </MiddleContainer>
-        <BottomContainer>
+        </styled.MiddleContainer1>
+        <styled.BottomContainer1>
           <ButtonLight width="150px" height="45px" fontSize="18px" onClick={onClickToSelection}>
             이전
           </ButtonLight>
           <ButtonDark width="150px" height="45px" fontSize="18px" onClick={onClickNext}>
             다음
           </ButtonDark>
-        </BottomContainer>
-      </TermContainer>
-    </Container>
+        </styled.BottomContainer1>
+      </styled.TermContainer>
+    </styled.Container1>
   );
 };
-
-const Container = styled.div`
-  color: ${({ theme }) => theme.colors.fontColor};
-  ${({ theme }) => theme.common.flexCenterCol};
-  gap: 20px;
-`;
-const TermContainer = styled.div`
-  ${({ theme }) => theme.common.flexCenterCol};
-  gap: 50px;
-  max-width: 700px;
-  width: 80%;
-  padding-bottom: 60px;
-  position: absolute;
-  top: 15%;
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    padding: 0 25px;
-  }
-`;
-const Title = styled.div<TitleProps>`
-  font-size: ${({ fontSize }) => fontSize};
-  font-weight: ${({ fontWeight }) => fontWeight};
-  @media ${({ theme }) => theme.breakpoints.mobileMax} {
-    font-size: 18px;
-  }
-`;
-const TopContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 50px;
-  @media ${({ theme }) => theme.breakpoints.mobileMax} {
-    margin-bottom: 0px;
-  }
-`;
-const StepContainer = styled.div`
-  font-size: 18px;
-  ${({ theme }) => theme.common.flexCenterRow};
-  @media ${({ theme }) => theme.breakpoints.mobileMax} {
-    font-size: 16px;
-  }
-`;
-const Step = styled.div<StepProps>`
-  ${({ theme }) => theme.common.flexCenterRow};
-  color: ${({ type }) => (type === "on" ? "#A84448" : "#b2b2b2")};
-  .text {
-    margin-left: 5px;
-    font-size: 14px;
-  }
-`;
-const MiddleContainer = styled.div`
-  border: 1px solid lightgray;
-  border-radius: 2px;
-  padding: 50px 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 25px;
-  width: 100%;
-  @media screen and (max-width: 768px) {
-    padding: 20px 0;
-    font-size: 14px;
-    border: none;
-  }
-  .title {
-    width: 100%;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #434242;
-  }
-  .check-container {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    .front {
-      ${({ theme }) => theme.common.flexCenterRow};
-    }
-    .red {
-      color: #a84448;
-      margin-right: 5px;
-    }
-    .detail {
-      float: right;
-      font-size: 14px;
-      cursor: pointer;
-    }
-  }
-  input {
-    width: 20px;
-    height: 20px;
-  }
-`;
 
 export default SignupTerm;
