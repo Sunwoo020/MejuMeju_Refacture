@@ -1,15 +1,9 @@
-import styled from "styled-components";
+import * as styled from "./styles";
 import { useState, ChangeEvent, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-//components
 import { ButtonDark, ButtonLight } from "@components/common/Button";
 import Alert from "@components/common/AlertModal";
 import useAxiosAll from "@hooks/useAxiosAll";
-
-type TitleProps = {
-  fontSize: string;
-  fontWeight: string;
-};
 
 const FindEmail = () => {
   const navigate = useNavigate();
@@ -72,19 +66,19 @@ const FindEmail = () => {
     doAxios("post", "/members/find-id", body, false); // post매소드로 이름과 번호를 담아 이메일 찾기 요청 실시
   };
   return (
-    <Container>
+    <styled.EmailContainer>
       {showAlert ? <Alert text={alertMessage} onClickOk={() => setShowAlert(false)} /> : null}
-      <ContentsContainer>
-        <TopContainer>
-          <Title className="label" fontSize="28px" fontWeight="500">
+      <styled.EmailContentsContainer>
+        <styled.EmailTopContainer>
+          <styled.EmailTitle className="label" fontSize="28px" fontWeight="500">
             이메일 찾기
-          </Title>
-        </TopContainer>
-        <MiddleContainer>
-          <InputContainer>
-            <Title fontSize="22px" fontWeight="400">
+          </styled.EmailTitle>
+        </styled.EmailTopContainer>
+        <styled.EmailMiddleContainer>
+          <styled.EmailInputContainer>
+            <styled.EmailTitle fontSize="22px" fontWeight="400">
               회원 이메일 찾기
-            </Title>
+            </styled.EmailTitle>
             <div className="flex-row">
               <div className="flex-col">
                 <input placeholder="이름" type="text" onChange={nameHandler} />
@@ -96,17 +90,17 @@ const FindEmail = () => {
                 </ButtonDark>
               </div>
             </div>
-          </InputContainer>
+          </styled.EmailInputContainer>
           {isFind ? (
             <>
-              <Contour />
+              <styled.EmailContour />
               <div>
                 가입된 이메일<div className="found">{isFind}</div>
               </div>
             </>
           ) : null}
-          <Contour />
-          <BottomContainer>
+          <styled.EmailContour />
+          <styled.EmailBottomContainer>
             <ButtonLight
               width="150px"
               height="45px"
@@ -126,128 +120,11 @@ const FindEmail = () => {
             >
               로그인하기
             </ButtonDark>
-          </BottomContainer>
-        </MiddleContainer>
-      </ContentsContainer>
-    </Container>
+          </styled.EmailBottomContainer>
+        </styled.EmailMiddleContainer>
+      </styled.EmailContentsContainer>
+    </styled.EmailContainer>
   );
 };
-
-const Container = styled.div`
-  color: ${({ theme }) => theme.colors.fontColor};
-  ${({ theme }) => theme.common.flexCenterCol};
-  gap: 20px;
-  @media screen and (max-width: 768px) {
-    .label {
-      display: none;
-    }
-  }
-`;
-const ContentsContainer = styled.div`
-  ${({ theme }) => theme.common.flexCenterCol};
-  gap: 50px;
-  max-width: 600px;
-  width: 100%;
-  padding: 0 25px;
-  position: absolute;
-  top: 25%;
-  @media screen and (max-width: 768px) {
-    top: 15%;
-  }
-`;
-const Title = styled.div<TitleProps>`
-  font-size: ${({ fontSize }) => fontSize};
-  font-weight: ${({ fontWeight }) => fontWeight};
-  @media screen and (max-width: 768px) {
-    font-size: 20px;
-  }
-`;
-const TopContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-`;
-const MiddleContainer = styled.div`
-  border: 1px solid lightgray;
-  border-radius: 2px;
-  padding: 50px 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  background-color: white;
-  @media screen and (max-width: 768px) {
-    background-color: inherit;
-    border: none;
-    padding: 0;
-  }
-  gap: 30px;
-  width: 100%;
-  .title {
-    width: 100%;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #434242;
-  }
-  .check-container {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .found {
-    margin-top: 15px;
-  }
-`;
-const InputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 30px;
-  width: 100%;
-  margin-bottom: 10px;
-  .flex-col {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 10px;
-    input {
-      border: 1px solid #b2b2b2;
-      padding: 10px 10px;
-      font-size: 16px;
-      width: 100%;
-      @media screen and (max-width: 768px) {
-        font-size: 14px;
-      }
-    }
-  }
-  .flex-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 30px;
-    width: 100%;
-    height: 100%;
-    @media screen and (max-width: 768px) {
-      gap: 10px;
-    }
-  }
-  .button {
-    width: 30%;
-  }
-`;
-const Contour = styled.hr`
-  width: 100%;
-  border-color: #eee;
-`;
-const BottomContainer = styled.div`
-  width: 100%;
-  ${({ theme }) => theme.common.flexCenterRow}
-  gap: 15px;
-`;
 
 export default FindEmail;
