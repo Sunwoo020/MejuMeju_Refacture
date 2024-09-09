@@ -2,8 +2,8 @@ import { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { AiFillHeart } from "react-icons/ai";
-import { AlcoholData, ItemOrder } from "types/AlcholInterfaces";
-import { createItemCart } from "@services/api";
+import { AlcoholData, ItemOrder } from "@utils/types/AlcholInterfaces";
+import { createItemCart } from "@utils/api";
 
 // components
 import ClickFavoriteItem from "@components/common/ClickFavoriteItem";

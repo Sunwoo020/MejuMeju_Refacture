@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { deleteItemReview } from "@services/api";
-import { ItemReviewsType } from "types/AlcholInterfaces";
+import { deleteItemReview } from "@utils/api";
+import { ItemReviewsType } from "@utils/types/AlcholInterfaces";
 import ReviewEdit from "@pages/ReviewEdit";
 import { FormattedDate } from "@utils/dateUtils";
 

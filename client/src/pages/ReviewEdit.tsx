@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { MdRateReview } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
-import { RequestData } from "types/AlcholInterfaces";
-import { createItemReview, getReviewDetail, updateItemReview, getItem } from "@services/api";
+import { RequestData } from "@utils/types/AlcholInterfaces";
+import { createItemReview, getReviewDetail, updateItemReview, getItem } from "@utils/api";
 
 import Alert from "@components/common/AlertModal";
 import { ButtonLight } from "@components/common/Button";

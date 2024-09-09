@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { AlcoholListProps } from "types/AlcholInterfaces";
+import { AlcoholListProps } from "@utils/types/AlcholInterfaces";
 import { Link } from "react-router-dom";
 
 // components

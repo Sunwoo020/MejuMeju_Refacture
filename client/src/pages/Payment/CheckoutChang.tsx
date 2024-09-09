@@ -2,7 +2,7 @@ import { loadTossPayments } from "@tosspayments/payment-sdk";
 import { nanoid } from "nanoid";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { ItemOrder } from "../../types/AlcholInterfaces";
+import { ItemOrder } from "../../utils/types/AlcholInterfaces";
 import { useNavigate } from "react-router-dom";
 
 const clientKey = "test_ck_4vZnjEJeQVxQPQONwmMrPmOoBN0k";
