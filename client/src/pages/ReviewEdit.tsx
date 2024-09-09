@@ -6,8 +6,8 @@ import { FaStar } from "react-icons/fa";
 import { RequestData } from "types/AlcholInterfaces";
 import { createItemReview, getReviewDetail, updateItemReview, getItem } from "@services/api";
 
-import Alert from "@components/Common/AlertModal";
-import { ButtonLight } from "@components/Common/Button";
+import Alert from "@components/common/AlertModal";
+import { ButtonLight } from "@components/common/Button";
 
 const ReviewEditContaienr = styled.section`
   ${({ theme }) => theme.common.flexCenterCol}

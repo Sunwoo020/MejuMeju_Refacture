@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import Progress from "./Progress";
 import axios from "axios";
-import { ButtonLight } from "@components/Common/Button";
+import { ButtonLight } from "@components/common/Button";
 import { useSelector } from "react-redux";
 import { Itemtype } from "@pages/Cart";
 

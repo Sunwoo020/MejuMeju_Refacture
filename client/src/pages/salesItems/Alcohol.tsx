@@ -4,9 +4,9 @@ import { AlcoholListData } from "types/AlcholInterfaces";
 import { getItemsList } from "@services/api";
 
 // components
-import AlcoholList from "@components/AlcoholPage/AlcoholList";
-import SortingUtils from "@components/AlcoholPage/SortingUtils";
-import ItemSearch from "@components/AlcoholPage/ItemSearch";
+import AlcoholList from "@components/alcoholPage/AlcoholList";
+import SortingUtils from "@components/alcoholPage/SortingUtils";
+import ItemSearch from "@components/alcoholPage/ItemSearch";
 
 // 전체적인 컨테이너
 const AlcoholContainer = styled.section`

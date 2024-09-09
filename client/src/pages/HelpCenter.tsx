@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Answer from "@components/HelpCenter/AnswerContainer";
+import Answer from "@components/helpCenter/AnswerContainer";
 import { useState } from "react";
-import { ButtonDark } from "@components/Common/Button";
+import { ButtonDark } from "@components/common/Button";
 
 type TitleProps = {
   fontSize: string;

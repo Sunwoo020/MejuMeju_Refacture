@@ -5,9 +5,9 @@ import { AlcoholData } from "../../types/AlcholInterfaces";
 import { useParams } from "react-router-dom";
 
 // components
-import AlcoholItemBuy from "../../components/AlcoholDetailPage/AlcoholItemBuy";
-import AlcoholItemReview from "../../components/AlcoholDetailPage/AlcohoIItemReview";
-import AlcoholItemContent from "../../components/AlcoholDetailPage/AlcohoItemContent";
+import AlcoholItemBuy from "../../components/alcoholDetailPage/AlcoholItemBuy";
+import AlcoholItemReview from "../../components/alcoholDetailPage/AlcohoIItemReview";
+import AlcoholItemContent from "../../components/alcoholDetailPage/AlcohoItemContent";
 
 const AlcoholDetailContainer = styled.section`
   ${({ theme }) => theme.common.flexCenterCol}

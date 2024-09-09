@@ -2,7 +2,7 @@ import React, { useState, useEffect, lazy, Suspense } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
-import { ButtonDark } from "@components/Common/Button";
+import { ButtonDark } from "@components/common/Button";
 import { useDispatch } from "react-redux";
 import { setMarker } from "../redux/slice/store";
 const MapComponent = lazy(() => import("./Map"));
