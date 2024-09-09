@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import * as Types from "./";
+import * as Types from ".";
 
 export const BottomContainer1 = styled.div`
   ${({ theme }) => theme.common.flexCenterRow}

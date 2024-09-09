@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { getItem } from "../services/api";
-import { AlcoholData } from "../types/AlcholInterfaces";
+import { getItem } from "../../services/api";
+import { AlcoholData } from "../../types/AlcholInterfaces";
 import { useParams } from "react-router-dom";
 
 // components
-import AlcoholItemBuy from "../components/AlcoholDetailPage/AlcoholItemBuy";
-import AlcoholItemReview from "../components/AlcoholDetailPage/AlcohoIItemReview";
-import AlcoholItemContent from "../components/AlcoholDetailPage/AlcohoItemContent";
+import AlcoholItemBuy from "../../components/AlcoholDetailPage/AlcoholItemBuy";
+import AlcoholItemReview from "../../components/AlcoholDetailPage/AlcohoIItemReview";
+import AlcoholItemContent from "../../components/AlcoholDetailPage/AlcohoItemContent";
 
 const AlcoholDetailContainer = styled.section`
   ${({ theme }) => theme.common.flexCenterCol}
