@@ -5,9 +5,9 @@ import styled from "styled-components";
 //hooks
 import useAxiosAll from "@hooks/useAxiosAll";
 //components
-import Alert from "@components/Common/AlertModal";
+import Alert from "@components/common/AlertModal";
 import axios from "axios";
-import { ButtonDark, ButtonLight } from "@components/Common/Button";
+import { ButtonDark, ButtonLight } from "@components/common/Button";
 
 type TableProsp = {
   setBody: React.Dispatch<React.SetStateAction<Bodytype>>;

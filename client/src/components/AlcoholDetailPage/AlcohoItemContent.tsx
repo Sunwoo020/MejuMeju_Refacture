@@ -3,7 +3,7 @@ import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 import { useEffect, useState, useRef } from "react";
 import { AlcoholData, AlcoholListData } from "types/AlcholInterfaces";
 import { getItemsList } from "@services/api";
-import AlcoholListItem from "@AlcoholPage/AlcoholListItem";
+import AlcoholListItem from "@components/alcoholPage/AlcoholListItem";
 
 interface ItemDatailProps {
   data: AlcoholData;

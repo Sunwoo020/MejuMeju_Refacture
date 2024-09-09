@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { ButtonDark, ButtonLight } from "@components/Common/Button";
+import { ButtonDark, ButtonLight } from "@components/common/Button";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Progress from "./Payment/Progress";
+import Progress from "./payment/Progress";
 
 export type Itemtype = {
   itemId: number;

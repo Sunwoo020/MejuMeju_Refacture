@@ -3,8 +3,8 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { ButtonDark, ButtonLight } from "@components/Common/Button";
-import Alert from "@components/Common/AlertModal";
+import { ButtonDark, ButtonLight } from "@components/common/Button";
+import Alert from "@components/common/AlertModal";
 import * as styled from "./styles";
 
 const url = `${process.env.REACT_APP_API_URL}`;

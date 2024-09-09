@@ -7,8 +7,8 @@ import ReviewEdit from "@pages/ReviewEdit";
 import { FormattedDate } from "@utils/dateUtils";
 
 // components
-import Alert from "@components/Common/AlertModal";
-import ReviewRating from "@components/Common/ReviewRating";
+import Alert from "@components/common/AlertModal";
+import ReviewRating from "@components/common/ReviewRating";
 
 interface ItemReviewListProps {
   reviews: ItemReviewsType[];

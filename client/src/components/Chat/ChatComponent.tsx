@@ -6,7 +6,7 @@ import spinner from "@assets/gif/spinner.gif";
 import { IoMdSend } from "react-icons/io";
 import { MdOutlineCancel } from "react-icons/md";
 //components
-import { ButtonDark } from "@components/Common/Button";
+import { ButtonDark } from "@components/common/Button";
 
 const ChatComponent = () => {
   const [input, setInput] = useState("null");

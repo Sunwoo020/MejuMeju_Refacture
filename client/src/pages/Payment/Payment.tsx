@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { ButtonDark, ButtonLight } from "@components/Common/Button";
+import { ButtonDark, ButtonLight } from "@components/common/Button";
 import { useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import Progress from "./Progress";

@@ -3,8 +3,8 @@ import { useState, ChangeEvent, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAxiosAll from "@hooks/useAxiosAll";
 // components
-import { ButtonDark, ButtonLight } from "@components/Common/Button";
-import Alert from "@components/Common/AlertModal";
+import { ButtonDark, ButtonLight } from "@components/common/Button";
+import Alert from "@components/common/AlertModal";
 
 type TitleProps = {
   fontSize: string;

@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import { ButtonDark, ButtonLight } from "@components/Common/Button";
-import Pagination from "@components/AlcoholPage/Pagination";
-import PriceDisplay from "@components/Common/PriceDisplay";
+import { ButtonDark, ButtonLight } from "@components/common/Button";
+import Pagination from "@components/alcoholPage/Pagination";
+import PriceDisplay from "@components/common/PriceDisplay";
 
 interface Likeitem {
   titleKor: string;

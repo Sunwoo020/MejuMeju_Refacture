@@ -6,8 +6,8 @@ import { RiKakaoTalkFill } from "react-icons/ri";
 import { TfiFacebook } from "react-icons/tfi";
 import axios from "axios";
 //components
-import Alert from "@components/Common/AlertModal";
-import { ButtonDark, ButtonLight } from "@components/Common/Button";
+import Alert from "@components/common/AlertModal";
+import { ButtonDark, ButtonLight } from "@components/common/Button";
 
 const url = `${process.env.REACT_APP_API_URL}`;
 

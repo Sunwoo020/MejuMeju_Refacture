@@ -6,11 +6,11 @@ import { AlcoholData, ItemOrder } from "types/AlcholInterfaces";
 import { createItemCart } from "@services/api";
 
 // components
-import ClickFavoriteItem from "@components/Common/ClickFavoriteItem";
-import PriceDisplay from "@components/Common/PriceDisplay";
-import { ButtonLight, ButtonDark } from "@components/Common/Button";
-import QuantityControl from "@components/AlcoholDetailPage/QuantityControl";
-import Alert from "@components/Common/AlertModal";
+import ClickFavoriteItem from "@components/common/ClickFavoriteItem";
+import PriceDisplay from "@components/common/PriceDisplay";
+import { ButtonLight, ButtonDark } from "@components/common/Button";
+import QuantityControl from "@components/alcoholDetailPage/QuantityControl";
+import Alert from "@components/common/AlertModal";
 
 interface ItemDatailProps {
   data: AlcoholData;
