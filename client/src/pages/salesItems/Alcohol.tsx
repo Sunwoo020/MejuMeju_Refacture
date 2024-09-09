@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { AlcoholListData } from "types/AlcholInterfaces";
-import { getItemsList } from "@services/api";
+import { AlcoholListData } from "@utils/types/AlcholInterfaces";
+import { getItemsList } from "@utils/api";
 
 // components
 import AlcoholList from "@components/alcoholPage/AlcoholList";

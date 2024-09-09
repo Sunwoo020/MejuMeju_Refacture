@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
-import { ItemOrder } from "../../types/AlcholInterfaces";
+import { ItemOrder } from "../../utils/types/AlcholInterfaces";
 import { memo } from "react";
 
 function Itemlist() {

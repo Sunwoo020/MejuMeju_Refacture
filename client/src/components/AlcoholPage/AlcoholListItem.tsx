@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { AlcoholListData } from "types/AlcholInterfaces";
+import { AlcoholListData } from "@utils/types/AlcholInterfaces";
 
 // components
 import ReviewRating from "@components/common/ReviewRating";

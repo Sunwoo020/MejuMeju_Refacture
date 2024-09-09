@@ -8,7 +8,7 @@ import Progress from "./Progress";
 import PaymnetUserInfo from "./PaymentUserinfo";
 import Itemlist from "./Paymentitemlist";
 import Payinfo from "./Paymentpayinfo";
-import { UserProps } from "types/AlcholInterfaces";
+import { UserProps } from "@utils/types/AlcholInterfaces";
 import useAxiosAll from "@hooks/useAxiosAll";
 import { useSelector } from "react-redux";
 import { stateProps } from "./Paymentpayinfo";

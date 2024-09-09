@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { BsSearch } from "react-icons/bs";
-import { getItemSearch } from "@services/api";
-import { AlcoholListData, SearchProps } from "types/AlcholInterfaces";
+import { getItemSearch } from "@utils/api";
+import { AlcoholListData, SearchProps } from "@utils/types/AlcholInterfaces";
 
 const ItemSearchContainer = styled.div`
   position: relative;

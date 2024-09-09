@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BtnProps } from "types/Interfaces";
+import { BtnProps } from "@utils/types/Interfaces";
 import React from "react";
 const BtnDark = styled.button<BtnProps>`
   ${({ theme }) => theme.common.flexCenter};

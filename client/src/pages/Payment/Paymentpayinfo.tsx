@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ItemOrder } from "../../types/AlcholInterfaces";
+import { ItemOrder } from "../../utils/types/AlcholInterfaces";
 import DatePicker from "react-datepicker";
 import { useState, memo, useCallback } from "react";
 import { useSelector } from "react-redux";
 import Place from "@pages/Place";
 import { useDispatch } from "react-redux";
-import { setDate } from "../../redux/slice/store";
+import { setDate } from "../../utils/redux/slice/store";
 import Modal from "@layout/Header/Logoutmodal";
 
 export type stateProps = {

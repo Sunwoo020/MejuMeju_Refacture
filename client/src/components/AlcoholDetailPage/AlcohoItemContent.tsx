@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 import { useEffect, useState, useRef } from "react";
-import { AlcoholData, AlcoholListData } from "types/AlcholInterfaces";
-import { getItemsList } from "@services/api";
+import { AlcoholData, AlcoholListData } from "@utils/types/AlcholInterfaces";
+import { getItemsList } from "@utils/api";
 import AlcoholListItem from "@components/alcoholPage/AlcoholListItem";
 
 interface ItemDatailProps {

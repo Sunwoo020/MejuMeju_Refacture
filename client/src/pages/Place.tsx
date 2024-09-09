@@ -4,7 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { ButtonDark } from "@components/common/Button";
 import { useDispatch } from "react-redux";
-import { setMarker } from "../redux/slice/store";
+import { setMarker } from "../utils/redux/slice/store";
 const MapComponent = lazy(() => import("./Map"));
 
 const TotalStyled = styled.section`

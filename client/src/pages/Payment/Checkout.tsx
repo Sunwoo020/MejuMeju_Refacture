@@ -3,7 +3,7 @@ import { PaymentWidgetInstance, loadPaymentWidget } from "@tosspayments/payment-
 import { nanoid } from "nanoid";
 import styled from "styled-components";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ItemOrder } from "../../types/AlcholInterfaces";
+import { ItemOrder } from "../../utils/types/AlcholInterfaces";
 
 const clientKey = "test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq";
 const customerKey = "YbX2HuSlsC9uVJW6NMRMj";

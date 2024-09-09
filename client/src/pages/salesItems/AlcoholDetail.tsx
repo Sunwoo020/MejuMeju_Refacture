@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { getItem } from "../../services/api";
-import { AlcoholData } from "../../types/AlcholInterfaces";
+import { getItem } from "../../utils/api";
+import { AlcoholData } from "../../utils/types/AlcholInterfaces";
 import { useParams } from "react-router-dom";
 
 // components
