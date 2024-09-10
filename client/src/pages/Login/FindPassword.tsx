@@ -5,7 +5,7 @@ import useAxiosAll from "@hooks/useAxiosAll";
 import { ButtonDark, ButtonLight } from "@components/common/Button";
 import Alert from "@components/common/AlertModal";
 
-const FindPassword = () => {
+const Find = () => {
   const navigate = useNavigate();
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
@@ -28,13 +28,13 @@ const FindPassword = () => {
   const emailHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
-  const findPasswordHandler = () => {
+  const findHandler = () => {
     const body = {
       name,
       phone,
       email,
     };
-    doAxios("post", "/members/find-password", body, false);
+    doAxios("post", "/members/find-", body, false);
   };
   useEffect(() => {
     if (err) {
@@ -49,19 +49,19 @@ const FindPassword = () => {
     }
   }, [ok]);
   return (
-    <styled.PasswordContainer>
+    <styled.Container>
       {showAlert ? <Alert text={alertMessage} onClickOk={() => setShowAlert(false)} /> : null}
       <styled.PasswordContentsContainer>
-        <styled.PasswordTopContainer>
-          <styled.PasswordTitle className="label" fontSize="28px" fontWeight="500">
+        <styled.TopContainer>
+          <styled.Title className="label" fontSize="28px" fontWeight="500">
             비밀번호 찾기
-          </styled.PasswordTitle>
-        </styled.PasswordTopContainer>
+          </styled.Title>
+        </styled.TopContainer>
         <styled.PasswordMiddleContainer>
-          <styled.PasswordInputContainer>
-            <styled.PasswordTitle fontSize="22px" fontWeight="400">
+          <styled.InputContainer>
+            <styled.Title fontSize="22px" fontWeight="400">
               회원 비밀번호 찾기
-            </styled.PasswordTitle>
+            </styled.Title>
             <div className="flex-row">
               <div className="flex-col">
                 <input placeholder="이름" type="text" onChange={nameHandler} />
@@ -69,25 +69,25 @@ const FindPassword = () => {
                 <input value={phone} placeholder="전화번호" onChange={phoneHandler} />
               </div>
               <div className="button">
-                <ButtonDark width="100%" height="100%" fontSize="18px" fontWeight="500" onClick={findPasswordHandler}>
+                <ButtonDark width="100%" height="100%" fontSize="18px" fontWeight="500" onClick={findHandler}>
                   비밀번호 찾기
                 </ButtonDark>
               </div>
             </div>
-          </styled.PasswordInputContainer>
+          </styled.InputContainer>
           <styled.Contour />
-          <styled.PasswordBottomContainer>
+          <styled.BottomContainer>
             <ButtonLight width="150px" height="45px" fontSize="18px" onClick={() => navigate("/findemail")}>
               이메일찾기
             </ButtonLight>
             <ButtonDark width="150px" height="45px" fontSize="18px" onClick={() => navigate("/login")}>
               로그인하기
             </ButtonDark>
-          </styled.PasswordBottomContainer>
+          </styled.BottomContainer>
         </styled.PasswordMiddleContainer>
       </styled.PasswordContentsContainer>
-    </styled.PasswordContainer>
+    </styled.Container>
   );
 };
 
-export default FindPassword;
+export default Find;

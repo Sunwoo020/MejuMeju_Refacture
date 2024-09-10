@@ -98,15 +98,15 @@ const Login = () => {
       {showAlert ? <Alert text={alertMessage} onClickOk={() => setShowAlert(false)} /> : null}
       <styled.FormContentsContainer>
         <styled.FormTopContainer>
-          <styled.FormTitle className="top-title" fontSize="28px" fontWeight="500">
+          <styled.Title className="top-title" fontSize="28px" fontWeight="500">
             로그인
-          </styled.FormTitle>
+          </styled.Title>
         </styled.FormTopContainer>
-        <styled.FormMiddleContainer>
-          <styled.FormLoginContainer>
-            <styled.FormTitle fontSize="22px" fontWeight="400">
+        <styled.LoginMiddleContainer>
+          <styled.LoginContainer>
+            <styled.Title fontSize="22px" fontWeight="400">
               회원 로그인
-            </styled.FormTitle>
+            </styled.Title>
             <div className="flex-row">
               <form className="flex-col">
                 <input placeholder="이메일" type="email" onChange={userNameHandler} onKeyDown={handleKeyDown} />
@@ -124,27 +124,27 @@ const Login = () => {
                 </ButtonDark>
               </div>
             </div>
-          </styled.FormLoginContainer>
-          <styled.FormOAuthSignUpBox onClick={googleOAuthHandler} type="google">
-            <styled.FormOAuthIconContainer>
+          </styled.LoginContainer>
+          <styled.OAuthSignUpBox onClick={googleOAuthHandler} type="google">
+            <styled.OAuthIconContainer>
               <FcGoogle size="35" color="black" />
-            </styled.FormOAuthIconContainer>
+            </styled.OAuthIconContainer>
             <div className="desc">구글로 시작하기</div>
-          </styled.FormOAuthSignUpBox>
-          <styled.FormOAuthSignUpBox onClick={facebookOAuthHandler} type="naver">
-            <styled.FormOAuthIconContainer>
+          </styled.OAuthSignUpBox>
+          <styled.OAuthSignUpBox onClick={facebookOAuthHandler} type="naver">
+            <styled.OAuthIconContainer>
               <TfiFacebook size="30" color="white" />
-            </styled.FormOAuthIconContainer>
+            </styled.OAuthIconContainer>
             <div className="desc">페이스북으로 시작하기</div>
-          </styled.FormOAuthSignUpBox>
-          <styled.FormOAuthSignUpBox onClick={kakaoOAuthHandler} type="kakao">
-            <styled.FormOAuthIconContainer>
+          </styled.OAuthSignUpBox>
+          <styled.OAuthSignUpBox onClick={kakaoOAuthHandler} type="kakao">
+            <styled.OAuthIconContainer>
               <RiKakaoTalkFill size="35" color="black" />
-            </styled.FormOAuthIconContainer>
+            </styled.OAuthIconContainer>
             <div className="desc">카카오톡으로 시작하기</div>
-          </styled.FormOAuthSignUpBox>
+          </styled.OAuthSignUpBox>
           <styled.Contour />
-          <styled.FormBottomContainer>
+          <styled.BottomContainer>
             <ButtonDark width="150px" height="100%" fontSize="18px" fontWeight="500" onClick={GotoSign}>
               회원가입
             </ButtonDark>
@@ -170,8 +170,8 @@ const Login = () => {
             >
               비밀번호 찾기
             </ButtonLight>
-          </styled.FormBottomContainer>
-        </styled.FormMiddleContainer>
+          </styled.BottomContainer>
+        </styled.LoginMiddleContainer>
       </styled.FormContentsContainer>
     </styled.FormContainer>
   );

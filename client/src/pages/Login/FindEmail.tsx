@@ -66,19 +66,19 @@ const FindEmail = () => {
     doAxios("post", "/members/find-id", body, false); // post매소드로 이름과 번호를 담아 이메일 찾기 요청 실시
   };
   return (
-    <styled.EmailContainer>
+    <styled.Container>
       {showAlert ? <Alert text={alertMessage} onClickOk={() => setShowAlert(false)} /> : null}
       <styled.EmailContentsContainer>
-        <styled.EmailTopContainer>
-          <styled.EmailTitle className="label" fontSize="28px" fontWeight="500">
+        <styled.TopContainer>
+          <styled.Title className="label" fontSize="28px" fontWeight="500">
             이메일 찾기
-          </styled.EmailTitle>
-        </styled.EmailTopContainer>
+          </styled.Title>
+        </styled.TopContainer>
         <styled.EmailMiddleContainer>
-          <styled.EmailInputContainer>
-            <styled.EmailTitle fontSize="22px" fontWeight="400">
+          <styled.InputContainer>
+            <styled.Title fontSize="22px" fontWeight="400">
               회원 이메일 찾기
-            </styled.EmailTitle>
+            </styled.Title>
             <div className="flex-row">
               <div className="flex-col">
                 <input placeholder="이름" type="text" onChange={nameHandler} />
@@ -90,17 +90,17 @@ const FindEmail = () => {
                 </ButtonDark>
               </div>
             </div>
-          </styled.EmailInputContainer>
+          </styled.InputContainer>
           {isFind ? (
             <>
-              <styled.EmailContour />
+              <styled.Contour />
               <div>
                 가입된 이메일<div className="found">{isFind}</div>
               </div>
             </>
           ) : null}
-          <styled.EmailContour />
-          <styled.EmailBottomContainer>
+          <styled.Contour />
+          <styled.BottomContainer>
             <ButtonLight
               width="150px"
               height="45px"
@@ -120,10 +120,10 @@ const FindEmail = () => {
             >
               로그인하기
             </ButtonDark>
-          </styled.EmailBottomContainer>
+          </styled.BottomContainer>
         </styled.EmailMiddleContainer>
       </styled.EmailContentsContainer>
-    </styled.EmailContainer>
+    </styled.Container>
   );
 };
 

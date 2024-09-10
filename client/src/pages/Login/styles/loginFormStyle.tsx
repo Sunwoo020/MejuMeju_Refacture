@@ -1,18 +1,10 @@
 import styled from "styled-components";
+import * as Common from "./";
 
-export type TypeProps = {
-  type: string;
-};
-
-export type TitleProps = {
-  fontSize: string;
-  fontWeight: string;
-};
-
-export const FormContainer = styled.div`
+export const FormContainer = styled(Common.Container)`
   height: 100vh;
-  ${({ theme }) => theme.common.flexCenterCol};
 `;
+
 export const FormContentsContainer = styled.div`
   max-width: 600px;
   width: 100%;
@@ -27,36 +19,22 @@ export const FormContentsContainer = styled.div`
     }
   }
 `;
+
 export const Contour = styled.hr`
   width: 100%;
   border-color: #eee;
 `;
-export const FormTopContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
+
+export const FormTopContainer = styled(Common.TopContainer)`
   padding-bottom: 20px;
-  gap: 20px;
   margin-bottom: 30px;
   @media screen and (max-width: 768px) {
     margin-bottom: 0px;
   }
 `;
-export const FormTitle = styled.div<TitleProps>`
-  font-size: ${({ fontSize }) => fontSize};
-  font-weight: ${({ fontWeight }) => fontWeight};
-  @media screen and (max-width: 768px) {
-    font-size: 20px;
-  }
-`;
 
-export const FormMiddleContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+export const LoginMiddleContainer = styled(Common.MiddleContainer)`
   gap: 20px;
-  width: 100%;
   padding: 50px 60px;
   @media screen and (max-width: 768px) {
     padding: 0px;
@@ -69,7 +47,8 @@ export const FormMiddleContainer = styled.div`
     border: none;
   }
 `;
-export const FormLoginContainer = styled.div`
+
+export const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -108,7 +87,7 @@ export const FormLoginContainer = styled.div`
   }
 `;
 
-export const FormOAuthSignUpBox = styled.div<TypeProps>`
+export const OAuthSignUpBox = styled.div<{ type: string }>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -128,7 +107,8 @@ export const FormOAuthSignUpBox = styled.div<TypeProps>`
   border-radius: 2px;
   cursor: pointer;
 `;
-export const FormOAuthIconContainer = styled.div`
+
+export const OAuthIconContainer = styled.div`
   ${({ theme }) => theme.common.flexCenterCol};
   height: 65px;
   width: 65px;
@@ -139,14 +119,5 @@ export const FormOAuthIconContainer = styled.div`
   }
   @media screen and (max-width: 768px) {
     height: 55px;
-  }
-`;
-
-export const FormBottomContainer = styled.div`
-  ${({ theme }) => theme.common.flexCenterRow}
-  width: 100%;
-  gap: 15px;
-  @media screen and (max-width: 768px) {
-    gap: 10px;
   }
 `;
