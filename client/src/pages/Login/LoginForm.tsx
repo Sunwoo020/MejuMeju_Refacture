@@ -143,7 +143,7 @@ const Login = () => {
             </styled.FormOAuthIconContainer>
             <div className="desc">카카오톡으로 시작하기</div>
           </styled.FormOAuthSignUpBox>
-          <styled.FormContour />
+          <styled.Contour />
           <styled.FormBottomContainer>
             <ButtonDark width="150px" height="100%" fontSize="18px" fontWeight="500" onClick={GotoSign}>
               회원가입
