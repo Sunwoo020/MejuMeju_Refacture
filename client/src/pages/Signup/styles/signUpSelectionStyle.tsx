@@ -1,8 +1,5 @@
 import styled from "styled-components";
-
-export type TypeProps = {
-  type: string;
-};
+import { TypeProps } from "./";
 
 export const MainContainer = styled.div`
   height: 100vh;

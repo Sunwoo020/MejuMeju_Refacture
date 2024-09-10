@@ -62,28 +62,28 @@ const SignupTerm = () => {
   };
 
   return (
-    <styled.Container1>
+    <styled.Container>
       {isNext ? <Alert text={alertMessage} onClickOk={() => setIsNext(false)} /> : null}
       <styled.TermContainer>
-        <styled.TopContainer1>
-          <styled.Title1 fontSize="28px" fontWeight="500">
+        <styled.TopContainer>
+          <styled.Title fontSize="28px" fontWeight="500">
             회원가입
-          </styled.Title1>
-          <styled.StepContainer1>
-            <styled.Step1 type="on">
+          </styled.Title>
+          <styled.StepContainer>
+            <styled.Step type="on">
               01<p className="text">약관동의</p>
-            </styled.Step1>
+            </styled.Step>
             <MdOutlineKeyboardArrowRight size="22px" color="#A84448" />
-            <styled.Step1 type="off">
+            <styled.Step type="off">
               02<p className="text">정보 입력</p>
-            </styled.Step1>
-          </styled.StepContainer1>
-        </styled.TopContainer1>
-        <styled.MiddleContainer1>
+            </styled.Step>
+          </styled.StepContainer>
+        </styled.TopContainer>
+        <styled.MiddleContainer>
           <div className="title">
-            <styled.Title1 fontSize="22px" fontWeight="400">
+            <styled.Title fontSize="22px" fontWeight="400">
               약관동의
-            </styled.Title1>
+            </styled.Title>
           </div>
           <p style={{ color: "gray" }}>모든 약관을 읽어야 합니다</p>
           <div className="check-container">
@@ -125,17 +125,17 @@ const SignupTerm = () => {
             </div>
           </div>
           {detail[2] ? <Term pos={2} setIsRead={setIsRead} /> : null}
-        </styled.MiddleContainer1>
-        <styled.BottomContainer1>
+        </styled.MiddleContainer>
+        <styled.BottomContainer>
           <ButtonLight width="150px" height="45px" fontSize="18px" onClick={onClickToSelection}>
             이전
           </ButtonLight>
           <ButtonDark width="150px" height="45px" fontSize="18px" onClick={onClickNext}>
             다음
           </ButtonDark>
-        </styled.BottomContainer1>
+        </styled.BottomContainer>
       </styled.TermContainer>
-    </styled.Container1>
+    </styled.Container>
   );
 };
 
