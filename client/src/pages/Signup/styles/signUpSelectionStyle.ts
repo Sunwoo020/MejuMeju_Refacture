@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TypeProps } from "./";
+import { TypeProps } from "@utils/types/AuthType";
 
 export const MainContainer = styled.div`
   height: 100vh;

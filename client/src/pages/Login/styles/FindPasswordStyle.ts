@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MiddleContainer } from "./";
+import { MiddleContainer } from ".";
 
 export const PasswordContentsContainer = styled.div`
   ${({ theme }) => theme.common.flexCenterCol};

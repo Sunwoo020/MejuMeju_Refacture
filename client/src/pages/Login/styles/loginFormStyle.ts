@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import * as Common from "./";
+import * as Common from ".";
 
 export const FormContainer = styled(Common.Container)`
   height: 100vh;
