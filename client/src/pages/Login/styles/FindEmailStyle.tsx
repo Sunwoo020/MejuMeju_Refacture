@@ -107,10 +107,6 @@ export const EmailInputContainer = styled.div`
     width: 30%;
   }
 `;
-export const EmailContour = styled.hr`
-  width: 100%;
-  border-color: #eee;
-`;
 export const EmailBottomContainer = styled.div`
   width: 100%;
   ${({ theme }) => theme.common.flexCenterRow}

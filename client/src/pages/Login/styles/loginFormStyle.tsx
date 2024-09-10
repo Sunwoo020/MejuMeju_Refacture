@@ -27,7 +27,7 @@ export const FormContentsContainer = styled.div`
     }
   }
 `;
-export const FormContour = styled.hr`
+export const Contour = styled.hr`
   width: 100%;
   border-color: #eee;
 `;
