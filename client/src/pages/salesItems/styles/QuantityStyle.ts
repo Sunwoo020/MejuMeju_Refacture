@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import * as Common from "@styles/Common";
 
-export const QuantityControlBox = styled.div`
-  ${Common.FlexRow};
+export const QuantityControlBox = styled(Common.FlexRow)`
   width: 110px;
   height: 32px;
   border-radius: 6px;
