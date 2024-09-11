@@ -1,4 +1,4 @@
-// 주류 리스트 데이터
+import * as Type from "./";
 export interface AlcoholListData {
   itemId: number;
   titleKor: string;
@@ -55,32 +55,10 @@ export interface PaginationProps {
   totalData: number;
 }
 
-// 결제 페이지 아이템 Props
-export interface ItemOrder {
-  itemId: number;
-  titleKor: string;
-  price: number;
-  profile: string;
-  quantity: number;
-}
-// 장바구니 => 결제페이지로 정제된 Props
-export interface Props {
-  items: ItemOrder[];
-  cartId?: number;
-}
 // 장바구니에 담긴 Props 배열
 export interface CartItemsProps {
   cartId?: number;
-  itemCarts: ItemOrder[];
-}
-
-// 결제 페이지 UserProps
-export interface UserProps {
-  memberId: string;
-  realName: string;
-  displayName: string;
-  email: string;
-  phone: string;
+  itemCarts: Type.ItemOrder[];
 }
 
 export interface CheckoutProps {

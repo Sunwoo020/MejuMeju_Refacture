@@ -6,19 +6,9 @@ import axios from "axios";
 import { ButtonDark, ButtonLight } from "@components/common/Button";
 import Alert from "@components/common/AlertModal";
 import * as styled from "./styles";
+import * as Type from "@utils/types";
 
 const url = `${process.env.REACT_APP_API_URL}`;
-
-interface FormData {
-  name: string;
-  nick: string;
-  birth: string;
-  number: string;
-  email: string;
-  code: string;
-  password: string;
-  passwordCheck: string;
-}
 
 const SignupInput = () => {
   const navigate = useNavigate();
@@ -29,13 +19,13 @@ const SignupInput = () => {
     watch,
     setValue,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<Type.FormData>();
   const [alertMessage, setAlertMessage] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [isOk, setIsOk] = useState(false);
   const [type, setType] = useState<string | null>(null);
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: Type.FormData) => {
     const accessToken = location.state.access;
     const refreshToken = location.state.refresh;
 
