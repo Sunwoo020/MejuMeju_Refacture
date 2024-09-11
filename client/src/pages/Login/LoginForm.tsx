@@ -7,6 +7,7 @@ import axios from "axios";
 import Alert from "@components/common/AlertModal";
 import { ButtonDark, ButtonLight } from "@components/common/Button";
 import * as styled from "./styles";
+import * as Common from "@styles/CommonConainer";
 
 const url = `${process.env.REACT_APP_API_URL}`;
 
@@ -98,15 +99,15 @@ const Login = () => {
       {showAlert ? <Alert text={alertMessage} onClickOk={() => setShowAlert(false)} /> : null}
       <styled.FormContentsContainer>
         <styled.FormTopContainer>
-          <styled.Title className="top-title" fontSize="28px" fontWeight="500">
+          <Common.Title className="top-title" fontSize="28px" fontWeight="500">
             로그인
-          </styled.Title>
+          </Common.Title>
         </styled.FormTopContainer>
         <styled.LoginMiddleContainer>
           <styled.LoginContainer>
-            <styled.Title fontSize="22px" fontWeight="400">
+            <Common.Title fontSize="22px" fontWeight="400">
               회원 로그인
-            </styled.Title>
+            </Common.Title>
             <div className="flex-row">
               <form className="flex-col">
                 <input placeholder="이메일" type="email" onChange={userNameHandler} onKeyDown={handleKeyDown} />
@@ -144,7 +145,7 @@ const Login = () => {
             <div className="desc">카카오톡으로 시작하기</div>
           </styled.OAuthSignUpBox>
           <styled.Contour />
-          <styled.BottomContainer>
+          <Common.BottomContainer>
             <ButtonDark width="150px" height="100%" fontSize="18px" fontWeight="500" onClick={GotoSign}>
               회원가입
             </ButtonDark>
@@ -170,7 +171,7 @@ const Login = () => {
             >
               비밀번호 찾기
             </ButtonLight>
-          </styled.BottomContainer>
+          </Common.BottomContainer>
         </styled.LoginMiddleContainer>
       </styled.FormContentsContainer>
     </styled.FormContainer>

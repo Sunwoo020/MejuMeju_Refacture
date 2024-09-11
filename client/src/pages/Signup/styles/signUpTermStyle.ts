@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import * as Types from ".";
 
 export const TermContainer = styled.div`
   ${({ theme }) => theme.common.flexCenterCol};

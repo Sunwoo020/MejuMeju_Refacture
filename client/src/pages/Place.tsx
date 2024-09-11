@@ -1,5 +1,5 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect, lazy, Suspense } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import { ButtonDark } from "@components/common/Button";
@@ -72,7 +72,6 @@ const Place = () => {
   const [shoplist, setShoplist] = useState<Shopitem[]>([]);
   const navigate = useNavigate();
   const [select, setSelect] = useState<Shopitem | null>(null);
-  const location = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { ButtonDark, ButtonLight } from "@components/common/Button";
@@ -8,7 +8,7 @@ import Progress from "./Progress";
 import PaymnetUserInfo from "./PaymentUserinfo";
 import Itemlist from "./Paymentitemlist";
 import Payinfo from "./Paymentpayinfo";
-import { UserProps } from "@utils/types/AlcholInterfaces";
+import { UserProps } from "@utils/types";
 import useAxiosAll from "@hooks/useAxiosAll";
 import { useSelector } from "react-redux";
 import { stateProps } from "./Paymentpayinfo";

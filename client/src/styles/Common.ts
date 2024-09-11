@@ -10,14 +10,12 @@ export const FlexCol = styled.div`
   flex-direction: column;
 `;
 
-export const FlexCenterRow = styled.div`
-  ${FlexRow};
+export const FlexCenterRow = styled(FlexRow)`
   justify-content: center;
   align-items: center;
 `;
 
-export const FlexCenterCol = styled.div`
-  ${FlexCol};
+export const FlexCenterCol = styled(FlexCol)`
   justify-content: center;
   align-items: center;
 `;

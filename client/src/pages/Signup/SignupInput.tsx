@@ -7,6 +7,7 @@ import { ButtonDark, ButtonLight } from "@components/common/Button";
 import Alert from "@components/common/AlertModal";
 import * as styled from "./styles";
 import * as Type from "@utils/types";
+import * as Common from "@styles/CommonConainer";
 
 const url = `${process.env.REACT_APP_API_URL}`;
 
@@ -139,7 +140,7 @@ const SignupInput = () => {
   }, []);
 
   return (
-    <styled.Container>
+    <Common.Container>
       {showAlert ? (
         <Alert
           text={alertMessage}
@@ -147,26 +148,26 @@ const SignupInput = () => {
         />
       ) : null}
       {type ? (
-        <styled.InputContainer>
-          <styled.TopContainer>
-            <styled.Title fontSize="28px" fontWeight="500">
+        <Common.InputContainer>
+          <Common.TopContainer>
+            <Common.Title fontSize="28px" fontWeight="500">
               회원가입
-            </styled.Title>
-            <styled.StepContainer>
-              <styled.Step type="off">
+            </Common.Title>
+            <Common.StepContainer>
+              <Common.Step type="off">
                 01<p className="text">약관동의</p>
-              </styled.Step>
+              </Common.Step>
               <MdOutlineKeyboardArrowRight size="22px" color="#A84448" />
-              <styled.Step type="on">
+              <Common.Step type="on">
                 02<p className="text">정보 입력</p>
-              </styled.Step>
-            </styled.StepContainer>
-          </styled.TopContainer>
+              </Common.Step>
+            </Common.StepContainer>
+          </Common.TopContainer>
           <styled.MiddleContainer>
             <div className="title">
-              <styled.Title fontSize="22px" fontWeight="400">
+              <Common.Title fontSize="22px" fontWeight="400">
                 기본정보
-              </styled.Title>
+              </Common.Title>
             </div>
             <styled.InfoTable>
               {type === "oauth" ? null : (
@@ -275,17 +276,17 @@ const SignupInput = () => {
               </styled.SingleInfo>
             </styled.InfoTable>
           </styled.MiddleContainer>
-          <styled.BottomContainer>
+          <Common.BottomContainer>
             <ButtonLight width="150px" height="45px" fontSize="18px" onClick={() => navigate("/signup")}>
               회원가입 선택
             </ButtonLight>
             <ButtonDark width="150px" height="45px" fontSize="18px" onClick={handleSubmit(onSubmit)}>
               회원가입
             </ButtonDark>
-          </styled.BottomContainer>
-        </styled.InputContainer>
+          </Common.BottomContainer>
+        </Common.InputContainer>
       ) : null}
-    </styled.Container>
+    </Common.Container>
   );
 };
 

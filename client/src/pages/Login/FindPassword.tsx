@@ -1,4 +1,5 @@
 import * as styled from "./styles";
+import * as Common from "@styles/CommonConainer";
 import { useState, ChangeEvent, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAxiosAll from "@hooks/useAxiosAll";
@@ -49,19 +50,19 @@ const Find = () => {
     }
   }, [ok]);
   return (
-    <styled.Container>
+    <Common.Container>
       {showAlert ? <Alert text={alertMessage} onClickOk={() => setShowAlert(false)} /> : null}
       <styled.PasswordContentsContainer>
-        <styled.TopContainer>
-          <styled.Title className="label" fontSize="28px" fontWeight="500">
+        <Common.TopContainer>
+          <Common.Title className="label" fontSize="28px" fontWeight="500">
             비밀번호 찾기
-          </styled.Title>
-        </styled.TopContainer>
+          </Common.Title>
+        </Common.TopContainer>
         <styled.PasswordMiddleContainer>
-          <styled.InputContainer>
-            <styled.Title fontSize="22px" fontWeight="400">
+          <Common.InputContainer>
+            <Common.Title fontSize="22px" fontWeight="400">
               회원 비밀번호 찾기
-            </styled.Title>
+            </Common.Title>
             <div className="flex-row">
               <div className="flex-col">
                 <input placeholder="이름" type="text" onChange={nameHandler} />
@@ -74,19 +75,19 @@ const Find = () => {
                 </ButtonDark>
               </div>
             </div>
-          </styled.InputContainer>
+          </Common.InputContainer>
           <styled.Contour />
-          <styled.BottomContainer>
+          <Common.BottomContainer>
             <ButtonLight width="150px" height="45px" fontSize="18px" onClick={() => navigate("/findemail")}>
               이메일찾기
             </ButtonLight>
             <ButtonDark width="150px" height="45px" fontSize="18px" onClick={() => navigate("/login")}>
               로그인하기
             </ButtonDark>
-          </styled.BottomContainer>
+          </Common.BottomContainer>
         </styled.PasswordMiddleContainer>
       </styled.PasswordContentsContainer>
-    </styled.Container>
+    </Common.Container>
   );
 };
 

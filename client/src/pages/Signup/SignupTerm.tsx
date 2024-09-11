@@ -6,6 +6,7 @@ import { ButtonDark, ButtonLight } from "@components/common/Button";
 import Alert from "@components/common/AlertModal";
 import Term from "@components/signUpTerm/Term";
 import * as styled from "./styles";
+import * as Common from "@styles/CommonConainer";
 
 const SignupTerm = () => {
   const navigate = useNavigate();
@@ -62,28 +63,28 @@ const SignupTerm = () => {
   };
 
   return (
-    <styled.Container>
+    <Common.Container>
       {isNext ? <Alert text={alertMessage} onClickOk={() => setIsNext(false)} /> : null}
       <styled.TermContainer>
-        <styled.TopContainer>
-          <styled.Title fontSize="28px" fontWeight="500">
+        <Common.TopContainer>
+          <Common.Title fontSize="28px" fontWeight="500">
             회원가입
-          </styled.Title>
-          <styled.StepContainer>
-            <styled.Step type="on">
+          </Common.Title>
+          <Common.StepContainer>
+            <Common.Step type="on">
               01<p className="text">약관동의</p>
-            </styled.Step>
+            </Common.Step>
             <MdOutlineKeyboardArrowRight size="22px" color="#A84448" />
-            <styled.Step type="off">
+            <Common.Step type="off">
               02<p className="text">정보 입력</p>
-            </styled.Step>
-          </styled.StepContainer>
-        </styled.TopContainer>
+            </Common.Step>
+          </Common.StepContainer>
+        </Common.TopContainer>
         <styled.MiddleContainer>
           <div className="title">
-            <styled.Title fontSize="22px" fontWeight="400">
+            <Common.Title fontSize="22px" fontWeight="400">
               약관동의
-            </styled.Title>
+            </Common.Title>
           </div>
           <p style={{ color: "gray" }}>모든 약관을 읽어야 합니다</p>
           <div className="check-container">
@@ -126,16 +127,16 @@ const SignupTerm = () => {
           </div>
           {detail[2] ? <Term pos={2} setIsRead={setIsRead} /> : null}
         </styled.MiddleContainer>
-        <styled.BottomContainer>
+        <Common.BottomContainer>
           <ButtonLight width="150px" height="45px" fontSize="18px" onClick={onClickToSelection}>
             이전
           </ButtonLight>
           <ButtonDark width="150px" height="45px" fontSize="18px" onClick={onClickNext}>
             다음
           </ButtonDark>
-        </styled.BottomContainer>
+        </Common.BottomContainer>
       </styled.TermContainer>
-    </styled.Container>
+    </Common.Container>
   );
 };
 
