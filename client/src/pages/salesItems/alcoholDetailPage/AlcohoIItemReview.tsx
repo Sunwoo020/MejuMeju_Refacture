@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { BsArrowDownLeftCircleFill, BsArrowUpRightCircleFill } from "react-icons/bs";
 import { ItemReviewsType } from "@utils/types/AlcholInterfaces";
 import { getItemReview } from "@utils/api";
-import ReviewList from "@components/alcoholDetailPage/ReviewList";
+import ReviewList from "@pages/salesItems/alcoholDetailPage/ReviewList";
 
 interface ItemReviewsProps {
   itemId: number;

@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import * as styled from "./styles";
 import { getItem } from "../../utils/api";
 import { AlcoholData } from "../../utils/types/AlcholInterfaces";
 import { useParams } from "react-router-dom";
-
-// components
-import AlcoholItemBuy from "../../components/alcoholDetailPage/AlcoholItemBuy";
-import AlcoholItemReview from "../../components/alcoholDetailPage/AlcohoIItemReview";
-import AlcoholItemContent from "../../components/alcoholDetailPage/AlcohoItemContent";
-
-const AlcoholDetailContainer = styled.section`
-  ${({ theme }) => theme.common.flexCenterCol}
-  height: 100%;
-  padding: 0 25px;
-  color: ${({ theme }) => theme.colors.fontColor};
-`;
+import AlcoholItemBuy from "./alcoholDetailPage/AlcoholItemBuy";
+import AlcoholItemReview from "./alcoholDetailPage/AlcohoIItemReview";
+import AlcoholItemContent from "./alcoholDetailPage/AlcohoItemContent";
 
 const AlcoholDetail = () => {
   const { id } = useParams<string>();
@@ -36,7 +27,7 @@ const AlcoholDetail = () => {
   }, []);
 
   return (
-    <AlcoholDetailContainer className="main">
+    <styled.AlcoholDetailContainer className="main">
       {data && (
         <>
           <AlcoholItemBuy data={data} />
@@ -44,7 +35,7 @@ const AlcoholDetail = () => {
           <AlcoholItemContent data={data} />
         </>
       )}
-    </AlcoholDetailContainer>
+    </styled.AlcoholDetailContainer>
   );
 };
 

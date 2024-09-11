@@ -4,7 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { ButtonDark, ButtonLight } from "@components/common/Button";
-import Pagination from "@components/alcoholPage/Pagination";
+import Pagination from "@pages/salesItems/alcoholPage/Pagination";
 import PriceDisplay from "@components/common/PriceDisplay";
 
 interface Likeitem {

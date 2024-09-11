@@ -1,83 +1,10 @@
 import { useState, useEffect } from "react";
-import styled from "styled-components";
 import { AlcoholListData } from "@utils/types/AlcholInterfaces";
 import { getItemsList } from "@utils/api";
-
-// components
-import AlcoholList from "@components/alcoholPage/AlcoholList";
-import SortingUtils from "@components/alcoholPage/SortingUtils";
-import ItemSearch from "@components/alcoholPage/ItemSearch";
-
-// 전체적인 컨테이너
-const AlcoholContainer = styled.section`
-  ${({ theme }) => theme.common.flexCenterCol}
-  height: 100%;
-  padding: 0 25px;
-  color: ${({ theme }) => theme.colors.fontColor};
-`;
-
-// 주류 카테고리 Box
-const AlcoholTabNavBox = styled.div`
-  max-width: ${({ theme }) => theme.widthSize.contentMax};
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  font-size: 15px;
-  height: 60px;
-
-  @media screen and (max-width: 600px) {
-    font-size: 13px;
-  }
-`;
-
-// 주류 카테고리 NavBar
-const TabNav = styled.ul`
-  width: 55%;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  justify-content: flex-start;
-  flex-direction: row;
-  cursor: pointer;
-
-  .sub_tab {
-    padding: 10px 0;
-    color: darkgray;
-  }
-  .tab_selected {
-    border-bottom: 2.5px solid ${({ theme }) => theme.colors.fontColor};
-    font-weight: bold;
-    font-size: 16px;
-    color: ${({ theme }) => theme.colors.fontColor};
-    transition: 0.5s;
-  }
-  @media ${(props) => props.theme.breakpoints.mobileMax} {
-    width: 100%;
-    font-size: 13px;
-    gap: 0.5rem;
-
-    .tab_selected {
-      font-size: 14px;
-    }
-  }
-`;
-
-const SearchTextbox = styled.div`
-  display: flex;
-  width: 100%;
-  margin-top: 1rem;
-  max-width: ${({ theme }) => theme.widthSize.contentMax};
-  justify-content: flex-start;
-  padding-top: 1rem;
-
-  .string_text {
-    font-size: 23px;
-    font-weight: 700;
-  }
-  .default_text {
-    padding: 5px;
-  }
-`;
+import AlcoholList from "@pages/salesItems/alcoholPage/AlcoholList";
+import SortingUtils from "@pages/salesItems/alcoholPage/SortingUtils";
+import ItemSearch from "@pages/salesItems/alcoholPage/ItemSearch";
+import * as styled from "./styles";
 
 const Alcohol = () => {
   const [searchWord, setSearchWord] = useState<string>(""); // 검색 키워드
@@ -114,9 +41,9 @@ const Alcohol = () => {
   };
 
   return (
-    <AlcoholContainer className="main">
-      <AlcoholTabNavBox>
-        <TabNav>
+    <styled.AlcoholContainer className="main">
+      <styled.AlcoholTabNavBox>
+        <styled.TabNav>
           {tabCategories.map((tab, idx) => {
             return (
               <li
@@ -128,7 +55,7 @@ const Alcohol = () => {
               </li>
             );
           })}
-        </TabNav>
+        </styled.TabNav>
         {typeof totalData === "number" ? (
           <ItemSearch
             setSearchWord={setSearchWord}
@@ -138,12 +65,12 @@ const Alcohol = () => {
             size={size}
           />
         ) : null}
-      </AlcoholTabNavBox>
+      </styled.AlcoholTabNavBox>
       {searchWord ? (
-        <SearchTextbox>
+        <styled.SearchTextbox>
           <span className="string_text">{searchWord}</span>
           <span className="default_text">에 대한 검색결과</span>
-        </SearchTextbox>
+        </styled.SearchTextbox>
       ) : null}
       {typeof totalData === "number" ? (
         <>
@@ -157,7 +84,7 @@ const Alcohol = () => {
           />
         </>
       ) : null}
-    </AlcoholContainer>
+    </styled.AlcoholContainer>
   );
 };
 

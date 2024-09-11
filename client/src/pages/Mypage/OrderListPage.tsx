@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { ButtonDark, ButtonLight } from "@components/common/Button";
-import Pagination from "@components/alcoholPage/Pagination";
+import Pagination from "@pages/salesItems/alcoholPage/Pagination";
 
 interface Orderitem {
   orderId: number;

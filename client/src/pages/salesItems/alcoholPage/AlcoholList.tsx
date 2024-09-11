@@ -3,8 +3,8 @@ import { AlcoholListProps } from "@utils/types/AlcholInterfaces";
 import { Link } from "react-router-dom";
 
 // components
-import AlcoholListItem from "@components/alcoholPage/AlcoholListItem";
-import Pagination from "@components/alcoholPage/Pagination";
+import AlcoholListItem from "@pages/salesItems/alcoholPage/AlcoholListItem";
+import Pagination from "@pages/salesItems/alcoholPage/Pagination";
 
 // 알코올 리스트
 const AlcoholListContainer = styled.div`
