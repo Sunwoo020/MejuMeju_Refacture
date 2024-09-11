@@ -3,9 +3,9 @@ import * as styled from "./styles";
 import { getItem } from "../../utils/api";
 import { AlcoholData } from "../../utils/types/AlcholInterfaces";
 import { useParams } from "react-router-dom";
-import AlcoholItemBuy from "./alcoholDetailPage/AlcoholItemBuy";
-import AlcoholItemReview from "./alcoholDetailPage/AlcohoIItemReview";
-import AlcoholItemContent from "./alcoholDetailPage/AlcohoItemContent";
+import AlcoholItemBuy from "./alcoholDetailComponent/AlcoholItemBuy";
+import AlcoholItemReview from "./alcoholDetailComponent/AlcohoIItemReview";
+import AlcoholItemContent from "./alcoholDetailComponent/AlcohoItemContent";
 
 const AlcoholDetail = () => {
   const { id } = useParams<string>();

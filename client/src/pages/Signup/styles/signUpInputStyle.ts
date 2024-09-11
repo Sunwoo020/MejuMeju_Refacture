@@ -1,15 +1,17 @@
 import styled from "styled-components";
+import * as Common from "@styles/Common";
 
 export const ValidPassword = styled.p`
   color: red;
   margin-top: 5px;
-  font-size: 12px;
+  ${Common.fontSize(12)};
   padding: 5px 10px;
   width: 100%;
   @media screen and (max-width: 768px) {
     padding: 3px;
     margin: 0px;
-    font-size: 10px;
+
+    ${Common.fontSize(10)};
   }
 `;
 

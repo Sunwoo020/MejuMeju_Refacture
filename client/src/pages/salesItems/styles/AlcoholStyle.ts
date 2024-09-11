@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as Common from "@styles/Common";
 
 export const AlcoholContainer = styled.section`
   ${({ theme }) => theme.common.flexCenterCol}
@@ -12,11 +13,11 @@ export const AlcoholTabNavBox = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  font-size: 15px;
+  ${Common.fontSize(15)};
   height: 60px;
 
   @media screen and (max-width: 600px) {
-    font-size: 13px;
+    ${Common.fontSize(13)};
   }
 `;
 
@@ -36,17 +37,17 @@ export const TabNav = styled.ul`
   .tab_selected {
     border-bottom: 2.5px solid ${({ theme }) => theme.colors.fontColor};
     font-weight: bold;
-    font-size: 16px;
+    ${Common.fontSize(16)};
     color: ${({ theme }) => theme.colors.fontColor};
     transition: 0.5s;
   }
   @media ${(props) => props.theme.breakpoints.mobileMax} {
     width: 100%;
-    font-size: 13px;
+    ${Common.fontSize(13)};
     gap: 0.5rem;
 
     .tab_selected {
-      font-size: 14px;
+      ${Common.fontSize(14)};
     }
   }
 `;
@@ -60,7 +61,7 @@ export const SearchTextbox = styled.div`
   padding-top: 1rem;
 
   .string_text {
-    font-size: 23px;
+    ${Common.fontSize(23)};
     font-weight: 700;
   }
   .default_text {

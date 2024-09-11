@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { TypeProps } from "@utils/types/AuthType";
+import * as Type from "@utils/types";
+import * as Common from "@styles/Common";
 
 export const MainContainer = styled.div`
   height: 100vh;
@@ -8,7 +9,7 @@ export const MainContainer = styled.div`
   .go-login {
     ${({ theme }) => theme.common.flexCenterRow};
     gap: 10px;
-    font-size: 14px;
+    ${Common.fontSize(14)};
     color: #b2b2b2;
   }
   .click-to-login {
@@ -53,7 +54,7 @@ export const Contour = styled.hr`
   border-color: ${({ theme }) => theme.colors.border};
 `;
 
-export const OAuthSignUpBox = styled.div<TypeProps>`
+export const OAuthSignUpBox = styled.div<Type.TypeProps>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -63,11 +64,11 @@ export const OAuthSignUpBox = styled.div<TypeProps>`
   color: ${({ type }) => (type === "google" || type === "kakao" ? "black" : "white")};
   border: 1px solid ${({ theme }) => theme.colors.border};
   .desc {
-    font-size: 18px;
+    ${Common.fontSize(18)};
     width: calc(100% - 65px);
     text-align: center;
     @media ${({ theme }) => theme.breakpoints.mobileMax} {
-      font-size: 14px;
+      ${Common.fontSize(14)};
     }
   }
   border-radius: 2px;

@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const FlexRow = styled.div`
   display: flex;
@@ -20,12 +20,6 @@ export const FlexCenterCol = styled.div`
   ${FlexCol};
   justify-content: center;
   align-items: center;
-`;
-export const fontSize = (size: number) => css`
-  font-size: ${size}px;
-`;
-export const FontSizeStyle = styled.div<{ size: number }>`
-  ${({ size }) => fontSize(size)}
 `;
 
 export const ScrollbarStyle = styled.ul`

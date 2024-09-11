@@ -1,12 +1,13 @@
 import styled from "styled-components";
-import * as Common from "@styles/Common";
+import * as Common from "@styles/index";
 
-export const Container = styled(Common.Container)``;
-export const TopContainer = styled(Common.TopContainer)``;
-export const BottomContainer = styled(Common.BottomContainer)``;
-export const Step = styled(Common.Step)``;
-export const StepContainer = styled(Common.StepContainer)``;
-export const InputContainer = styled(Common.InputContainer)``;
+export const Container = styled(Common.ContainerStyle)``;
+export const TopContainer = styled(Common.TopContainerStyle)``;
+export const BottomContainer = styled(Common.BottomContainerStyle)``;
+export const Step = styled(Common.StepStyle)``;
+export const StepContainer = styled(Common.StepContainerStyle)``;
+export const InputContainer = styled(Common.InputContainerStyle)``;
+export const Title = styled(Common.TitleStyle)``;
 
 export const SingleInfo = styled.div`
   position: relative;
@@ -15,7 +16,7 @@ export const SingleInfo = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  font-size: 16px;
+  ${Common.fontSize(16)};
   border-bottom: 1px solid #b2b2b2;
   background-color: #ededed;
 
@@ -31,19 +32,19 @@ export const SingleInfo = styled.div`
     input {
       border: 1px solid #b2b2b2;
       padding: 5px 10px;
-      font-size: 16px;
+      ${Common.fontSize(16)};
       width: 80%;
 
       @media screen and (max-width: 768px) {
         width: 75%;
-        font-size: 12px;
+        ${Common.fontSize(12)};
       }
     }
   }
 `;
 
 export const ContentsContainer = styled.div`
-  ${({ theme }) => theme.common.flexCenterCol};
+  ${Common.FlexCenterCol};
   max-width: 700px;
   width: 100%;
   padding: 0 25px;
