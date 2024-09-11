@@ -1,14 +1,6 @@
 import styled from "styled-components";
 import * as Common from "@styles/index";
 
-export const Container = styled(Common.ContainerStyle)``;
-export const TopContainer = styled(Common.TopContainerStyle)``;
-export const BottomContainer = styled(Common.BottomContainerStyle)``;
-export const Step = styled(Common.StepStyle)``;
-export const StepContainer = styled(Common.StepContainerStyle)``;
-export const InputContainer = styled(Common.InputContainerStyle)``;
-export const Title = styled(Common.TitleStyle)``;
-
 export const SingleInfo = styled.div`
   position: relative;
   width: 100%;
@@ -43,8 +35,7 @@ export const SingleInfo = styled.div`
   }
 `;
 
-export const ContentsContainer = styled.div`
-  ${Common.FlexCenterCol};
+export const ContentsContainer = styled(Common.FlexCenterCol)`
   max-width: 700px;
   width: 100%;
   padding: 0 25px;

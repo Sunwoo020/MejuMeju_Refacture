@@ -2,13 +2,12 @@ import styled from "styled-components";
 import * as Type from "@utils/types";
 import * as Common from "@styles/Common";
 
-export const ContainerStyle = styled.div`
+export const Container = styled(Common.FlexCenterCol)`
   color: ${({ theme }) => theme.colors.fontColor};
-  ${Common.FlexCenterCol};
   gap: 20px;
 `;
 
-export const TitleStyle = styled.div<Type.TitleProps>`
+export const Title = styled.div<Type.TitleProps>`
   font-size: ${({ fontSize }) => fontSize};
   font-weight: ${({ fontWeight }) => fontWeight};
 
@@ -17,16 +16,14 @@ export const TitleStyle = styled.div<Type.TitleProps>`
   }
 `;
 
-export const TopContainerStyle = styled.div`
-  ${Common.FlexRow};
+export const TopContainer = styled(Common.FlexRow)`
   width: 100%;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
 `;
 
-export const BottomContainerStyle = styled.div`
-  ${Common.FlexCenterRow};
+export const BottomContainer = styled(Common.FlexCenterRow)`
   gap: 15px;
 
   @media screen and (max-width: 768px) {
@@ -34,8 +31,7 @@ export const BottomContainerStyle = styled.div`
   }
 `;
 
-export const InputContainerStyle = styled.div`
-  ${Common.FlexCol};
+export const InputContainer = styled(Common.FlexCol)`
   justify-content: flex-start;
   gap: 30px;
   width: 100%;
@@ -43,7 +39,6 @@ export const InputContainerStyle = styled.div`
 
   .flex-col {
     width: 70%;
-    ${Common.FlexCol};
     justify-content: space-between;
     gap: 10px;
 
@@ -58,8 +53,7 @@ export const InputContainerStyle = styled.div`
     }
   }
 
-  .flex-row {
-    ${Common.FlexRow};
+  .flex-row ${Common.FlexRow} {
     justify-content: space-between;
     gap: 30px;
     width: 100%;
@@ -75,8 +69,7 @@ export const InputContainerStyle = styled.div`
   }
 `;
 
-export const StepStyle = styled.div<Type.StepProps>`
-  ${Common.FlexCenterRow};
+export const Step = styled(Common.FlexCenterRow)<Type.StepProps>`
   color: ${({ type }) => (type === "on" ? "#A84448" : "#b2b2b2")};
 
   .text {
@@ -85,8 +78,7 @@ export const StepStyle = styled.div<Type.StepProps>`
   }
 `;
 
-export const StepContainerStyle = styled.div`
-  ${Common.FlexCenterRow};
+export const StepContainer = styled(Common.FlexCenterRow)`
   ${Common.fontSize(15)};
 
   @media screen and (max-width: 768px) {

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ButtonDark, ButtonLight } from "@components/common/Button";
 import Alert from "@components/common/AlertModal";
 import useAxiosAll from "@hooks/useAxiosAll";
+import * as Common from "@styles/CommonConainer";
 
 const FindEmail = () => {
   const navigate = useNavigate();
@@ -66,19 +67,19 @@ const FindEmail = () => {
     doAxios("post", "/members/find-id", body, false); // post매소드로 이름과 번호를 담아 이메일 찾기 요청 실시
   };
   return (
-    <styled.Container>
+    <Common.Container>
       {showAlert ? <Alert text={alertMessage} onClickOk={() => setShowAlert(false)} /> : null}
       <styled.EmailContentsContainer>
-        <styled.TopContainer>
-          <styled.Title className="label" fontSize="28px" fontWeight="500">
+        <Common.TopContainer>
+          <Common.Title className="label" fontSize="28px" fontWeight="500">
             이메일 찾기
-          </styled.Title>
-        </styled.TopContainer>
+          </Common.Title>
+        </Common.TopContainer>
         <styled.EmailMiddleContainer>
-          <styled.InputContainer>
-            <styled.Title fontSize="22px" fontWeight="400">
+          <Common.InputContainer>
+            <Common.Title fontSize="22px" fontWeight="400">
               회원 이메일 찾기
-            </styled.Title>
+            </Common.Title>
             <div className="flex-row">
               <div className="flex-col">
                 <input placeholder="이름" type="text" onChange={nameHandler} />
@@ -90,7 +91,7 @@ const FindEmail = () => {
                 </ButtonDark>
               </div>
             </div>
-          </styled.InputContainer>
+          </Common.InputContainer>
           {isFind ? (
             <>
               <styled.Contour />
@@ -100,7 +101,7 @@ const FindEmail = () => {
             </>
           ) : null}
           <styled.Contour />
-          <styled.BottomContainer>
+          <Common.BottomContainer>
             <ButtonLight
               width="150px"
               height="45px"
@@ -120,10 +121,10 @@ const FindEmail = () => {
             >
               로그인하기
             </ButtonDark>
-          </styled.BottomContainer>
+          </Common.BottomContainer>
         </styled.EmailMiddleContainer>
       </styled.EmailContentsContainer>
-    </styled.Container>
+    </Common.Container>
   );
 };
 

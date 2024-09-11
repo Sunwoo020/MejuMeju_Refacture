@@ -1,11 +1,4 @@
 import styled from "styled-components";
-import * as Common from "@styles/Common";
-
-export const Container = styled(Common.Container)``;
-export const Title = styled(Common.Title)``;
-export const TopContainer = styled(Common.TopContainer)``;
-export const BottomContainer = styled(Common.BottomContainer)``;
-export const InputContainer = styled(Common.InputContainer)``;
 
 export const MiddleContainer = styled.div`
   border: 1px solid lightgray;
@@ -27,7 +20,6 @@ export const MiddleContainer = styled.div`
   width: 100%;
 `;
 
-// login 전용 ContentsContainer 스타일
 export const ContentsContainer = styled.div`
   ${({ theme }) => theme.common.flexCenterCol};
   gap: 50px;

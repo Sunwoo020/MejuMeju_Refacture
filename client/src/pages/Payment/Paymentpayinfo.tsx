@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ItemOrder } from "../../utils/types/AlcholInterfaces";
+import { ItemOrder } from "@utils/types";
 import DatePicker from "react-datepicker";
 import { useState, memo, useCallback } from "react";
 import { useSelector } from "react-redux";

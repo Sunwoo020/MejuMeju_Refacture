@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import * as Common from ".";
+import * as Common from "@styles/CommonConainer";
+import * as LoginCommon from "./Common";
 
 export const FormContainer = styled(Common.Container)`
+  display: flex;
   height: 100vh;
 `;
-
-export const FormContentsContainer = styled.div`
+export const FormContentsContainer = styled(Common.Container)`
   max-width: 600px;
   width: 100%;
   position: absolute;
@@ -33,7 +34,7 @@ export const FormTopContainer = styled(Common.TopContainer)`
   }
 `;
 
-export const LoginMiddleContainer = styled(Common.MiddleContainer)`
+export const LoginMiddleContainer = styled(LoginCommon.MiddleContainer)`
   gap: 20px;
   padding: 50px 60px;
   @media screen and (max-width: 768px) {

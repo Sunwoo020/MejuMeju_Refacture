@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { UserProps } from "../../utils/types/AlcholInterfaces";
+import { UserProps } from "@utils/types";
 import { memo } from "react";
 
 export interface ChildComponentProps {
