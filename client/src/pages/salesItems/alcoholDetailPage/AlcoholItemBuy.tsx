@@ -9,7 +9,7 @@ import { createItemCart } from "@utils/api";
 import ClickFavoriteItem from "@components/common/ClickFavoriteItem";
 import PriceDisplay from "@components/common/PriceDisplay";
 import { ButtonLight, ButtonDark } from "@components/common/Button";
-import QuantityControl from "@components/alcoholDetailPage/QuantityControl";
+import QuantityControl from "@pages/salesItems/alcoholDetailPage/QuantityControl";
 import Alert from "@components/common/AlertModal";
 
 interface ItemDatailProps {

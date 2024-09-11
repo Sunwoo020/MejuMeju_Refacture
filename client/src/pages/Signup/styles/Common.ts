@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import * as Common from "@styles/Common";
+
 export const Container = styled(Common.Container)``;
 export const TopContainer = styled(Common.TopContainer)``;
 export const BottomContainer = styled(Common.BottomContainer)``;
 export const Step = styled(Common.Step)``;
 export const StepContainer = styled(Common.StepContainer)``;
 export const InputContainer = styled(Common.InputContainer)``;
+
 export const SingleInfo = styled.div`
   position: relative;
   width: 100%;
