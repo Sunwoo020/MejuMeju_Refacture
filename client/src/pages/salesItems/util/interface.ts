@@ -1,5 +1,9 @@
 import * as CommonType from "@utils/types";
-import { ItemReviewsType } from "@utils/types/AlcholInterfaces";
+import { ItemReviewsType, AlcoholListData } from "@utils/types/AlcholInterfaces";
+
+export interface ItemProps {
+  item: AlcoholListData;
+}
 export interface ItemReviewsProps {
   itemId: number;
   reviewRating: number;

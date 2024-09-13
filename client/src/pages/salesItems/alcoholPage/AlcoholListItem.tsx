@@ -1,88 +1,11 @@
-import styled from "styled-components";
-import { AlcoholListData } from "@utils/types/AlcholInterfaces";
-
-// components
+import * as styled from "../styles";
 import ReviewRating from "@components/common/ReviewRating";
 import PriceDisplay from "@components/common/PriceDisplay";
+import * as Type from "../util";
 
-interface ItemProps {
-  item: AlcoholListData;
-}
-
-const AlcoholItemContainer = styled.div`
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  color: ${({ theme }) => theme.colors.fontColor};
-  margin-bottom: 10px;
-  line-height: 20px;
-  font-size: 15px;
-
-  .item_img {
-    width: 100%;
-    height: 300px;
-    ${({ theme }) => theme.common.flexCenter};
-    border-bottom: 3.5px solid ${({ theme }) => theme.colors.bg};
-    margin-bottom: 6px;
-    position: relative;
-    img {
-      height: 90%;
-      max-width: 100%;
-    }
-    &:hover {
-      border: none;
-      border-bottom: 3.5px solid ${({ theme }) => theme.colors.themeColor};
-    }
-  }
-  .item_content {
-    padding: 3px 0 0 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .item_title {
-      font-size: 18px;
-      line-height: 22px;
-      font-weight: 500;
-    }
-    .item_discount_rate {
-      font-weight: 700;
-      color: #a84448;
-      margin-right: 10px;
-    }
-    .item_price {
-      font-weight: 700;
-      line-height: 18px;
-    }
-    .item_review_rating {
-      display: flex;
-      align-items: center;
-
-      p {
-        margin-top: 5px;
-        font-size: 14px;
-        font-weight: 600;
-      }
-    }
-  }
-  @media ${(props) => props.theme.breakpoints.mobileMax} {
-    .item_img {
-      height: 190px;
-    }
-    .item_content > .item_title {
-      font-size: 15px;
-      line-height: 20px;
-      font-weight: 500;
-    }
-    .item_content > .item_price {
-      font-size: 15px;
-    }
-  }
-`;
-
-const AlcoholListItem = ({ item }: ItemProps) => {
+const AlcoholListItem = ({ item }: Type.ItemProps) => {
   return (
-    <AlcoholItemContainer>
+    <styled.AlcoholItemContainer>
       <div className="item_img">
         <img src={`${item.profile}?${new Date().getTime()}`} />
       </div>
@@ -99,7 +22,7 @@ const AlcoholListItem = ({ item }: ItemProps) => {
           <p>({item.reviewCount})</p>
         </div>
       </div>
-    </AlcoholItemContainer>
+    </styled.AlcoholItemContainer>
   );
 };
 

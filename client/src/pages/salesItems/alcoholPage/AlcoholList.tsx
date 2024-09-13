@@ -1,47 +1,14 @@
-import styled from "styled-components";
+import * as styled from "../styles";
 import { AlcoholListProps } from "@utils/types/AlcholInterfaces";
 import { Link } from "react-router-dom";
-
-// components
 import AlcoholListItem from "@pages/salesItems/alcoholPage/AlcoholListItem";
 import Pagination from "@pages/salesItems/alcoholPage/Pagination";
 
-// 알코올 리스트
-const AlcoholListContainer = styled.div`
-  max-width: ${({ theme }) => theme.widthSize.contentMax};
-  height: 100%;
-  width: 100%;
-  margin-bottom: 3rem;
-`;
-
-// 알코올 리스트
-const AlcoholListBox = styled.ul`
-  flex-direction: row;
-  margin-top: 30px;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  display: flex;
-  width: 100%;
-  box-sizing: border-box;
-
-  li {
-    width: 25%;
-    margin-bottom: 20px;
-
-    @media screen and (max-width: 1297px) {
-      width: 33%;
-    }
-    @media screen and (max-width: 860px) {
-      width: 50%;
-    }
-  }
-`;
-
 const AlcoholList = ({ data, totalData, currentPage, setCurrentPage, size }: AlcoholListProps) => {
   return (
-    <AlcoholListContainer>
+    <styled.AlcoholListContainer>
       {data && (
-        <AlcoholListBox>
+        <styled.AlcoholListBox>
           {data.map((item) => (
             <li key={item.itemId}>
               <Link to={`/alcohol/detail/${item.itemId}`}>
@@ -49,11 +16,11 @@ const AlcoholList = ({ data, totalData, currentPage, setCurrentPage, size }: Alc
               </Link>
             </li>
           ))}
-        </AlcoholListBox>
+        </styled.AlcoholListBox>
       )}
 
       <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} itemsPerPage={size} totalData={totalData} />
-    </AlcoholListContainer>
+    </styled.AlcoholListContainer>
   );
 };
 
