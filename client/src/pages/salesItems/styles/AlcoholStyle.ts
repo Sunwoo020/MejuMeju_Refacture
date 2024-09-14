@@ -16,11 +16,9 @@ export const AlcoholListBox = styled.ul`
   display: flex;
   width: 100%;
   box-sizing: border-box;
-
   li {
     width: 25%;
     margin-bottom: 20px;
-
     @media screen and (max-width: 1297px) {
       width: 33%;
     }
