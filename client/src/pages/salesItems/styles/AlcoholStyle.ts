@@ -8,12 +8,10 @@ export const AlcoholListContainer = styled.div`
   margin-bottom: 3rem;
 `;
 
-export const AlcoholListBox = styled.ul`
-  flex-direction: row;
+export const AlcoholListBox = styled(Common.FlexRow)`
   margin-top: 30px;
   justify-content: flex-start;
   flex-wrap: wrap;
-  display: flex;
   width: 100%;
   box-sizing: border-box;
   li {
@@ -28,19 +26,15 @@ export const AlcoholListBox = styled.ul`
   }
 `;
 
-export const AlcoholItemContainer = styled.div`
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
+export const AlcoholItemContainer = styled(Common.FlexCol)`
   color: ${({ theme }) => theme.colors.fontColor};
   margin-bottom: 10px;
   line-height: 20px;
   font-size: 15px;
-
   .item_img {
     width: 100%;
     height: 300px;
-    ${({ theme }) => theme.common.flexCenter};
+    ${Common.FlexCenterCol};
     border-bottom: 3.5px solid ${({ theme }) => theme.colors.bg};
     margin-bottom: 6px;
     position: relative;
@@ -58,10 +52,8 @@ export const AlcoholItemContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
     .item_title {
-      font-size: 18px;
-      line-height: 22px;
+      ${Common.fontSize(18)};
       font-weight: 500;
     }
     .item_discount_rate {
@@ -79,30 +71,27 @@ export const AlcoholItemContainer = styled.div`
 
       p {
         margin-top: 5px;
-        font-size: 14px;
+        ${Common.fontSize(14)};
         font-weight: 600;
       }
     }
   }
-  @media ${(props) => props.theme.breakpoints.mobileMax} {
+
+  @media ${({ theme }) => theme.breakpoints.mobileMax} {
     .item_img {
       height: 190px;
     }
     .item_content > .item_title {
-      font-size: 15px;
-      line-height: 20px;
-      font-weight: 500;
+      ${Common.fontSize(15)};
     }
     .item_content > .item_price {
-      font-size: 15px;
+      ${Common.fontSize(15)};
     }
   }
 `;
 
-export const ItemSearchContainer = styled.div`
+export const ItemSearchContainer = styled(Common.FlexRow)`
   position: relative;
-  display: flex;
-  align-items: center;
   width: 45%;
   height: 100%;
 
@@ -110,10 +99,10 @@ export const ItemSearchContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    flex-direction: row;
     width: 100%;
     height: 100%;
   }
+
   > form > input {
     padding: 0.4rem;
     height: 60%;
@@ -123,6 +112,7 @@ export const ItemSearchContainer = styled.div`
     width: 100%;
     outline: none;
   }
+
   > form > button {
     margin: 0.3rem;
     border: none;
@@ -130,12 +120,13 @@ export const ItemSearchContainer = styled.div`
     background: none;
     font-size: 1.5rem;
   }
+
   @media screen and (max-width: 535px) {
     display: none;
   }
 `;
 
-export const SearchResultList = styled.ul`
+export const SearchResultList = styled(Common.ScrollbarStyle)`
   position: absolute;
   top: 90%;
   max-width: 300px;
@@ -148,7 +139,6 @@ export const SearchResultList = styled.ul`
 export const SearchResultItem = styled.li`
   color: black;
   padding: 12px 16px;
-  text-decoration: none;
   display: block;
   cursor: pointer;
 
@@ -156,6 +146,7 @@ export const SearchResultItem = styled.li`
     background: gray;
     color: #fff;
   }
+
   &:focus {
     outline: none;
     background: gray;
@@ -164,10 +155,9 @@ export const SearchResultItem = styled.li`
 `;
 
 export const AlcoholContainer = styled.section`
-  ${({ theme }) => theme.common.flexCenterCol}
+  ${Common.FlexCenterCol};
   height: 100%;
   padding: 0 25px;
-
   color: ${({ theme }) => theme.colors.fontColor};
 `;
 
@@ -197,6 +187,7 @@ export const TabNav = styled.ul`
     padding: 10px 0;
     color: darkgray;
   }
+
   .tab_selected {
     border-bottom: 2.5px solid ${({ theme }) => theme.colors.fontColor};
     font-weight: bold;
@@ -204,7 +195,8 @@ export const TabNav = styled.ul`
     color: ${({ theme }) => theme.colors.fontColor};
     transition: 0.5s;
   }
-  @media ${(props) => props.theme.breakpoints.mobileMax} {
+
+  @media ${({ theme }) => theme.breakpoints.mobileMax} {
     width: 100%;
     ${Common.fontSize(13)};
     gap: 0.5rem;
@@ -227,6 +219,7 @@ export const SearchTextbox = styled.div`
     ${Common.fontSize(23)};
     font-weight: 700;
   }
+
   .default_text {
     padding: 5px;
   }
