@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { ButtonDark, ButtonLight } from "@components/common/Button";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Progress from "./payment/Progress";
+import Progress from "../payment/Progress";
 
 export type Itemtype = {
   itemId: number;

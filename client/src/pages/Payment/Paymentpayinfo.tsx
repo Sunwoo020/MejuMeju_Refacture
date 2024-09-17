@@ -4,7 +4,7 @@ import { ItemOrder } from "@utils/types";
 import DatePicker from "react-datepicker";
 import { useState, memo, useCallback } from "react";
 import { useSelector } from "react-redux";
-import Place from "@pages/Place";
+import Place from "@pages/map/Place";
 import { useDispatch } from "react-redux";
 import { setDate } from "../../utils/redux/slice/store";
 import Modal from "@layout/Header/Logoutmodal";
