@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { Route, Routes } from "react-router-dom";
 
 //Pages
-import Home from "@pages/Home";
-import Cart from "@pages/Cart";
-import Place from "@pages/Place";
+import Home from "@pages/home/Home";
+import Cart from "@pages/cart/Cart";
+import Place from "@pages/map/Place";
 import Alcohol from "@pages/salesItems/Alcohol";
-import HelpCenter from "@pages/HelpCenter";
+import HelpCenter from "@pages/myPage/HelpCenter";
 import AlcoholDetail from "@pages/salesItems/AlcoholDetail";
 import Login from "@pages/login/LoginForm";
 import FindEmail from "@pages/login/FindEmail";
@@ -23,7 +23,7 @@ import FailPage from "@pages/payment/Fail";
 import CheckoutChang from "@pages/payment/CheckoutChang";
 import ChatComponent from "@components/chat/ChatComponent";
 import Layout from "@layout/index";
-import ReviewEdit from "@pages/ReviewEdit";
+import ReviewEdit from "@pages/myPage/ReviewEdit";
 
 const BodyContainer = styled.div`
   min-height: 100vh;

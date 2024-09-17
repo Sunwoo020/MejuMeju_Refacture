@@ -5,7 +5,7 @@ import Progress from "./Progress";
 import axios from "axios";
 import { ButtonLight } from "@components/common/Button";
 import { useSelector } from "react-redux";
-import { Itemtype } from "@pages/Cart";
+import { Itemtype } from "@pages/cart/Cart";
 
 type DateProps = {
   dateState: {

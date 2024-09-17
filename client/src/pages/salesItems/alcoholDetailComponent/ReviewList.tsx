@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteItemReview } from "@utils/api";
-import ReviewEdit from "@pages/ReviewEdit";
+import ReviewEdit from "@pages/myPage/ReviewEdit";
 import { FormattedDate } from "@utils/dateUtils";
 import Alert from "@components/common/AlertModal";
 import ReviewRating from "@components/common/ReviewRating";

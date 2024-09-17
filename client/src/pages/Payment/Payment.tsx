@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 import { stateProps } from "./Paymentpayinfo";
 import axios from "axios";
 import Modal from "@layout/Header/Logoutmodal";
-import { Itemtype } from "@pages/Cart";
+import { Itemtype } from "@pages/cart/Cart";
 
 function authTokenExpired(authToken: string) {
   if (!authToken) {
