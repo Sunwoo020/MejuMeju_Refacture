@@ -1,21 +1,10 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import * as styled from "./styles";
+import * as Type from "@utils/types";
 import { ButtonDark, ButtonLight } from "@components/common/Button";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Progress from "../payment/Progress";
-
-export type Itemtype = {
-  itemId: number;
-  quantity: number;
-  titleKor: string;
-  price: number;
-  profile: string;
-};
-export interface CartItemsProps {
-  itemCarts: Itemtype[];
-}
 
 function authTokenExpired(authToken: string) {
   if (!authToken) {
@@ -42,7 +31,7 @@ function decodeAuthToken(authToken: string) {
 
 const Cart = () => {
   const navigate = useNavigate();
-  const [cartItems, setCartItems] = useState<CartItemsProps>({ itemCarts: [] });
+  const [cartItems, setCartItems] = useState<Type.CartItemsProps>({ itemCarts: [] });
 
   const authToken = localStorage.getItem("authToken");
   const access_token = `Bearer ${authToken}`;
@@ -212,89 +201,82 @@ const Cart = () => {
   };
 
   return (
-    <CartContainer isEmpty={cartItems.itemCarts.length === 0}>
-      <h2 className="장바구니"></h2>
+    <styled.CartContainer isEmpty={cartItems.itemCarts.length === 0}>
+      <styled.CartHeading>장바구니</styled.CartHeading>
 
-      <div className="main">
+      <styled.MainSection>
         <Progress />
         {cartItems.itemCarts.length > 0 ? (
-          <div className="list">
-            <div className="listtitle">
-              <div className="Allcheckbox">
-                <div>
-                  <input type="checkbox" className="check" checked={isCheckedAll} onChange={handleCheckAll} />
-                  <label className="전체">전체 선택</label>
-                </div>
-              </div>
-              <div className="imglisttitle">제품 이미지</div>
-              <div className="infotitle">제품명</div>
-              <div className="eachtitle">개수</div>
-              <div className="pricetitle">가격</div>
-            </div>
+          <styled.ListContainer>
+            <styled.ListTitle>
+              <styled.AllCheckboxContainer>
+                <styled.CheckBox checked={isCheckedAll} onChange={handleCheckAll} />
+                <styled.LabelAllSelect>전체 선택</styled.LabelAllSelect>
+              </styled.AllCheckboxContainer>
+              <div>제품 이미지</div>
+              <div>제품명</div>
+              <div>개수</div>
+              <div>가격</div>
+            </styled.ListTitle>
             {cartItems.itemCarts.map((item) => (
-              <div key={item.itemId} className="cartitem">
-                <div className="checkbox">
-                  <input
-                    type="checkbox"
-                    className="check"
+              <styled.CartItem key={item.itemId}>
+                <styled.CheckboxContainer>
+                  <styled.CheckBox
                     checked={isCheckedItems[item.itemId] || false}
                     onChange={() => handleCheckItem(item.itemId)}
                   />
-                  <label className="선택"></label>
-                </div>
-                <div className="imglist">
+                  <label>선택</label>
+                </styled.CheckboxContainer>
+                <styled.ImgList>
                   <img src={item.profile} alt={item.titleKor} />
-                </div>
-                <div className="info">{item.titleKor}</div>
-                <div className="eachtag">
-                  <button
-                    className="decrease-button"
+                </styled.ImgList>
+                <styled.InfoContainer>{item.titleKor}</styled.InfoContainer>
+                <styled.EachTag>
+                  <styled.DecreaseButton
                     disabled={item.quantity === 1}
                     onClick={() => handleDecreaseQuantity(item.itemId)}
                   >
                     -
-                  </button>
-                  <div className="each">{item.quantity}</div>
-                  <button className="increase-button" onClick={() => handleIncreaseQuantity(item.itemId)}>
-                    +
-                  </button>
-                </div>
-                <div className="price">{item.price.toLocaleString()} 원</div>
-              </div>
+                  </styled.DecreaseButton>
+                  <div>{item.quantity}</div>
+                  <styled.IncreaseButton onClick={() => handleIncreaseQuantity(item.itemId)}>+</styled.IncreaseButton>
+                </styled.EachTag>
+                <div>{item.price.toLocaleString()} 원</div>
+              </styled.CartItem>
             ))}
-          </div>
+          </styled.ListContainer>
         ) : (
-          <div className="no data">
-            <div className="no data P">장바구니에 담긴 상품이 없습니다.</div>
-          </div>
+          <styled.NoDataContainer>
+            <div>장바구니에 담긴 상품이 없습니다.</div>
+          </styled.NoDataContainer>
         )}
         {cartItems.itemCarts.length > 0 ? (
-          <div className="deleteline">
+          <styled.DeleteLine>
             <ButtonLight width="120px" height="50px" fontSize="12px" onClick={handleDeleteSelectedItems}>
               선택한 제품 삭제
             </ButtonLight>
-            <div className="total">
-              <b className="b">
+            <styled.TotalSummary>
+              <b>
                 <b className="b-title">총 개수</b>
                 <b>{totalQuantity > 0 ? `${totalQuantity.toLocaleString()}개` : "0개"}</b>
               </b>
-              <b className="b">
+              <b>
                 <b className="b-title">총 결제 금액</b>
                 <b>{totalPrice > 0 ? `${totalPrice.toLocaleString()} 원` : "0원"}</b>
               </b>
-            </div>
-          </div>
+            </styled.TotalSummary>
+          </styled.DeleteLine>
         ) : (
-          <div className="empty"></div>
+          <styled.EmptyContainer></styled.EmptyContainer>
         )}
 
-        <div className="button">
-          <div className="buttonDetail">
+        <styled.ButtonWrapper>
+          <styled.ButtonDetail>
             <ButtonLight width="160px" height="60px" fontSize="18px" onClick={handleCancel}>
               뒤로가기
             </ButtonLight>
-          </div>
-          <div className="buttonDetail">
+          </styled.ButtonDetail>
+          <styled.ButtonDetail>
             <ButtonDark
               width="160px"
               height="60px"
@@ -304,281 +286,10 @@ const Cart = () => {
             >
               결제하기
             </ButtonDark>
-          </div>
-        </div>
-      </div>
-    </CartContainer>
+          </styled.ButtonDetail>
+        </styled.ButtonWrapper>
+      </styled.MainSection>
+    </styled.CartContainer>
   );
+  export default Cart;
 };
-
-export default Cart;
-
-const CartContainer = styled.section<{ isEmpty: boolean }>`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 150px;
-
-  & div.main {
-    width: 100%;
-    ${({ theme }) => theme.common.flexCenterCol};
-  }
-
-  & h2 {
-    font-size: 48px;
-    font-weight: bold;
-  }
-
-  & div.list {
-    flex-direction: column;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 3vw;
-    padding-right: 3vw;
-    width: 100%;
-    margin-top: 50px;
-
-    & div.Allcheckbox {
-      width: 5.4%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      overflow: auto;
-    }
-    & div.checkbox {
-      width: 5%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-    }
-  }
-
-  & div.listtitle {
-    display: flex;
-    align-items: center;
-    width: 85%;
-    height: 30px;
-
-    border-bottom: 1px solid rgba(60, 60, 60, 0.1);
-    @media screen and (max-width: 767px) {
-      display: none;
-    }
-  }
-
-  & div.cartitem {
-    ${({ theme }) => theme.common.flexCenterRow};
-    flex-direction: row;
-    width: 85%;
-    font-size: 15px;
-    border-bottom: 1px solid rgba(60, 60, 60, 0.1);
-    @media screen and (max-width: 767px) {
-      width: 100%;
-    }
-
-    & div.imglist {
-      width: 20%;
-      height: 250px;
-      ${({ theme }) => theme.common.flexCenter};
-
-      & img {
-        width: 250px;
-        height: 200px;
-        object-fit: contain;
-      }
-    }
-    & div.info {
-      width: 70%;
-      height: 250px;
-      ${({ theme }) => theme.common.flexCenter};
-      font-size: 16px;
-      @media screen and (max-width: 767px) {
-        width: 30%;
-      }
-    }
-
-    & div.each {
-      width: 10%;
-      height: 250px;
-      ${({ theme }) => theme.common.flexCenter};
-    }
-
-    & div.price {
-      width: 10%;
-      height: 250px;
-      ${({ theme }) => theme.common.flexCenter};
-      @media screen and (max-width: 767px) {
-        width: 20%;
-      }
-    }
-  }
-  & div.eachtag {
-    width: 10%;
-    height: 250px;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-around;
-    @media screen and (max-width: 767px) {
-      width: 25%;
-    }
-  }
-  & div.no.data {
-    height: 500px;
-    padding-top: 150px;
-    padding-bottom: 150px;
-    ${({ theme }) => theme.common.flexCenter};
-  }
-  & div.imglisttitle {
-    width: 20%;
-    ${({ theme }) => theme.common.flexCenter};
-  }
-  & div.infotitle {
-    width: 70%;
-    ${({ theme }) => theme.common.flexCenter};
-  }
-
-  & div.eachtitle {
-    width: 10%;
-    ${({ theme }) => theme.common.flexCenter};
-  }
-
-  & div.pricetitle {
-    width: 9.99%;
-    ${({ theme }) => theme.common.flexCenter};
-  }
-
-  & div.deleteline {
-    width: 83%;
-    height: 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    margin-bottom: 100px;
-  }
-
-  & div.total {
-    width: 18%;
-    height: 100px;
-    flex-direction: row;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    font-size: 16px;
-    @media screen and (max-width: 767px) {
-      font-size: 12px;
-      width: 50%;
-    }
-    & b {
-      display: flex;
-      margin-top: 20px;
-      flex-direction: column;
-    }
-    .b-title {
-      border-bottom: 1px solid #222222;
-    }
-  }
-  .b {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 50%;
-    height: 30px;
-  }
-
-  .button {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 30vw;
-    height: 200px;
-    margin-bottom: 200px;
-    @media screen and (max-width: 767px) {
-      width: 100%;
-      height: 0%;
-      padding-left: 25px;
-      padding-right: 25px;
-    }
-  }
-
-  .buttonDetail {
-    height: 100px;
-    width: 150px;
-    padding-top: 50px;
-    border: none;
-  }
-  .iecrease-button {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    padding: 0;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    background-color: #ffffff;
-    border: 1px solid #dbdbdb;
-    border-radius: 4px;
-    color: #333333;
-    cursor: pointer;
-    outline: none;
-
-    &:hover {
-      background-color: #f2f2f2;
-    }
-
-    &:active {
-      transform: translateY(1px);
-    }
-  }
-  .dncrease-button {
-    color: #cccccc;
-
-    &:hover {
-      background-color: #ffffff;
-    }
-
-    &:active {
-      transform: none;
-    }
-  }
-  & .check {
-    width: 18px;
-    height: 18px;
-    margin: 0;
-    padding: 0;
-    cursor: pointer;
-    appearance: none;
-    outline: none;
-    border: 1px solid #dbdbdb;
-    border-radius: 4px;
-
-    &:checked {
-      background-color: #1976d2;
-      border-color: #1976d2;
-    }
-
-    &:checked::before {
-      content: "\\2713";
-      display: block;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #ffffff;
-      font-size: 16px;
-      line-height: 1;
-      text-align: center;
-    }
-  }
-  .전체 {
-    padding-left: 8px;
-    font-size: 12px;
-  }
-  & div.empty {
-    margin-top: 200px;
-  }
-`;
