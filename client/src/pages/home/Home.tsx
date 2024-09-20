@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
+import * as styled from "./styles";
 import { useNavigate } from "react-router-dom";
 import Homefirst from "./Homfirst";
 
@@ -33,20 +33,9 @@ const Home: React.FC = () => {
     }
   }, []);
   return (
-    <HomeContainer>
+    <styled.HomeContainer>
       <Homefirst />
-    </HomeContainer>
+    </styled.HomeContainer>
   );
 };
 export default Home;
-
-const HomeContainer = styled.section`
-  color: ${({ theme }) => theme.colors.fontColor};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  font-size: 96px;
-  overflow: hidden;
-`;
