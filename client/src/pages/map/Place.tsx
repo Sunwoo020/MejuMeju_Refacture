@@ -1,77 +1,18 @@
 import { useState, useEffect, lazy, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import styled from "styled-components";
 import { ButtonDark } from "@components/common/Button";
 import { useDispatch } from "react-redux";
 import { setMarker } from "../../utils/redux/slice/store";
+import * as Type from "./util";
+import * as styled from "./styles";
 const MapComponent = lazy(() => import("./Map"));
-
-const TotalStyled = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f7f7f7;
-`;
-const PlaceContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  max-width: 1250px;
-  margin-top: 150px;
-  display: flex;
-  flex-direction: column;
-`;
-
-//지도부분
-const MapBodyStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-grow: 6.5;
-  justify-content: center;
-  align-items: center;
-`;
-
-//지도제목
-const MapArticleStyled = styled.div`
-  border: 3px solid #dedede;
-  margin-bottom: 80px;
-  font-size: 18px;
-  width: 300px;
-  height: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  line-height: 25px;
-  font-weight: 600;
-`;
-
-const MapBottomStyled = styled.div`
-  flex-grow: 1;
-  display: flex;
-  flex-grow: 3.5;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 50px;
-`;
-
-interface Shopitem {
-  address: string;
-  choice: boolean;
-  comment: string;
-  lat: number;
-  lng: number;
-  marketId: number;
-  name: string;
-  phone: string;
-  workTime: string;
-}
 
 const Place = () => {
   const dispatch = useDispatch();
-  const [shoplist, setShoplist] = useState<Shopitem[]>([]);
+  const [shoplist, setShoplist] = useState<Type.Shopitem[]>([]);
   const navigate = useNavigate();
-  const [select, setSelect] = useState<Shopitem | null>(null);
+  const [select, setSelect] = useState<Type.Shopitem | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -101,23 +42,23 @@ const Place = () => {
 
   return (
     <>
-      <TotalStyled>
-        <PlaceContainer>
-          <MapBodyStyled>
-            <MapArticleStyled>
+      <styled.TotalStyled>
+        <styled.PlaceContainer>
+          <styled.MapBodyStyled>
+            <styled.MapArticleStyled>
               {select && select?.name !== null ? <p>{select?.name}</p> : <p>픽업매장을 선택하세요.</p>}
-            </MapArticleStyled>
+            </styled.MapArticleStyled>
             <Suspense fallback={<div>loading</div>}>
               <MapComponent shoplist={shoplist} setSelect={setSelect} />
             </Suspense>
-          </MapBodyStyled>
-          <MapBottomStyled>
+          </styled.MapBodyStyled>
+          <styled.MapBottomStyled>
             <ButtonDark width="350px" height="50%" onClick={handleSelect}>
               선택
             </ButtonDark>
-          </MapBottomStyled>
-        </PlaceContainer>
-      </TotalStyled>
+          </styled.MapBottomStyled>
+        </styled.PlaceContainer>
+      </styled.TotalStyled>
     </>
   );
 };

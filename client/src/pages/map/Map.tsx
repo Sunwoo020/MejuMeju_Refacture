@@ -1,75 +1,24 @@
-import React, { useEffect } from "react";
-
-// Kakao Maps API 관련 타입 정의
+import { useEffect } from "react";
+import * as Type from "./util";
 declare global {
   interface Window {
     kakao: {
       maps: {
-        LatLng: new (lat: number, lng: number) => LatLng;
-        Map: new (container: HTMLElement | null, options: MapOptions) => Map;
-        Marker: new (options: MarkerOptions) => Marker;
-        InfoWindow: new (options: InfoWindowOptions) => InfoWindow;
-        CustomOverlay: new (options: CustomOverlayOptions) => CustomOverlay;
+        LatLng: new (lat: number, lng: number) => Type.LatLng;
+        Map: new (container: HTMLElement | null, options: Type.MapOptions) => Type.Map;
+        Marker: new (options: Type.MarkerOptions) => Type.Marker;
+        InfoWindow: new (options: Type.InfoWindowOptions) => Type.InfoWindow;
+        CustomOverlay: new (options: Type.CustomOverlayOptions) => Type.CustomOverlay;
         event: {
-          addListener: (target: Marker | Map, type: string, callback: () => void) => void;
+          addListener: (target: Type.Marker | Type.Map, type: string, callback: () => void) => void;
         };
       };
     };
     closeOverlay: () => void;
   }
 }
-interface LatLng {
-  getLat: () => number;
-  getLng: () => number;
-}
-interface MapOptions {
-  center: LatLng;
-  level: number;
-}
-interface Map {
-  setCenter: (latlng: LatLng) => void;
-}
-interface MarkerOptions {
-  map: Map;
-  position: LatLng;
-  data?: string | object;
-}
-interface Marker {
-  setMap: (map: Map | null) => void;
-}
-interface InfoWindowOptions {
-  content: string | HTMLElement;
-  removable?: boolean;
-}
-interface InfoWindow {
-  open: (map: Map, marker: Marker) => void;
-  close: () => void;
-}
-interface CustomOverlayOptions {
-  content: string | HTMLElement;
-  position: LatLng;
-}
-interface CustomOverlay {
-  setMap: (map: Map | null) => void;
-}
 
-interface Shopitem {
-  address: string;
-  choice: boolean;
-  comment: string;
-  lat: number;
-  lng: number;
-  marketId: number;
-  name: string;
-  phone: string;
-  workTime: string;
-}
-interface ShopProps {
-  shoplist: Shopitem[];
-  setSelect: React.Dispatch<React.SetStateAction<Shopitem | null>>;
-}
-
-const MapComponent = ({ shoplist, setSelect }: ShopProps) => {
+const MapComponent = ({ shoplist, setSelect }: Type.ShopProps) => {
   useEffect(() => {
     const container = document.getElementById("map");
     const options = {
@@ -95,7 +44,7 @@ const MapComponent = ({ shoplist, setSelect }: ShopProps) => {
       displayMarker(locPosition, message);
     }
 
-    function displayMarker(locPosition: LatLng, message: string) {
+    function displayMarker(locPosition: Type.LatLng, message: string) {
       const marker = new window.kakao.maps.Marker({
         map: map,
         position: locPosition,
@@ -111,7 +60,7 @@ const MapComponent = ({ shoplist, setSelect }: ShopProps) => {
       map.setCenter(locPosition);
     }
 
-    shoplist.forEach((el: Shopitem) => {
+    shoplist.forEach((el: Type.Shopitem) => {
       const marker = new window.kakao.maps.Marker({
         map: map,
         position: new window.kakao.maps.LatLng(el.lat, el.lng),
