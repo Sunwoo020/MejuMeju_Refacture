@@ -8,22 +8,26 @@ export const TotalStyled = styled(Common.FlexCenterCol)`
     width: 100%;
   }
 `;
+
 export const InfoContainer = styled(Common.FlexCol)`
   width: 100vw;
   height: 100vh;
   max-width: 1250px;
   margin-top: 150px;
+
   > p {
     padding-top: 10px;
     padding-left: 30px;
-    font-size: 22px;
+    ${({ theme }) => Common.fontSize(22)};
     font-weight: 600;
   }
 `;
+
 export const InfoBodyupStyled = styled(Common.FlexCenterCol)`
   margin-top: 20px;
+
   input {
-    font-size: 16px;
+    ${({ theme }) => Common.fontSize(16)};
     padding: 10px;
     width: 80%;
   }
@@ -40,7 +44,7 @@ export const StyledTable = styled.table`
   max-width: 700px;
   width: 70%;
   height: 750px;
-  font-size: 16px;
+  ${({ theme }) => Common.fontSize(16)};
 `;
 
 export const StyledTd = styled.td`
@@ -61,6 +65,7 @@ export const ModalContainer = styled(Common.FlexCenterCol)`
   bottom: 0;
   left: 0;
   right: 0;
+
   form {
     width: 100%;
   }
@@ -86,18 +91,21 @@ export const ModalView = styled(Common.FlexCenterCol)`
   top: 35%;
   text-align: center;
   padding-top: 50px;
+
   > p {
-    font-size: 20px;
+    ${({ theme }) => Common.fontSize(20)};
     font-weight: 500;
   }
+
   .password-container {
     ${({ theme }) => theme.common.flexCenterRow};
   }
+
   input {
     margin: 30px;
     border: 1px solid #b2b2b2;
     padding: 5px 10px;
-    font-size: 16px;
+    ${({ theme }) => Common.fontSize(16)};
     width: 50%;
   }
 `;
@@ -120,7 +128,7 @@ export const ModalCloseBtn = styled(Common.FlexCenterRow)`
   width: 80px;
   border-radius: 7px;
   line-height: 100%;
-  font-size: 20px;
+  ${({ theme }) => Common.fontSize(20)};
   padding-top: 10px;
   color: #181818;
   font-weight: 700;
@@ -134,15 +142,18 @@ export const CheckContainer = styled(Common.FlexCenterCol)`
   width: 500px;
   padding: 50px;
   gap: 40px;
+
   .title {
-    font-size: 20px;
+    ${({ theme }) => Common.fontSize(20)};
     font-weight: 500;
   }
+
   input {
     width: 70%;
     padding: 10px;
-    font-size: 18px;
+    ${({ theme }) => Common.fontSize(18)};
   }
+
   form {
     width: 100%;
     ${({ theme }) => theme.common.flexCenterCol};
