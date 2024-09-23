@@ -1,12 +1,7 @@
-import styled from "styled-components";
+import * as styled from "./style";
 import Answer from "@components/helpCenter/AnswerContainer";
 import { useState } from "react";
 import { ButtonDark } from "@components/common/Button";
-
-type TitleProps = {
-  fontSize: string;
-  fontWeight: string;
-};
 
 const HelpCenter = () => {
   const answerData = [
@@ -30,18 +25,18 @@ const HelpCenter = () => {
     setIsClick(newState);
   };
   return (
-    <Container>
-      <ContentsContainer>
-        <TopContainer>
-          <PageName>자주 묻는 질문</PageName>
-        </TopContainer>
-        <MiddleContainer>
+    <styled.Container>
+      <styled.ContentsContainer>
+        <styled.TopContainer>
+          <styled.PageName>자주 묻는 질문</styled.PageName>
+        </styled.TopContainer>
+        <styled.MiddleContainer>
           {answerData.map((el, idx) => {
             return (
               <>
-                <Title fontSize="20px" fontWeight="500">
+                <styled.Title>
                   {TitleData[idx]}
-                  <BtnContainer>
+                  <styled.BtnContainer>
                     <ButtonDark
                       height="50px"
                       width="80px"
@@ -51,76 +46,16 @@ const HelpCenter = () => {
                     >
                       {isClick[idx] ? "닫기" : "자세히"}
                     </ButtonDark>
-                  </BtnContainer>
-                </Title>
+                  </styled.BtnContainer>
+                </styled.Title>
                 {isClick[idx] ? <Answer text={el}></Answer> : null}
               </>
             );
           })}
-        </MiddleContainer>
-      </ContentsContainer>
-    </Container>
+        </styled.MiddleContainer>
+      </styled.ContentsContainer>
+    </styled.Container>
   );
 };
-
-const Container = styled.div`
-  ${({ theme }) => theme.common.flexCenterCol};
-  padding: 0px 95px;
-  min-height: 100vh;
-`;
-const ContentsContainer = styled.div`
-  max-width: 1250px;
-  width: 100vw;
-  position: absolute;
-  top: 15%;
-  padding-bottom: 100px;
-  @media screen and (max-width: 768px) {
-    width: 90vw;
-  }
-`;
-const PageName = styled.div`
-  font-size: 35px;
-  font-weight: 700;
-  @media screen and (max-width: 768px) {
-    font-size: 22px;
-  }
-`;
-const TopContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 20px;
-  gap: 20px;
-  margin-bottom: 30px;
-`;
-
-const Title = styled.div<TitleProps>`
-  position: relative;
-  font-size: ${({ fontSize }) => fontSize};
-  @media screen and (max-width: 768px) {
-    font-size: 16px;
-  }
-  font-weight: ${({ fontWeight }) => fontWeight};
-  background-color: ${({ theme }) => theme.colors.themeColor};
-  padding: 20px;
-  color: white;
-`;
-const BtnContainer = styled.div`
-  position: absolute;
-  right: 10px;
-  top: 5px;
-`;
-const MiddleContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  @media screen and (max-width: 768px) {
-    gap: 15px;
-  }
-  border: 1px solid gray;
-  border-radius: 2px;
-`;
 
 export default HelpCenter;
