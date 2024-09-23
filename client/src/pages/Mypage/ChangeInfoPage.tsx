@@ -1,21 +1,14 @@
 import React, { useEffect } from "react";
 import { useState, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-//hooks
+import * as styled from "./style";
 import useAxiosAll from "@hooks/useAxiosAll";
-//components
 import Alert from "@components/common/AlertModal";
 import axios from "axios";
 import { ButtonDark, ButtonLight } from "@components/common/Button";
+import * as Type from "./util";
 
-type TableProsp = {
-  setBody: React.Dispatch<React.SetStateAction<Bodytype>>;
-  userInfo: Datatype | null;
-  isOauth: boolean;
-};
-
-const InfoTable = ({ setBody, userInfo, isOauth }: TableProsp) => {
+const InfoTable = ({ setBody, userInfo, isOauth }: Type.TableProsp) => {
   const subTitle = ["이름", "닉네임", "생년월일", "전화번호", "이메일"];
   const [displayName, setDisplayName] = useState("");
   const [phone, setPhone] = useState("");
@@ -60,7 +53,7 @@ const InfoTable = ({ setBody, userInfo, isOauth }: TableProsp) => {
     setPasswordCheck(e.target.value);
   };
   return (
-    <StyledTable>
+    <styled.StyledTable>
       <tbody>
         {userInfo === null
           ? null
@@ -68,16 +61,16 @@ const InfoTable = ({ setBody, userInfo, isOauth }: TableProsp) => {
               if (idx > 5) return null;
               return (
                 <tr key={idx}>
-                  <StyledTh>{subTitle[idx]}</StyledTh>
+                  <styled.StyledTh>{subTitle[idx]}</styled.StyledTh>
                   {key === "displayName" || key === "phone" ? (
-                    <StyledTd>
+                    <styled.StyledTd>
                       <input
                         value={key === "phone" ? phone : displayName}
                         onChange={key === "phone" ? handlePhone : handleDisplay}
                       ></input>
-                    </StyledTd>
+                    </styled.StyledTd>
                   ) : (
-                    <StyledTd>{userInfo[key as keyof Datatype]}</StyledTd>
+                    <styled.StyledTd>{userInfo[key as keyof Type.Datatype]}</styled.StyledTd>
                   )}
                 </tr>
               );
@@ -85,8 +78,8 @@ const InfoTable = ({ setBody, userInfo, isOauth }: TableProsp) => {
         {isOauth ? null : (
           <>
             <tr>
-              <StyledTh>비밀번호변경</StyledTh>
-              <StyledTd>
+              <styled.StyledTh>비밀번호변경</styled.StyledTh>
+              <styled.StyledTd>
                 <form>
                   <input onChange={handlePassword} autoComplete="off" type="password"></input>
                 </form>
@@ -96,11 +89,11 @@ const InfoTable = ({ setBody, userInfo, isOauth }: TableProsp) => {
                     변경할 비밀번호를 문자, 숫자, 특수기호를 결합해 8자 이상 작성하세요
                   </p>
                 ) : null}
-              </StyledTd>
+              </styled.StyledTd>
             </tr>
             <tr>
-              <StyledTh>비밀번호변경확인</StyledTh>
-              <StyledTd>
+              <styled.StyledTh>비밀번호변경확인</styled.StyledTh>
+              <styled.StyledTd>
                 <form>
                   <input
                     disabled={isDisabled}
@@ -110,184 +103,14 @@ const InfoTable = ({ setBody, userInfo, isOauth }: TableProsp) => {
                     autoComplete="off"
                   ></input>
                 </form>
-              </StyledTd>
+              </styled.StyledTd>
             </tr>
           </>
         )}
       </tbody>
-    </StyledTable>
+    </styled.StyledTable>
   );
 };
-const TotalStyled = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f7f7f7;
-  form {
-    width: 100%;
-  }
-`;
-
-const InfoContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  max-width: 1250px;
-  margin-top: 150px;
-  > p {
-    padding-top: 10px;
-    padding-left: 30px;
-    font-size: 22px;
-    font-weight: 600;
-  }
-`;
-
-//테이블 전체부분
-const InfoBodyupStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  input {
-    font-size: 16px;
-    padding: 10px;
-    width: 80%;
-  }
-`;
-//테이블밑의 버튼들 전체부분
-const InfoBodydownStyled = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 250px;
-  margin-top: 20px;
-  padding-bottom: 10px;
-`;
-
-//테이블부분 따로준거, 딱테이블부분!
-const StyledTable = styled.table`
-  border: 2px solid #dedede;
-  /* border: 2px solid blue; */
-  max-width: 700px;
-  width: 70%;
-  height: 750px;
-  font-size: 16px;
-`;
-const StyledTd = styled.td`
-  vertical-align: middle;
-  padding-left: 20px;
-`;
-const StyledTh = styled.th`
-  vertical-align: middle;
-  text-align: left;
-  padding-left: 20px;
-  font-weight: 600;
-`;
-
-const ModalContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  form {
-    width: 100%;
-  }
-`;
-
-//모달뜰때 뒤배경
-const ModalBackdrop = styled.div`
-  background-color: whitesmoke;
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-`;
-//회원탈퇴클릭시 뜨는 모달창
-const ModalView = styled.div`
-  background-color: #dedede;
-  border-radius: 7px;
-  width: 600px;
-  height: 300px;
-  position: fixed;
-  transform: translateY(-200px);
-  transform: translateX(-300px);
-  left: 50%;
-  top: 35%;
-  text-align: center;
-  padding-top: 50px;
-  > p {
-    font-size: 20px;
-    font-weight: 500;
-    display: block;
-  }
-  .password-container {
-    ${({ theme }) => theme.common.flexCenterRow};
-  }
-  input {
-    margin: 30px;
-    border: 1px solid #b2b2b2;
-    padding: 5px 10px;
-    font-size: 16px;
-    width: 50%;
-  }
-`;
-
-//모달창에 있는 yes, no버튼들
-const CloseBtn = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  gap: 70px;
-  cursor: pointer;
-`;
-
-//모달창열렸을때 X버튼
-const WindowCloseBtn = styled.div`
-  float: right;
-  margin-right: 10px;
-  cursor: pointer;
-`;
-
-const ModalCloseBtn = styled.div`
-  border: 2px solid #181818;
-  height: 52px;
-  width: 80px;
-  border-radius: 7px;
-  line-height: 100%;
-  font-size: 20px;
-  padding-top: 10px;
-  color: #181818;
-  font-weight: 700;
-  cursor: pointer;
-`;
-const CheckContainer = styled.div`
-  position: fixed;
-  top: 20%;
-  left: calc(50% - 250px);
-  ${({ theme }) => theme.common.flexCenterCol};
-  width: 500px;
-  padding: 50px;
-  gap: 40px;
-  .title {
-    font-size: 20px;
-    font-weight: 500;
-  }
-  input {
-    width: 70%;
-    padding: 10px;
-    font-size: 18px;
-  }
-  form {
-    width: 100%;
-    ${({ theme }) => theme.common.flexCenterCol};
-  }
-`;
 const Modal = ({ email }: { email: string }) => {
   const [isOpen, setIsOpen] = useState(false); //false를 모달 닫힌걸로 생각함.
   const [password, setPassword] = useState("");
@@ -330,55 +153,42 @@ const Modal = ({ email }: { email: string }) => {
   };
   return (
     <>
-      <ModalContainer>
+      <styled.ModalContainer>
         {showAlert ? <Alert text={alertMessage} onClickOk={isOk ? okGotoMain : () => setShowAlert(false)} /> : null}
         <ButtonLight width="200px" height="40px" onClick={openModalHandler}>
           회원탈퇴
         </ButtonLight>
         {isOpen ? (
-          <ModalBackdrop onClick={openModalHandler}>
-            <ModalView onClick={(event) => event.stopPropagation()}>
-              <WindowCloseBtn onClick={openModalHandler}>X</WindowCloseBtn>
+          <styled.ModalBackdrop onClick={openModalHandler}>
+            <styled.ModalView onClick={(event) => event.stopPropagation()}>
+              <styled.WindowCloseBtn onClick={openModalHandler}>X</styled.WindowCloseBtn>
               <form className="password-container">
                 비밀번호
                 <input type="password" onChange={passwordHandler}></input>
               </form>
               <p>정말로 탈퇴하시겠습니까?</p>
-              <CloseBtn>
-                <ModalCloseBtn onClick={DeleteHandler}>YES</ModalCloseBtn>
-                <ModalCloseBtn onClick={() => navigate("/mypage/likepage")}>NO</ModalCloseBtn>
-              </CloseBtn>
-            </ModalView>
-          </ModalBackdrop>
+              <styled.CloseBtn>
+                <styled.ModalCloseBtn onClick={DeleteHandler}>YES</styled.ModalCloseBtn>
+                <styled.ModalCloseBtn onClick={() => navigate("/mypage/likepage")}>NO</styled.ModalCloseBtn>
+              </styled.CloseBtn>
+            </styled.ModalView>
+          </styled.ModalBackdrop>
         ) : null}
-      </ModalContainer>
+      </styled.ModalContainer>
     </>
   );
 };
-type Datatype = {
-  realName: string;
-  displayName: string;
-  birth: string;
-  phone: string;
-  email: string;
-};
-interface Bodytype {
-  displayName: string;
-  phone: string;
-  password: string;
-  passwordCheck: string;
-}
 
 const ChangeInfoPage = () => {
   const navigate = useNavigate();
   const [doAxios, data, err] = useAxiosAll();
-  const [body, setBody] = useState<Bodytype>({
+  const [body, setBody] = useState<Type.Bodytype>({
     displayName: "",
     phone: "",
     password: "",
     passwordCheck: "",
   });
-  const [userInfo, setUserInfo] = useState<Datatype | null>(null);
+  const [userInfo, setUserInfo] = useState<Type.Datatype | null>(null);
   const [isOauth, setIsOauth] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [showAlert, setShowAlert] = useState(false);
@@ -412,7 +222,7 @@ const ChangeInfoPage = () => {
         phone: data.phone,
         email: data.email,
       };
-      setUserInfo(formData as Datatype);
+      setUserInfo(formData as Type.Datatype);
     }
   }, [data]);
 
@@ -513,22 +323,22 @@ const ChangeInfoPage = () => {
     <>
       {showAlert ? <Alert text={alertMessage} onClickOk={isOk ? okGotoMain : () => setShowAlert(false)} /> : null}
       {isPass ? (
-        <TotalStyled>
-          <InfoContainer>
+        <styled.TotalStyled>
+          <styled.InfoContainer>
             <p>회원정보수정</p>
-            <InfoBodyupStyled>
+            <styled.InfoBodyupStyled>
               <InfoTable setBody={setBody} userInfo={userInfo} isOauth={isOauth}></InfoTable>
-            </InfoBodyupStyled>
-            <InfoBodydownStyled>
+            </styled.InfoBodyupStyled>
+            <styled.InfoBodydownStyled>
               <ButtonDark width="200px" height="40px" onClick={patchOnclick}>
                 정보수정
               </ButtonDark>
               {userInfo && !isOauth ? <Modal email={userInfo.email}></Modal> : null}
-            </InfoBodydownStyled>
-          </InfoContainer>
-        </TotalStyled>
+            </styled.InfoBodydownStyled>
+          </styled.InfoContainer>
+        </styled.TotalStyled>
       ) : (
-        <CheckContainer>
+        <styled.CheckContainer>
           <div className="title">비밀번호를 입력하세요!</div>
           <form>
             <input autoComplete="off" onKeyDown={handleKeyDown} type="password" onChange={checkPasswordHandle} />
@@ -536,7 +346,7 @@ const ChangeInfoPage = () => {
           <ButtonDark width="100px" height="40px" onClick={checkHandler}>
             확인
           </ButtonDark>
-        </CheckContainer>
+        </styled.CheckContainer>
       )}
     </>
   );
