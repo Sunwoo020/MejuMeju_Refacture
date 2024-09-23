@@ -3,7 +3,6 @@ export type TableProsp = {
   userInfo: Datatype | null;
   isOauth: boolean;
 };
-
 export type Datatype = {
   realName: string;
   displayName: string;

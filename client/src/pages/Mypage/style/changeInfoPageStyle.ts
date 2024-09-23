@@ -8,13 +8,11 @@ export const TotalStyled = styled(Common.FlexCenterCol)`
     width: 100%;
   }
 `;
-
 export const InfoContainer = styled(Common.FlexCol)`
   width: 100vw;
   height: 100vh;
   max-width: 1250px;
   margin-top: 150px;
-
   > p {
     padding-top: 10px;
     padding-left: 30px;
@@ -22,10 +20,8 @@ export const InfoContainer = styled(Common.FlexCol)`
     font-weight: 600;
   }
 `;
-
 export const InfoBodyupStyled = styled(Common.FlexCenterCol)`
   margin-top: 20px;
-
   input {
     font-size: 16px;
     padding: 10px;
@@ -65,7 +61,6 @@ export const ModalContainer = styled(Common.FlexCenterCol)`
   bottom: 0;
   left: 0;
   right: 0;
-
   form {
     width: 100%;
   }
@@ -91,16 +86,13 @@ export const ModalView = styled(Common.FlexCenterCol)`
   top: 35%;
   text-align: center;
   padding-top: 50px;
-
   > p {
     font-size: 20px;
     font-weight: 500;
   }
-
   .password-container {
     ${({ theme }) => theme.common.flexCenterRow};
   }
-
   input {
     margin: 30px;
     border: 1px solid #b2b2b2;
@@ -142,18 +134,15 @@ export const CheckContainer = styled(Common.FlexCenterCol)`
   width: 500px;
   padding: 50px;
   gap: 40px;
-
   .title {
     font-size: 20px;
     font-weight: 500;
   }
-
   input {
     width: 70%;
     padding: 10px;
     font-size: 18px;
   }
-
   form {
     width: 100%;
     ${({ theme }) => theme.common.flexCenterCol};
