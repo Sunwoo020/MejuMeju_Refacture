@@ -1,110 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import axios from "axios";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { ButtonDark, ButtonLight } from "@components/common/Button";
 import Pagination from "@pages/salesItems/alcoholPage/Pagination";
 import PriceDisplay from "@components/common/PriceDisplay";
+import * as styled from "./style";
+import * as Type from "./util";
 
-interface Likeitem {
-  titleKor: string;
-  price: number;
-  quantity: number;
-  capacity: number;
-  reviewRating: number;
-  itemId: number;
-  checked: boolean;
-  profile: string;
-}
-
-const TotalStyled = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f7f7f7;
-`;
-const LikepageContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  max-width: 1250px;
-  margin-top: 150px;
-  display: flex;
-  flex-direction: column;
-`;
-const PageTitleStyled = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  flex-grow: 1;
-  padding-right: 20px;
-  > div {
-    font-weight: 600;
-  }
-`;
-const InfoStyled = styled.div`
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  padding-left: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-`;
-const TableStyled = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-grow: 8;
-`;
-const LeftStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  padding: 10px;
-  box-shadow: 4px 4px 4px rgba(8, 8, 8, 0.4);
-`;
-const EachList = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-top: 5px;
-  margin-bottom: 5px;
-`;
-const EachTitle = styled.div`
-  flex-grow: 9;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  flex-basis: 0;
-  > img {
-    width: 10%;
-    height: 10rem;
-    cursor: pointer;
-  }
-  .productname {
-    font-size: 22px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-  }
-  .productprice {
-    font-size: 22px;
-  }
-`;
-const EachBtn = styled.button`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-  gap: 10px;
-  background-color: #f7f7f7;
-  border: none;
-`;
-const PagenationStyled = styled.div`
-  flex-grow: 2;
-`;
 function authTokenExpired(authToken: string) {
   if (!authToken) {
     return true;
@@ -122,7 +25,7 @@ function decodeAuthToken(authToken: string) {
 }
 
 const LikePage = () => {
-  const [likelist, setLikelist] = useState<Likeitem[]>([]);
+  const [likelist, setLikelist] = useState<Type.Likeitem[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [userName, setUserName] = useState<string>("");
 
@@ -213,24 +116,24 @@ const LikePage = () => {
 
   return (
     <>
-      <TotalStyled>
-        <LikepageContainer>
-          <PageTitleStyled>
+      <styled.TotalStyled>
+        <styled.LikepageContainer>
+          <styled.PageTitleStyled>
             <div>My Page</div>
             <MdOutlineKeyboardArrowRight size="20px" />
             <div>찜리스트</div>
-          </PageTitleStyled>
-          <InfoStyled>
+          </styled.PageTitleStyled>
+          <styled.InfoStyled>
             {userName}님의 찜리스트
             <p>총 {likelist.length}건</p>
-          </InfoStyled>
-          <TableStyled>
-            <LeftStyled>
+          </styled.InfoStyled>
+          <styled.TableStyled>
+            <styled.LeftStyled>
               {paginationData.map((el, idx) => {
                 return (
                   <div key={idx}>
-                    <EachList>
-                      <EachTitle>
+                    <styled.EachList>
+                      <styled.EachTitle>
                         <img src={el.profile} onClick={() => handleDetailBtn(el.itemId)} />
                         <div className="productname" onClick={() => handleDetailBtn(el.itemId)}>
                           {el.titleKor}
@@ -238,31 +141,31 @@ const LikePage = () => {
                         <div className="productprice">
                           <PriceDisplay price={el.price} />원
                         </div>
-                      </EachTitle>
-                      <EachBtn>
+                      </styled.EachTitle>
+                      <styled.EachBtn>
                         <ButtonDark width="100px" height="30%" onClick={() => handleCartBtn(el.itemId)}>
                           장바구니
                         </ButtonDark>
                         <ButtonLight width="100px" height="30%" onClick={() => handleDeleteBtn(el.itemId)}>
                           삭제
                         </ButtonLight>
-                      </EachBtn>
-                    </EachList>
+                      </styled.EachBtn>
+                    </styled.EachList>
                   </div>
                 );
               })}
-            </LeftStyled>
-          </TableStyled>
-          <PagenationStyled>
+            </styled.LeftStyled>
+          </styled.TableStyled>
+          <styled.PagenationStyled>
             <Pagination
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
               itemsPerPage={5}
               totalData={likelist.length}
             />
-          </PagenationStyled>
-        </LikepageContainer>
-      </TotalStyled>
+          </styled.PagenationStyled>
+        </styled.LikepageContainer>
+      </styled.TotalStyled>
     </>
   );
 };

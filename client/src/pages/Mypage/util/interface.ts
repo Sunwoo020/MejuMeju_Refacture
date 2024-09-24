@@ -16,3 +16,14 @@ export interface Bodytype {
   password: string;
   passwordCheck: string;
 }
+
+export interface Likeitem {
+  titleKor: string;
+  price: number;
+  quantity: number;
+  capacity: number;
+  reviewRating: number;
+  itemId: number;
+  checked: boolean;
+  profile: string;
+}
