@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import * as Common from "@styles/Common";
 
-export const LikepageContainer = styled(Common.FlexCol)`
+export const PageContainer = styled(Common.FlexCol)`
   width: 100vw;
   height: 100vh;
   max-width: 1250px;

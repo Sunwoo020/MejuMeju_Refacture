@@ -28,7 +28,6 @@ const LikePage = () => {
   const [likelist, setLikelist] = useState<Type.Likeitem[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [userName, setUserName] = useState<string>("");
-
   const navigate = useNavigate();
   const paginationData = likelist.slice(5 * (currentPage - 1), 5 * currentPage);
   const authToken = localStorage.getItem("authToken");

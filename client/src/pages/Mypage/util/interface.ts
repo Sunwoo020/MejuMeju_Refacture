@@ -27,3 +27,23 @@ export interface Likeitem {
   checked: boolean;
   profile: string;
 }
+
+export interface Orderitem {
+  orderId: number;
+  orderStatus: string;
+  orderedAt: string;
+  pickupDate: string;
+  titleKor: string;
+  quantity: number;
+  itemId: number;
+}
+export interface Order {
+  orderedAt: string;
+  orderStatus: string;
+  pickupDate: string;
+  orderId: number;
+  itemOrders: Orderitem[];
+}
+export interface ReveiwUpdateProps {
+  itemId: number;
+}
