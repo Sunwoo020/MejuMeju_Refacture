@@ -116,7 +116,7 @@ const ReviewEdit = () => {
 
   return (
     <>
-      <styled.ReviewEditContaienr className="main">
+      <styled.ReviewEditContainer className="main">
         <styled.ReviewFormBox>
           <form>
             <div className="review_intake_box">
@@ -190,7 +190,7 @@ const ReviewEdit = () => {
             </styled.ConfirmBtnBox>
           </form>
         </styled.ReviewFormBox>
-      </styled.ReviewEditContaienr>
+      </styled.ReviewEditContainer>
       {isModal && (
         <Alert
           text={`${mode === "edit" ? "리뷰를 수정" : "리뷰를 등록"}하시겠습니까?`}
