@@ -1,17 +1,16 @@
 import { useEffect, useRef } from "react";
 import { PaymentWidgetInstance, loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
 import { nanoid } from "nanoid";
-import styled from "styled-components";
+import * as styled from "./style";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ItemOrder } from "@utils/types";
 
 const clientKey = "test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq";
 const customerKey = "YbX2HuSlsC9uVJW6NMRMj";
 
-export default function Checkout() {
+export default function chekOut() {
   const paymentWidgetRef = useRef<PaymentWidgetInstance | null>(null);
   const paymentMethodsWidgetRef = useRef<ReturnType<PaymentWidgetInstance["renderPaymentMethods"]> | null>(null);
-  // const [price, setPrice] = useState(0);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -49,14 +48,14 @@ export default function Checkout() {
   }, [totalPrice]);
 
   return (
-    <Container>
-      <CheckoutBox>
-        <Title>주문서</Title>
-        <Price>{`${totalPrice.toLocaleString()}원`}</Price>
-        <PaymentWidgetWrapper id="payment-widget" />
+    <styled.Container>
+      <styled.CheckoutBox>
+        <styled.Title>주문서</styled.Title>
+        <styled.Price>{`${totalPrice.toLocaleString()}원`}</styled.Price>
+        <styled.PaymentWidgetWrapper id="payment-widget" />
         <div className="bt">
-          <PayButton onClick={() => navigate(-1)}>취소하기</PayButton>
-          <PayButton
+          <styled.PayButton onClick={() => navigate(-1)}>취소하기</styled.PayButton>
+          <styled.PayButton
             onClick={async () => {
               const paymentWidget = paymentWidgetRef.current;
 
@@ -75,69 +74,9 @@ export default function Checkout() {
             }}
           >
             결제하기
-          </PayButton>
+          </styled.PayButton>
         </div>
-      </CheckoutBox>
-    </Container>
+      </styled.CheckoutBox>
+    </styled.Container>
   );
 }
-const Container = styled.div`
-  padding: 1rem;
-  z-index: 2;
-  ${({ theme }) => theme.common.flexCenterCol};
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  /* background-color: white; */
-  border: 1px solid gray;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 20px 20px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 1px 1px, rgba(0, 0, 0, 0.09) 0px -2px 3px;
-`;
-
-const Title = styled.h1`
-  font-size: 2rem;
-  margin-bottom: 5rem;
-`;
-
-const Price = styled.span`
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-`;
-
-const PaymentWidgetWrapper = styled.div`
-  margin-bottom: 1rem;
-  width: 100%;
-  height: 60%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const PayButton = styled.button`
-  background-color: #00b894;
-  color: #fff;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 0.3rem;
-  cursor: pointer;
-`;
-
-const CheckoutBox = styled.div`
-  ${({ theme }) => theme.common.flexCenterCol};
-  flex-direction: column;
-  background-color: white;
-  border-radius: 10px;
-  width: 600px;
-  height: 720px;
-  padding: 15px;
-  .bt {
-    width: 90%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-`;

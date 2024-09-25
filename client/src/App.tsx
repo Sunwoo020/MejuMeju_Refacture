@@ -20,7 +20,7 @@ import ChangeInfoPage from "@pages/myPage/ChangeInfoPage";
 import Payment from "@pages/payment/Payment";
 import PaymentConfirm from "@pages/payment/PaymentConfirm";
 import FailPage from "@pages/payment/Fail";
-import CheckoutChang from "@pages/payment/CheckoutChang";
+import CheckoutChang from "@pages/payment/chekOutModal";
 import ChatComponent from "@components/chat/ChatComponent";
 import Layout from "@layout/index";
 import ReviewEdit from "@pages/myPage/ReviewEdit";
