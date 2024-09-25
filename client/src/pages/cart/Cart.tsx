@@ -291,5 +291,5 @@ const Cart = () => {
       </styled.MainSection>
     </styled.CartContainer>
   );
-  export default Cart;
 };
+export default Cart;
