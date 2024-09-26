@@ -1,51 +1,11 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import Progress from "./Progress";
 import axios from "axios";
 import { ButtonLight } from "@components/common/Button";
 import { useSelector } from "react-redux";
-import { Itemtype } from "@pages/cart/Cart";
-
-type DateProps = {
-  dateState: {
-    Date: Date | null;
-  };
-};
-
-type Datatype = {
-  cartId: string;
-  itemCarts: [Itemtype];
-};
-
-const PaymentConfirmContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 150px;
-  & h2 {
-    font-size: 24px;
-    font-weight: bold;
-  }
-
-  & div.main {
-    width: 100%;
-    ${({ theme }) => theme.common.flexCenterCol};
-  }
-
-  & div.reason {
-    margin-top: 100px;
-    height: 100px;
-    font-size: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  & div.button {
-    margin-top: 100px;
-  }
-`;
+import * as styled from "./style";
+import * as Type from "@utils/types";
 
 function authTokenExpired(authToken: string) {
   if (!authToken) {
@@ -79,7 +39,7 @@ const PaymentConfirm = () => {
   const navigate = useNavigate();
   const [itemOrders, setItemOrders] = useState<{ itemId: number; quantity: number }[]>([]);
   const [itemCartdelete, setItemCartdelete] = useState<{ itemId: number }[]>([]);
-  const pickupDate = useSelector((state: DateProps) => {
+  const pickupDate = useSelector((state: Type.DateProps) => {
     const date = state.dateState.Date;
     if (date) {
       const formattedDate = date.toISOString().substring(0, 10);
@@ -111,7 +71,7 @@ const PaymentConfirm = () => {
         },
       })
       .then((response) => {
-        const data: Datatype = response.data.data; // 받아온 데이터
+        const data: Type.Datatype = response.data.data;
         const itemOrders = data.itemCarts.map(({ itemId, quantity }) => ({ itemId, quantity }));
         setItemOrders(itemOrders);
         const itemCartdelete = data.itemCarts.map(({ itemId }) => ({ itemId }));
@@ -183,7 +143,7 @@ const PaymentConfirm = () => {
   });
 
   return (
-    <PaymentConfirmContainer>
+    <styled.PaymentConfirmContainer>
       <h2></h2>
       <div className="main">
         <Progress />
@@ -195,7 +155,7 @@ const PaymentConfirm = () => {
           </ButtonLight>
         </div>
       </div>
-    </PaymentConfirmContainer>
+    </styled.PaymentConfirmContainer>
   );
 };
 

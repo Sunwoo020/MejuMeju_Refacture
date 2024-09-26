@@ -19,7 +19,7 @@ import OrderPage from "@pages/myPage/OrderListPage";
 import ChangeInfoPage from "@pages/myPage/ChangeInfoPage";
 import Payment from "@pages/payment/Payment";
 import PaymentConfirm from "@pages/payment/PaymentConfirm";
-import FailPage from "@pages/payment/Fail";
+import FailPage from "@pages/payment/failPage";
 import CheckoutChang from "@pages/payment/chekOutModal";
 import ChatComponent from "@components/chat/ChatComponent";
 import Layout from "@layout/index";

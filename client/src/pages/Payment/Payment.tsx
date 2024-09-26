@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import styled from "styled-components";
+import * as styled from "./style";
 import { ButtonDark, ButtonLight } from "@components/common/Button";
 import { useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 import { stateProps } from "./Paymentpayinfo";
 import axios from "axios";
 import Modal from "@layout/Header/Logoutmodal";
-import { Itemtype } from "@pages/cart/Cart";
+import * as Type from "@utils/types";
 
 function authTokenExpired(authToken: string) {
   if (!authToken) {
@@ -91,7 +91,7 @@ const Payment = () => {
       .then((response) => {
         const { itemCarts } = response.data.data;
 
-        const isDuplicate = itemCarts.some((item: Itemtype) => item.itemId === items[0].itemId);
+        const isDuplicate = itemCarts.some((item: Type.ItemOrder) => item.itemId === items[0].itemId);
 
         if (isDuplicate) {
           navigate("/CheckoutChang", { state: { items: items, userInfo: userInfo } });
@@ -129,7 +129,7 @@ const Payment = () => {
   };
 
   return (
-    <PaymentContainer>
+    <styled.PaymentContainer>
       <h2 className="payment"></h2>
       <div className="main">
         <Progress />
@@ -155,49 +155,8 @@ const Payment = () => {
           <div className="modal">날짜 및 픽업 장소를 입력해 주세요</div>
         </Modal>
       )}
-    </PaymentContainer>
+    </styled.PaymentContainer>
   );
 };
 
 export default Payment;
-
-const PaymentContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 150px;
-
-  .button {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 150px;
-    width: 25%;
-    padding-bottom: 200px;
-
-    @media screen and (max-width: 767px) {
-      width: 100%;
-      margin-top: 0px;
-      padding-left: 25px;
-      padding-right: 25px;
-    }
-  }
-
-  .buttonDetail {
-    width: 150px;
-    padding-top: 50px;
-    border: none;
-  }
-
-  & h2 {
-    font-size: 48px;
-    font-weight: bold;
-  }
-
-  & div.main {
-    width: 100%;
-    ${({ theme }) => theme.common.flexCenterCol};
-  }
-`;
