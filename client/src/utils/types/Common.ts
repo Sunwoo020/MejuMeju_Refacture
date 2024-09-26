@@ -39,3 +39,35 @@ export interface FormData {
   password: string;
   passwordCheck: string;
 }
+export type DateProps = {
+  dateState: {
+    Date: Date | null;
+  };
+};
+
+export type Datatype = {
+  cartId: string;
+  itemCarts: [ItemOrder];
+};
+export type stateProps = {
+  loginState?: string;
+  markerState?: {
+    address: string;
+    choice: boolean;
+    comment: string;
+    lat: number;
+    lng: number;
+    marketId: number;
+    name: string;
+    phone: string;
+    workTime: string;
+  };
+};
+
+export interface PayinfoProps {
+  onDateChange: (date: Date | null) => void;
+}
+export interface ChildComponentProps {
+  userInfo: UserProps;
+  updateUserInfo: (user: UserProps) => void;
+}

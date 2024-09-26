@@ -9,7 +9,11 @@ export const FlexCol = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
+export const FlexCenter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 export const FlexCenterRow = styled(FlexRow)`
   ${FlexRow};
   justify-content: center;
