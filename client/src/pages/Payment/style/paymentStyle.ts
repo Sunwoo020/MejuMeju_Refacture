@@ -1,14 +1,12 @@
 import styled from "styled-components";
+import * as Common from "@styles/Common";
+
 export const PaymentContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  ${Common.FlexCenterCol};
   margin-top: 150px;
 
   .button {
-    display: flex;
-    flex-direction: row;
+    ${Common.FlexRow};
     justify-content: space-between;
     align-items: center;
     margin-top: 150px;
@@ -30,12 +28,12 @@ export const PaymentContainer = styled.section`
   }
 
   & h2 {
-    font-size: 48px;
+    ${Common.fontSize(48)};
     font-weight: bold;
   }
 
   & div.main {
     width: 100%;
-    ${({ theme }) => theme.common.flexCenterCol};
+    ${Common.FlexCenterCol};
   }
 `;

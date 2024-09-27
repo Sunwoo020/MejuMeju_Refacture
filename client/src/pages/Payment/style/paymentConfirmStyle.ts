@@ -1,29 +1,27 @@
 import styled from "styled-components";
+import * as Common from "@styles/Common";
 
 export const PaymentConfirmContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  ${Common.FlexCenterCol};
   margin-top: 150px;
+
   & h2 {
-    font-size: 24px;
+    ${Common.fontSize(24)};
     font-weight: bold;
   }
 
   & div.main {
     width: 100%;
-    ${({ theme }) => theme.common.flexCenterCol};
+    ${Common.FlexCenterCol};
   }
 
   & div.reason {
     margin-top: 100px;
     height: 100px;
-    font-size: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    ${Common.fontSize(32)};
+    ${Common.FlexCenter};
   }
+
   & div.button {
     margin-top: 100px;
   }
