@@ -6,3 +6,4 @@ export * from "./itemListStyle";
 export * from "./payInfoStyle";
 export * from "./userInfoStyle";
 export * from "./progressStyle";
+export * from "./paymentCommon";
