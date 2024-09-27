@@ -1,13 +1,10 @@
 import styled from "styled-components";
+import * as PaymentCommon from "./paymentCommon";
 import * as Common from "@styles/Common";
 
-export const PaymentConfirmContainer = styled.section`
-  ${Common.FlexCenterCol};
-  margin-top: 150px;
-
+export const PaymentConfirmContainer = styled(PaymentCommon.PaymentSection)`
   & h2 {
-    ${Common.fontSize(24)};
-    font-weight: bold;
+    ${PaymentCommon.PaymentTitle};
   }
 
   & div.main {

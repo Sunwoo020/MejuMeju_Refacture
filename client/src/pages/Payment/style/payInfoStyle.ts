@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as PaymentCommon from "./paymentCommon";
 import * as Common from "@styles/Common";
 
 export const Payinfostyle = styled.div`
@@ -14,21 +15,19 @@ export const Payinfostyle = styled.div`
   }
 
   & div.mainpay {
-    ${Common.FlexCol};
-    justify-content: flex-start;
+    ${PaymentCommon.FlexColDiv};
     width: 70%;
     height: 100%;
     font-size: 16px;
   }
 
   & div.paylist {
-    ${Common.FlexCol};
-    justify-content: center;
+    ${PaymentCommon.FlexColDiv};
     border: 1px solid rgba(60, 60, 60, 0.1);
   }
 
   & div.firstline {
-    ${Common.FlexCenterRow};
+    ${PaymentCommon.FlexCenterRowDiv};
     justify-content: space-around;
     @media screen and (max-width: 767px) {
       display: none;
@@ -37,7 +36,7 @@ export const Payinfostyle = styled.div`
 
   & div.totalQ,
   & div.totalP {
-    ${Common.FlexCenter};
+    ${PaymentCommon.FlexCenterDiv};
     height: 50px;
   }
 
@@ -51,7 +50,7 @@ export const Payinfostyle = styled.div`
 
   & div.tq,
   & div.tp {
-    ${Common.FlexCenter};
+    ${PaymentCommon.FlexCenterDiv};
     height: 100%;
     background-color: rgba(217, 217, 217, 0.5);
     border: 1px solid rgba(60, 60, 60, 0.1);
@@ -70,10 +69,7 @@ export const Payinfostyle = styled.div`
 
   & div.totalQuantity,
   & div.totalprice {
-    ${Common.FlexCenter};
-    width: 100%;
-    height: 100%;
-    border: 1px solid rgba(60, 60, 60, 0.1);
+    ${PaymentCommon.TotalQuantityPriceDiv};
   }
 
   & div.totalQuantity {
@@ -85,8 +81,7 @@ export const Payinfostyle = styled.div`
   }
 
   & div.secondline {
-    ${Common.FlexCenterRow};
-    justify-content: space-between;
+    ${PaymentCommon.FlexCenterRowDiv};
     height: 50px;
     @media screen and (max-width: 767px) {
       flex-direction: column;
@@ -94,9 +89,8 @@ export const Payinfostyle = styled.div`
   }
 
   & div.pickupdate {
-    ${Common.FlexCenter};
+    ${PaymentCommon.FlexCenterDiv};
     width: 180px;
-    height: 100%;
     background-color: rgba(217, 217, 217, 0.5);
     border: 1px solid rgba(60, 60, 60, 0.1);
     font-weight: bold;
@@ -104,26 +98,22 @@ export const Payinfostyle = styled.div`
   }
 
   & div.pickdate {
-    ${Common.FlexCenter};
+    ${PaymentCommon.FlexCenterDiv};
     width: 100%;
-    height: 100%;
     border: 1px solid rgba(60, 60, 60, 0.1);
     font-size: 16px;
+    &::placeholder {
+      ${PaymentCommon.PlaceholderDiv};
+    }
     @media screen and (max-width: 767px) {
       width: 100%;
-    }
-    &::placeholder {
-      color: #c3c3c3;
-    }
-    &:focus {
-      outline: none;
     }
   }
 
   & div.pickselect,
   & div.pickselect2,
   & div.pickselect3 {
-    ${Common.FlexCenter};
+    ${PaymentCommon.FlexCenterDiv};
     height: 100%;
     border: 1px solid rgba(60, 60, 60, 0.5);
     font-size: 14px;
@@ -133,10 +123,8 @@ export const Payinfostyle = styled.div`
   }
 
   & div.thirdline {
-    ${Common.FlexCenterRow};
-    justify-content: space-between;
+    ${PaymentCommon.FlexCenterRowDiv};
     height: 700px;
-    width: 100%;
     @media screen and (max-width: 767px) {
       flex-direction: column;
     }
@@ -144,11 +132,10 @@ export const Payinfostyle = styled.div`
 
   & div.place,
   & div.placeinfo {
-    ${Common.FlexCenter};
+    ${PaymentCommon.FlexCenterDiv};
     height: 100%;
     @media screen and (max-width: 767px) {
       flex-direction: column;
-      width: 100%;
     }
   }
 
@@ -161,30 +148,22 @@ export const Payinfostyle = styled.div`
   & div.placeadd,
   & div.placenumber,
   & div.placecomment {
-    ${Common.FlexCenter};
+    ${PaymentCommon.FlexCenterDiv};
     background-color: rgba(217, 217, 217, 0.5);
     border: 1px solid rgba(60, 60, 60, 0.1);
     font-weight: bold;
   }
 
-  & div.pickupplace,
-  & div.placename,
-  & div.placeadd,
-  & div.placenumber,
-  & div.placecomment2 {
-    width: 100%;
-  }
-
   & div.placename2,
   & div.placeadd2,
   & div.placenumber2 {
-    ${Common.FlexCenter};
+    ${PaymentCommon.FlexCenterDiv};
     height: 70%;
     border: 1px solid rgba(60, 60, 60, 0.1);
   }
 
   & div.map {
-    ${Common.FlexCenter};
+    ${PaymentCommon.FlexCenterDiv};
     width: 60%;
     border: 1px solid rgba(60, 60, 60, 0.1);
     @media screen and (max-width: 767px) {
@@ -204,6 +183,6 @@ export const Payinfostyle = styled.div`
   }
 
   & div.calender {
-    ${Common.FlexCenter};
+    ${PaymentCommon.FlexCenterDiv};
   }
 `;

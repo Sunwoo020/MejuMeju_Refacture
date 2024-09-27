@@ -1,24 +1,11 @@
 import styled from "styled-components";
+import * as PaymentCommon from "./paymentCommon";
 import * as Common from "@styles/Common";
 
-export const PaymentContainer = styled.section`
-  ${Common.FlexCenterCol};
-  margin-top: 150px;
-
+export const PaymentContainer = styled(PaymentCommon.PaymentSection)`
   .button {
-    ${Common.FlexRow};
-    justify-content: space-between;
-    align-items: center;
+    ${PaymentCommon.ButtonStyle};
     margin-top: 150px;
-    width: 25%;
-    padding-bottom: 200px;
-
-    @media screen and (max-width: 767px) {
-      width: 100%;
-      margin-top: 0px;
-      padding-left: 25px;
-      padding-right: 25px;
-    }
   }
 
   .buttonDetail {
