@@ -1,9 +1,7 @@
 import { PriceRegular } from "@utils/priceUtils";
+import * as Type from "@utils/types";
 
-interface PriceType {
-  price: number;
-}
-const PriceDisplay = ({ price }: PriceType) => {
+const PriceDisplay = ({ price }: Type.PriceType) => {
   return <>{PriceRegular(price)}</>;
 };
 
