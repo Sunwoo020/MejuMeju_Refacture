@@ -1,11 +1,9 @@
 import { useState, ChangeEvent } from "react";
-import styled from "styled-components";
+import * as styled from "./style";
 import axios from "axios";
-//assets & icons
 import spinner from "@assets/gif/spinner.gif";
 import { IoMdSend } from "react-icons/io";
 import { MdOutlineCancel } from "react-icons/md";
-//components
 import { ButtonDark } from "@components/common/Button";
 
 const ChatComponent = () => {
@@ -54,8 +52,8 @@ const ChatComponent = () => {
   return (
     <>
       {isOpen ? (
-        <GptContainer>
-          <TopContainer>
+        <styled.GptContainer>
+          <styled.TopContainer>
             <button
               onClick={() => {
                 setIsOpen(false);
@@ -65,8 +63,8 @@ const ChatComponent = () => {
               <MdOutlineCancel color="white" size={20} />
             </button>
             <div className="title">무엇이든 물어보세요!</div>
-          </TopContainer>
-          <MiddleContainer>
+          </styled.TopContainer>
+          <styled.MiddleContainer>
             {isLoading ? (
               <div className="col">
                 <div className="q-container">
@@ -83,173 +81,23 @@ const ChatComponent = () => {
             ) : (
               <img className="loading" src={spinner} alt="로딩중" />
             )}
-          </MiddleContainer>
-          <BottonContainer>
+          </styled.MiddleContainer>
+          <styled.BottonContainer>
             <input onKeyDown={handleKeyDown} onChange={handleInput} className="input" />
             <IoMdSend className="sendBtn" size="25" color="gray" onClick={handleSubmit}>
               전송
             </IoMdSend>
-          </BottonContainer>
-        </GptContainer>
+          </styled.BottonContainer>
+        </styled.GptContainer>
       ) : (
-        <BtnContainer>
+        <styled.BtnContainer>
           <ButtonDark width="60px" height="60px" fontSize="18px" borderRadius="50%" onClick={() => setIsOpen(true)}>
             Chat
           </ButtonDark>
-        </BtnContainer>
+        </styled.BtnContainer>
       )}
     </>
   );
 };
-const BtnContainer = styled.div`
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  @media ${({ theme }) => theme.breakpoints.mobileMax} {
-    button {
-      width: 50px;
-      height: 50px;
-      font-size: 12px;
-    }
-  }
-`;
-
-const GptContainer = styled.div`
-  position: fixed;
-  right: 10px;
-  top: 30vh;
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-  height: 600px;
-  color: white;
-  background-color: gray;
-  border: 1px solid lightgray;
-  border-radius: 5px;
-  @media screen and (max-width: 768px) {
-    right: 5vw;
-    width: 90vw;
-    height: 60vh;
-  }
-`;
-const TopContainer = styled.div`
-  position: relative;
-  padding: 20px 20px 20px 20px;
-  width: 100%;
-  height: 15%;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  .title {
-    font-size: 22px;
-    font-weight: 500;
-  }
-  .cancel {
-    position: absolute;
-    right: 0;
-    top: 10px;
-    border: none;
-    cursor: pointer;
-    background-color: inherit;
-  }
-`;
-const MiddleContainer = styled.div`
-  position: relative;
-  padding: 20px;
-
-  height: 70%;
-  color: ${({ theme }) => theme.colors.themeColor};
-  font-size: 18px;
-  background-color: #f0f0f0;
-  .col {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  .q-container {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-  }
-  .question {
-    position: relative;
-    background: gray;
-    border-radius: 0.4em;
-    padding: 5px 10px;
-    color: white;
-  }
-
-  .question:after {
-    content: "";
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    border: 20px solid transparent;
-    border-left-color: gray;
-    border-right: 0;
-    border-bottom: 0;
-    margin-top: -10px;
-    margin-right: -20px;
-  }
-  .answer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 5px 15px;
-    gap: 10px;
-    margin: 5px;
-    position: relative;
-    background: white;
-    border-radius: 0.4em;
-  }
-  .answer:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 0;
-    height: 0;
-    border: 20px solid transparent;
-    border-right-color: white;
-    border-left: 0;
-    border-bottom: 0;
-    margin-top: -10px;
-    margin-left: -20px;
-  }
-  .loading {
-    position: absolute;
-    top: 30%;
-    right: 36%;
-    width: 100px;
-  }
-  overflow-y: scroll;
-`;
-const BottonContainer = styled.div`
-  position: relative;
-  padding: 20px 20px 20px 20px;
-  width: 100%;
-  height: 15%;
-  display: flex;
-  flex-direction: row;
-  gap: 8%;
-  align-items: center;
-  .input {
-    padding: 15px;
-    padding-right: 50px;
-    font-size: 16px;
-    width: 100%;
-    height: 90%;
-    border-radius: 2px;
-  }
-  .sendBtn {
-    position: absolute;
-    right: 8%;
-    cursor: pointer;
-  }
-`;
 
 export default ChatComponent;
