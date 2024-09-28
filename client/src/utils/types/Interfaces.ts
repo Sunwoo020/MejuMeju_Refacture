@@ -42,3 +42,12 @@ export interface AlertProps {
   onClickOk: () => void;
   onClickCancel?: () => void;
 }
+
+export interface PriceType {
+  price: number;
+}
+
+export interface reviewRatingProps {
+  reviewRating: number;
+  size: number;
+}

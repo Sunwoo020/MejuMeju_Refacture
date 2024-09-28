@@ -1,12 +1,7 @@
 import styled from "styled-components";
 import { FaStar } from "react-icons/fa";
 import { FaStarHalf } from "react-icons/fa";
-
-// 주류 별점 Props
-export interface reviewRatingProps {
-  reviewRating: number;
-  size: number;
-}
+import * as Type from "@utils/types";
 
 const StyledFaStar = styled(FaStar)`
   font-size: ${(props) => props.size}px;
@@ -22,7 +17,7 @@ const StyledFaStarHalf = styled(FaStarHalf)`
   }
 `;
 
-const ReviewRating = ({ reviewRating, size }: reviewRatingProps) => {
+const ReviewRating = ({ reviewRating, size }: Type.reviewRatingProps) => {
   return (
     <>
       {[...Array(5)].map((_, index) =>
