@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import * as styled from "./styles";
 
 const Term = ({ pos, setIsRead }: { pos: number; setIsRead: React.Dispatch<React.SetStateAction<boolean[]>> }) => {
   const detailData = [
@@ -121,21 +121,7 @@ const Term = ({ pos, setIsRead }: { pos: number; setIsRead: React.Dispatch<React
       });
     }
   };
-  return <TermDetail onScroll={handleScroll}>{detailData[pos]}</TermDetail>;
+  return <styled.TermDetail onScroll={handleScroll}>{detailData[pos]}</styled.TermDetail>;
 };
-
-const TermDetail = styled.div`
-  height: 200px;
-  width: 100%;
-  padding: 20px;
-  background-color: white;
-  font-size: 14px;
-  color: gray;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  white-space: pre-wrap;
-  overflow: scroll;
-`;
 
 export default Term;
