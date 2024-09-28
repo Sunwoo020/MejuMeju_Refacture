@@ -23,4 +23,3 @@ export const InfoTable = styled.div`
   ${({ theme }) => theme.common.flexCenterCol};
   width: 100%;
 `;
-export default {};
