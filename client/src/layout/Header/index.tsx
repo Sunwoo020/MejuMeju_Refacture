@@ -5,20 +5,9 @@ import { useHover } from "usehooks-ts";
 import Headerback from "@assets/images/Headerback.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import Modal from "./Logoutmodal";
+import * as Type from "./util";
 
-interface IHeaderContainerProps {
-  hovering: string;
-  y: number;
-  pathname?: string;
-  isOpen?: string;
-  style?: string;
-}
-interface ScrollState {
-  x: number;
-  y: number;
-}
-
-const LogoContainer = styled.header<IHeaderContainerProps>`
+const LogoContainer = styled.header<Type.IHeaderContainerProps>`
   display: flex;
   position: absolute;
   left: 10%;
@@ -52,7 +41,7 @@ const LogoContainer = styled.header<IHeaderContainerProps>`
   }
 `;
 
-const HeaderContainer = styled.div<IHeaderContainerProps>`
+const HeaderContainer = styled.div<Type.IHeaderContainerProps>`
   width: 100%;
   position: fixed;
   transition: all 0.3s ease-out;
@@ -88,7 +77,7 @@ const HeaderContainer = styled.div<IHeaderContainerProps>`
   }
 `;
 
-const WhiteMainlogo = styled(Mainlogo)<IHeaderContainerProps>`
+const WhiteMainlogo = styled(Mainlogo)<Type.IHeaderContainerProps>`
   path {
     ${({ hovering, y, pathname }) =>
       y > 0 || hovering === "true"
@@ -110,7 +99,7 @@ const WhiteMainlogo = styled(Mainlogo)<IHeaderContainerProps>`
     width: 70%;
   }
 `;
-const Ulist = styled.div<IHeaderContainerProps>`
+const Ulist = styled.div<Type.IHeaderContainerProps>`
   display: flex;
   position: relative;
   padding-left: 10%;
@@ -174,7 +163,7 @@ const Ulist = styled.div<IHeaderContainerProps>`
   }
 `;
 
-const StyledList = styled.li<IHeaderContainerProps>`
+const StyledList = styled.li<Type.IHeaderContainerProps>`
   transition: all 0.3s ease-out;
   display: ${({ hovering }) => (hovering === "true" ? "flex" : "none")};
   &:hover {
@@ -207,7 +196,7 @@ const slideOut = keyframes`
     opacity: 0;
   }
 `;
-const AccordionMenu = styled.div<IHeaderContainerProps>`
+const AccordionMenu = styled.div<Type.IHeaderContainerProps>`
   display: none;
 
   .li_padding {
@@ -234,7 +223,7 @@ const AccordionMenu = styled.div<IHeaderContainerProps>`
     filter: drop-shadow(2px 2px 1px rgba(8, 8, 8, 0.5));
   }
 `;
-const AccordionMenuItem = styled.div<IHeaderContainerProps>`
+const AccordionMenuItem = styled.div<Type.IHeaderContainerProps>`
   display: flex;
   align-items: center;
   font-weight: 500;
@@ -298,8 +287,8 @@ const Header: React.FC = () => {
     setIsAccordionOpen(!isAccordionOpen);
   };
 
-  const useScroll = (): ScrollState => {
-    const [state, setState] = useState<ScrollState>({ x: 0, y: 0 });
+  const useScroll = (): Type.ScrollState => {
+    const [state, setState] = useState<Type.ScrollState>({ x: 0, y: 0 });
 
     const onScroll = (): void => {
       setState({ x: window.scrollX, y: window.scrollY });
