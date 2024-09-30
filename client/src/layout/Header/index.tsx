@@ -1,242 +1,9 @@
-import styled, { css, keyframes } from "styled-components";
-import { ReactComponent as Mainlogo } from "@assets/images/Logo.svg";
 import { useRef, useEffect, useState } from "react";
 import { useHover } from "usehooks-ts";
-import Headerback from "@assets/images/Headerback.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import Modal from "./Logoutmodal";
 import * as Type from "./util";
-
-const LogoContainer = styled.header<Type.IHeaderContainerProps>`
-  display: flex;
-  position: absolute;
-  left: 10%;
-  width: 100%;
-  height: 120px;
-  color: ${({ theme }) => theme.colors.fontColor};
-
-  & div.tag {
-    padding-top: ${({ hovering }) => (hovering === "true" ? "30px" : "22px")};
-    transition: all 0.3s ease-out;
-
-    filter: drop-shadow(2px 4px 2px rgba(8, 8, 8, 0.5));
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  @media screen and (max-width: 1297px) {
-  }
-  @media screen and (max-width: 860px) {
-    left: 3%;
-  }
-  @media screen and (max-width: 767px) {
-    & div.tag {
-      width: 75%;
-      padding-top: 0px;
-    }
-  }
-  @media screen and (max-width: 767px) {
-    height: 50px;
-  }
-`;
-
-const HeaderContainer = styled.div<Type.IHeaderContainerProps>`
-  width: 100%;
-  position: fixed;
-  transition: all 0.3s ease-out;
-  z-index: 999;
-  display: flex;
-  justify-content: space-between;
-  & div.modal {
-    color: #222222;
-    border: 5px solid white;
-    border-radius: 3px;
-  }
-
-  ${({ hovering, y, pathname }) =>
-    y > 0 || hovering === "true"
-      ? css`
-          height: 120px;
-          background-image: url(${Headerback});
-        `
-      : css`
-          height: 0px;
-          color: rgba(245, 245, 245, 1);
-          background-image: none;
-          color: ${pathname === "/" ? "rgba(245, 245, 245, 1)" : "#222222"};
-        `}
-
-  @media (max-width:767px) {
-    background-image: none;
-    height: 0;
-
-    .mainlogo {
-      width: 100px;
-    }
-  }
-`;
-
-const WhiteMainlogo = styled(Mainlogo)<Type.IHeaderContainerProps>`
-  path {
-    ${({ hovering, y, pathname }) =>
-      y > 0 || hovering === "true"
-        ? css`
-            fill: #a84448;
-          `
-        : css`
-            fill: ${pathname === "/" ? "rgba(245, 245, 245, 1)" : "#a84448"}; rgba(245, 245, 245, 1)" : "color: #222222"
-          `}
-    transition: all 0.5s ease-out;
-
-    &:hover {
-      fill: black;
-      cursor: pointer;
-      transition: all 0.3 ease;
-    }
-  }
-  @media (max-width: 767px) {
-    width: 70%;
-  }
-`;
-const Ulist = styled.div<Type.IHeaderContainerProps>`
-  display: flex;
-  position: relative;
-  padding-left: 10%;
-  padding-right: 5%;
-  width: 110%;
-  transition: all 0.3s ease-out;
-  font-weight: bold;
-
-  filter: drop-shadow(2px 2px 1px #ccc);
-
-  padding-top: ${({ hovering }) => (hovering === "true" ? "20px" : "30px")};
-  & ul {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    font-size: ${({ hovering }) => (hovering === "true" ? "18px" : "21px")};
-    transition: all 0.5s ease-out;
-  }
-
-  & ul {
-    & li {
-      height: 20px;
-      padding-top: 4%;
-      font-size: 14px;
-      font-weight: 400;
-      flex-direction: row;
-    }
-  }
-
-  .banner1 {
-    width: 20%;
-  }
-  .banner2 {
-    width: 20%;
-  }
-
-  .banner3 {
-    width: 20%;
-  }
-  .banner4 {
-    width: 20%;
-  }
-  .banner6 {
-    width: 20%;
-    &:hover {
-      color: #a84448;
-      cursor: pointer;
-    }
-  }
-  @media screen and (max-width: 1024px) {
-    width: 100%;
-    & ul {
-      font-size: 15px;
-      & li {
-        font-size: 13px;
-      }
-    }
-  }
-  @media screen and (max-width: 767px) {
-    display: none;
-  }
-`;
-
-const StyledList = styled.li<Type.IHeaderContainerProps>`
-  transition: all 0.3s ease-out;
-  display: ${({ hovering }) => (hovering === "true" ? "flex" : "none")};
-  &:hover {
-    color: #a84448;
-    cursor: pointer;
-  }
-  @media screen and (max-width: 767px) {
-    display: none;
-  }
-`;
-
-const slideIn = keyframes`
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0%);
-    opacity: 1;
-  }
-`;
-
-const slideOut = keyframes`
-  0% {
-    transform: translateX(0%);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-`;
-const AccordionMenu = styled.div<Type.IHeaderContainerProps>`
-  display: none;
-
-  .li_padding {
-    padding: 0.8rem 1rem;
-  }
-  @media screen and (max-width: 767px) {
-    margin-right: 2rem;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    font-family: WanjuRegular, sans-serif, Arial;
-    padding: 13px 0;
-    text-align: right;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #a84448;
-    background-color: none;
-  }
-  & div.onclick {
-    text-align: right;
-    padding: 0;
-    padding-right: 12px;
-    padding-bottom: 0.5rem;
-    filter: drop-shadow(2px 2px 1px rgba(8, 8, 8, 0.5));
-  }
-`;
-const AccordionMenuItem = styled.div<Type.IHeaderContainerProps>`
-  display: flex;
-  align-items: center;
-  font-weight: 500;
-  font-size: 14px;
-  color: #a84448;
-  cursor: pointer;
-  background-color: ${(props) => (props.isOpen ? "none" : "rgba(247,247,247,0.7)")};
-  animation: ${(isOpen) => (isOpen ? slideIn : slideOut)} 0.3s ease;
-  transition: background-color 0.3s ease-out;
-  width: ${(props) => (props.isOpen ? "0px" : "150px")};
-  height: ${(props) => (props.isOpen ? "0px" : "100px")};
-  border: ${(props) => (props.isOpen ? "none" : "1px solid rgba(8,8,8,0.1)")};
-`;
+import * as styled from "./styles";
 
 const Header: React.FC = () => {
   const hoverRef = useRef(null);
@@ -303,73 +70,78 @@ const Header: React.FC = () => {
   const { y } = useScroll();
 
   return (
-    <HeaderContainer hovering={(isHover || false).toString()} y={y} pathname={pathname}>
+    <styled.HeaderContainer hovering={(isHover || false).toString()} y={y} pathname={pathname}>
       <nav>
         <div ref={hoverRef} className="hoverlayer">
-          <LogoContainer hovering={(isHover || false).toString()} y={y}>
+          <styled.LogoContainer hovering={(isHover || false).toString()} y={y}>
             <div className="tag" onClick={() => navigate("/")}>
-              <WhiteMainlogo className="mainlogo" hovering={(isHover || false).toString()} y={y} pathname={pathname} />
+              <styled.WhiteMainlogo
+                className="mainlogo"
+                hovering={(isHover || false).toString()}
+                y={y}
+                pathname={pathname}
+              />
             </div>
-            <Ulist className="ull" hovering={(isHover || false).toString()} y={y}>
+            <styled.Ulist className="ull" hovering={(isHover || false).toString()} y={y}>
               <ul className="banner1">
                 Product
-                <StyledList
+                <styled.StyledList
                   className="li1"
                   hovering={(isHover || false).toString()}
                   y={y}
                   onClick={() => navigate("/alcohol")}
                 >
                   주류 리스트
-                </StyledList>
+                </styled.StyledList>
               </ul>
               <ul className="banner2">
                 Order
-                <StyledList
+                <styled.StyledList
                   className="li4"
                   hovering={(isHover || false).toString()}
                   y={y}
                   onClick={() => navigate("/cart")}
                 >
                   장바구니
-                </StyledList>
+                </styled.StyledList>
               </ul>
               <ul className="banner3">
                 My Page
-                <StyledList
+                <styled.StyledList
                   className="li3"
                   hovering={(isHover || false).toString()}
                   y={y}
                   onClick={() => navigate("/mypage/likepage")}
                 >
                   찜
-                </StyledList>
-                <StyledList
+                </styled.StyledList>
+                <styled.StyledList
                   className="li5"
                   hovering={(isHover || false).toString()}
                   y={y}
                   onClick={() => navigate("/mypage/orderpage")}
                 >
                   주문 내역
-                </StyledList>
-                <StyledList
+                </styled.StyledList>
+                <styled.StyledList
                   className="li6"
                   hovering={(isHover || false).toString()}
                   y={y}
                   onClick={() => navigate("/mypage/changeinfo")}
                 >
                   개인 정보 수정
-                </StyledList>
+                </styled.StyledList>
               </ul>
               <ul className="banner4">
                 Help
-                <StyledList
+                <styled.StyledList
                   className="li7"
                   hovering={(isHover || false).toString()}
                   y={y}
                   onClick={() => navigate("/helpcenter")}
                 >
                   자주 묻는 질문
-                </StyledList>
+                </styled.StyledList>
               </ul>
 
               <ul className="banner6">
@@ -384,9 +156,9 @@ const Header: React.FC = () => {
                   <div onClick={() => navigate("/login")}>로그인</div>
                 )}
               </ul>
-            </Ulist>
+            </styled.Ulist>
 
-            <AccordionMenu hovering={(isHover || false).toString()} y={y}>
+            <styled.AccordionMenu hovering={(isHover || false).toString()} y={y}>
               {isAccordionOpen ? (
                 <div
                   onBlur={() => setIsAccordionOpen(!isAccordionOpen)}
@@ -402,7 +174,7 @@ const Header: React.FC = () => {
               )}
               {isAccordionOpen && (
                 <>
-                  <AccordionMenuItem
+                  <styled.AccordionMenuItem
                     className="li_padding"
                     hovering={(isHover || false).toString()}
                     y={y}
@@ -412,8 +184,8 @@ const Header: React.FC = () => {
                     }}
                   >
                     주류 리스트
-                  </AccordionMenuItem>
-                  <AccordionMenuItem
+                  </styled.AccordionMenuItem>
+                  <styled.AccordionMenuItem
                     className="li_padding"
                     hovering={(isHover || false).toString()}
                     y={y}
@@ -423,8 +195,8 @@ const Header: React.FC = () => {
                     }}
                   >
                     장바구니
-                  </AccordionMenuItem>
-                  <AccordionMenuItem
+                  </styled.AccordionMenuItem>
+                  <styled.AccordionMenuItem
                     className="li_padding"
                     hovering={(isHover || false).toString()}
                     y={y}
@@ -434,8 +206,8 @@ const Header: React.FC = () => {
                     }}
                   >
                     찜
-                  </AccordionMenuItem>
-                  <AccordionMenuItem
+                  </styled.AccordionMenuItem>
+                  <styled.AccordionMenuItem
                     className="li_padding"
                     hovering={(isHover || false).toString()}
                     y={y}
@@ -445,8 +217,8 @@ const Header: React.FC = () => {
                     }}
                   >
                     주문 내역
-                  </AccordionMenuItem>
-                  <AccordionMenuItem
+                  </styled.AccordionMenuItem>
+                  <styled.AccordionMenuItem
                     className="li_padding"
                     hovering={(isHover || false).toString()}
                     y={y}
@@ -456,8 +228,8 @@ const Header: React.FC = () => {
                     }}
                   >
                     개인 정보 수정
-                  </AccordionMenuItem>
-                  <AccordionMenuItem
+                  </styled.AccordionMenuItem>
+                  <styled.AccordionMenuItem
                     className="li_padding"
                     hovering={(isHover || false).toString()}
                     y={y}
@@ -467,8 +239,8 @@ const Header: React.FC = () => {
                     }}
                   >
                     자주 묻는 질문
-                  </AccordionMenuItem>
-                  <AccordionMenuItem
+                  </styled.AccordionMenuItem>
+                  <styled.AccordionMenuItem
                     className="li_padding"
                     hovering={(isHover || false).toString()}
                     y={y}
@@ -494,11 +266,11 @@ const Header: React.FC = () => {
                     }}
                   >
                     {localStorage.getItem("authToken") ? (authTokenExpired() ? "로그인" : "로그아웃") : "로그인"}
-                  </AccordionMenuItem>
+                  </styled.AccordionMenuItem>
                 </>
               )}
-            </AccordionMenu>
-          </LogoContainer>
+            </styled.AccordionMenu>
+          </styled.LogoContainer>
         </div>
       </nav>
       {isModalOpen && (
@@ -506,7 +278,7 @@ const Header: React.FC = () => {
           <div className="modal">로그아웃이 되었습니다!</div>
         </Modal>
       )}
-    </HeaderContainer>
+    </styled.HeaderContainer>
   );
 };
 
