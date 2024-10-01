@@ -2,9 +2,9 @@ import styled, { css, keyframes } from "styled-components";
 import * as Type from "../util";
 import Headerback from "@assets/images/Headerback.png";
 import { ReactComponent as Mainlogo } from "@assets/images/Logo.svg";
+import * as Common from "@styles/Common";
 
-export const LogoContainer = styled.header<Type.IHeaderContainerProps>`
-  display: flex;
+export const LogoContainer = styled(Common.FlexRow)<Type.IHeaderContainerProps>`
   position: absolute;
   left: 10%;
   width: 100%;
@@ -14,38 +14,35 @@ export const LogoContainer = styled.header<Type.IHeaderContainerProps>`
   & div.tag {
     padding-top: ${({ hovering }) => (hovering === "true" ? "30px" : "22px")};
     transition: all 0.3s ease-out;
-
     filter: drop-shadow(2px 4px 2px rgba(8, 8, 8, 0.5));
+
     &:hover {
       cursor: pointer;
     }
   }
 
-  @media screen and (max-width: 1297px) {
-  }
   @media screen and (max-width: 860px) {
     left: 3%;
   }
   @media screen and (max-width: 767px) {
+    height: 50px;
+
     & div.tag {
       width: 75%;
       padding-top: 0px;
     }
   }
-  @media screen and (max-width: 767px) {
-    height: 50px;
-  }
 `;
 
-export const HeaderContainer = styled.div<Type.IHeaderContainerProps>`
+export const HeaderContainer = styled(Common.FlexRow)<Type.IHeaderContainerProps>`
   width: 100%;
   position: fixed;
   transition: all 0.3s ease-out;
   z-index: 999;
-  display: flex;
   justify-content: space-between;
+
   & div.modal {
-    color: #222222;
+    color: #222;
     border: 5px solid white;
     border-radius: 3px;
   }
@@ -57,19 +54,14 @@ export const HeaderContainer = styled.div<Type.IHeaderContainerProps>`
           background-image: url(${Headerback});
         `
       : css`
-          height: 0px;
-          color: rgba(245, 245, 245, 1);
+          height: 0;
+          color: ${pathname === "/" ? "rgba(245, 245, 245, 1)" : "#222"};
           background-image: none;
-          color: ${pathname === "/" ? "rgba(245, 245, 245, 1)" : "#222222"};
         `}
 
-  @media (max-width:767px) {
+  @media (max-width: 767px) {
     background-image: none;
     height: 0;
-
-    .mainlogo {
-      width: 100px;
-    }
   }
 `;
 
@@ -81,77 +73,49 @@ export const WhiteMainlogo = styled(Mainlogo)<Type.IHeaderContainerProps>`
             fill: #a84448;
           `
         : css`
-            fill: ${pathname === "/" ? "rgba(245, 245, 245, 1)" : "#a84448"}; rgba(245, 245, 245, 1)" : "color: #222222"
+            fill: ${pathname === "/" ? "rgba(245, 245, 245, 1)" : "#a84448"};
           `}
     transition: all 0.5s ease-out;
 
     &:hover {
       fill: black;
       cursor: pointer;
-      transition: all 0.3 ease;
+      transition: all 0.3s ease;
     }
   }
+
   @media (max-width: 767px) {
     width: 70%;
   }
 `;
-export const Ulist = styled.div<Type.IHeaderContainerProps>`
-  display: flex;
+
+export const Ulist = styled(Common.FlexCol)<Type.IHeaderContainerProps>`
   position: relative;
-  padding-left: 10%;
-  padding-right: 5%;
+  padding: 0 5% 0 10%;
   width: 110%;
   transition: all 0.3s ease-out;
   font-weight: bold;
-
   filter: drop-shadow(2px 2px 1px #ccc);
 
   padding-top: ${({ hovering }) => (hovering === "true" ? "20px" : "30px")};
-  & ul {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    font-size: ${({ hovering }) => (hovering === "true" ? "18px" : "21px")};
-    transition: all 0.5s ease-out;
-  }
 
   & ul {
+    ${Common.FlexCol};
+    font-size: ${({ hovering }) => (hovering === "true" ? "18px" : "21px")};
+    transition: all 0.5s ease-out;
+
     & li {
       height: 20px;
       padding-top: 4%;
-      font-size: 14px;
+      ${Common.fontSize(14)};
       font-weight: 400;
-      flex-direction: row;
     }
   }
 
-  .banner1 {
-    width: 20%;
-  }
-  .banner2 {
-    width: 20%;
-  }
-
-  .banner3 {
-    width: 20%;
-  }
-  .banner4 {
-    width: 20%;
-  }
-  .banner6 {
-    width: 20%;
-    &:hover {
-      color: #a84448;
-      cursor: pointer;
-    }
-  }
   @media screen and (max-width: 1024px) {
     width: 100%;
-    & ul {
-      font-size: 15px;
-      & li {
-        font-size: 13px;
-      }
+    & ul li {
+      ${Common.fontSize(13)};
     }
   }
   @media screen and (max-width: 767px) {
@@ -162,12 +126,40 @@ export const Ulist = styled.div<Type.IHeaderContainerProps>`
 export const StyledList = styled.li<Type.IHeaderContainerProps>`
   transition: all 0.3s ease-out;
   display: ${({ hovering }) => (hovering === "true" ? "flex" : "none")};
+
   &:hover {
     color: #a84448;
     cursor: pointer;
   }
+
   @media screen and (max-width: 767px) {
     display: none;
+  }
+`;
+
+export const AccordionMenu = styled(Common.FlexCol)<Type.IHeaderContainerProps>`
+  display: none;
+
+  .li_padding {
+    padding: 0.8rem 1rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    margin-right: 2rem;
+    display: flex;
+    cursor: pointer;
+    padding: 13px 0;
+    text-align: right;
+    border-radius: 5px;
+    ${Common.fontSize(16)};
+    color: #a84448;
+    background-color: none;
+  }
+
+  & div.onclick {
+    text-align: right;
+    padding: 0 12px 0.5rem 0;
+    filter: drop-shadow(2px 2px 1px rgba(8, 8, 8, 0.5));
   }
 `;
 
@@ -192,44 +184,17 @@ const slideOut = keyframes`
     opacity: 0;
   }
 `;
-export const AccordionMenu = styled.div<Type.IHeaderContainerProps>`
-  display: none;
 
-  .li_padding {
-    padding: 0.8rem 1rem;
-  }
-  @media screen and (max-width: 767px) {
-    margin-right: 2rem;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    font-family: WanjuRegular, sans-serif, Arial;
-    padding: 13px 0;
-    text-align: right;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #a84448;
-    background-color: none;
-  }
-  & div.onclick {
-    text-align: right;
-    padding: 0;
-    padding-right: 12px;
-    padding-bottom: 0.5rem;
-    filter: drop-shadow(2px 2px 1px rgba(8, 8, 8, 0.5));
-  }
-`;
-export const AccordionMenuItem = styled.div<Type.IHeaderContainerProps>`
-  display: flex;
+export const AccordionMenuItem = styled(Common.FlexRow)<Type.IHeaderContainerProps>`
   align-items: center;
   font-weight: 500;
-  font-size: 14px;
+  ${Common.fontSize(14)};
   color: #a84448;
   cursor: pointer;
-  background-color: ${(props) => (props.isOpen ? "none" : "rgba(247,247,247,0.7)")};
-  animation: ${(isOpen) => (isOpen ? slideIn : slideOut)} 0.3s ease;
+  background-color: ${({ isOpen }) => (isOpen ? "none" : "rgba(247, 247, 247, 0.7)")};
+  animation: ${({ isOpen }) => (isOpen ? slideIn : slideOut)} 0.3s ease;
   transition: background-color 0.3s ease-out;
-  width: ${(props) => (props.isOpen ? "0px" : "150px")};
-  height: ${(props) => (props.isOpen ? "0px" : "100px")};
-  border: ${(props) => (props.isOpen ? "none" : "1px solid rgba(8,8,8,0.1)")};
+  width: ${({ isOpen }) => (isOpen ? "0" : "150px")};
+  height: ${({ isOpen }) => (isOpen ? "0" : "100px")};
+  border: ${({ isOpen }) => (isOpen ? "none" : "1px solid rgba(8, 8, 8, 0.1)")};
 `;
