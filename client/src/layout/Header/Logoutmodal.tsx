@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import * as Type from "./util";
 const ModalContainer = styled.div`
   position: fixed;
   top: 0;
@@ -54,12 +54,7 @@ const Button = styled.button`
   }
 `;
 
-interface ModalProps {
-  onClose: () => void;
-  children: React.ReactNode;
-}
-
-const Modal: React.FC<ModalProps> = ({ children, onClose }) => {
+const Modal: React.FC<Type.ModalProps> = ({ children, onClose }) => {
   return (
     <ModalContainer>
       <ModalContent>
