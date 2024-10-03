@@ -9,3 +9,8 @@ export interface ScrollState {
   x: number;
   y: number;
 }
+
+export interface ModalProps {
+  onClose: () => void;
+  children: React.ReactNode;
+}
