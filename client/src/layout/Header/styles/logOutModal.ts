@@ -1,13 +1,12 @@
 import styled from "styled-components";
-export const ModalContainer = styled.div`
+import * as Common from "@styles/Common";
+
+export const ModalContainer = styled(Common.FlexCenter)`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 9999;
 `;
@@ -34,20 +33,10 @@ export const ModalContent = styled.div`
 `;
 
 export const Message = styled.div`
+  ${Common.fontSize(16)};
   margin-bottom: 20px;
-  font-size: 16px;
 `;
 
-export const Button = styled.button`
+export const Button = styled(Common.ButtonStyle)`
   padding: 8px 16px;
-  background-color: #222222;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-
-  &:hover {
-    background-color: #222222;
-  }
 `;
