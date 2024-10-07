@@ -14,7 +14,7 @@ const InfoTable = ({ setBody, userInfo, isOauth }: Type.TableProsp) => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
-  const [isDisabled, setIsDisabled] = useState(true); // 비밀번호 형식대로 입력 확인후 비밀번호 확인 란 활성화
+  const [isDisabled, setIsDisabled] = useState(true);
   useEffect(() => {
     if (userInfo) {
       setPhone(userInfo.phone);
@@ -31,22 +31,20 @@ const InfoTable = ({ setBody, userInfo, isOauth }: Type.TableProsp) => {
     setDisplayName(e.target.value);
   };
   const handlePhone = (e: ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value.replace(/[^\d]/g, "").match(/(\d{0,3})(\d{0,4})(\d{0,4})/); // 숫자만 입력 가능, 배열로서 앞의 3개, 4개, 4개 숫자 저장
+    const val = e.target.value.replace(/[^\d]/g, "").match(/(\d{0,3})(\d{0,4})(\d{0,4})/);
     if (val) {
       setPhone(
-        !val[2] ? val[1] : val[3] ? `${val[1]}-${val[2]}-${val[3]}` : val[2] ? `${val[1]}-${val[2]}` : `${val[1]}`, // 전화번호 형식의 문자열로 숫자 저장되도록 함
+        !val[2] ? val[1] : val[3] ? `${val[1]}-${val[2]}-${val[3]}` : val[2] ? `${val[1]}-${val[2]}` : `${val[1]}`,
       );
     }
   };
   const handlePassword = (e: ChangeEvent<HTMLInputElement>) => {
-    const val = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[\!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(e.target.value); // 문자, 숫자, 특수문자로 조합된 8자리 이상으로 비밀번호가 구성되었는지 확인 // 문자와 숫자로 조합된 8자리 이상으로 비밀번호가 구성되었는지 확인
+    const val = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[\!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(e.target.value);
     if (val) {
-      // true
-      setPassword(e.target.value); // 비밀번호를 저장
-      setIsDisabled(false); // 비밀번호 확인 input disable 해제
+      setPassword(e.target.value);
+      setIsDisabled(false);
     } else {
-      //false
-      setIsDisabled(true); // 비밀번호 확인 input disable
+      setIsDisabled(true);
     }
   };
   const handlePasswordCheck = (e: ChangeEvent<HTMLInputElement>) => {

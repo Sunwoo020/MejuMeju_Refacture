@@ -3,7 +3,6 @@ import { AlertProps } from "@utils/types/Interfaces";
 import { ButtonLight, ButtonDark } from "./Button";
 
 const Alert = ({ title = "", text, onClickOk, onClickCancel }: AlertProps) => {
-  // text 내려주실 때 개행하실 부분을 \한번만 넣어주세요!
   const splittedText = text.split("\\");
 
   return (

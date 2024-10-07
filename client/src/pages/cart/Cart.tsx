@@ -29,7 +29,7 @@ function decodeAuthToken(authToken: string) {
   return { exp };
 }
 
-const Cart = () => {
+export const Cart = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState<Type.CartItemsProps>({ itemCarts: [] });
 
@@ -203,7 +203,6 @@ const Cart = () => {
   return (
     <styled.CartContainer isEmpty={cartItems.itemCarts.length === 0}>
       <styled.CartHeading>장바구니</styled.CartHeading>
-
       <styled.MainSection>
         <Progress />
         {cartItems.itemCarts.length > 0 ? (
@@ -292,4 +291,3 @@ const Cart = () => {
     </styled.CartContainer>
   );
 };
-export default Cart;

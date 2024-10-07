@@ -8,16 +8,14 @@ import * as Common from "@styles/CommonConainer";
 
 const FindEmail = () => {
   const navigate = useNavigate();
-  const [phone, setPhone] = useState(""); // 전화번호 input 상태
-  const [name, setName] = useState(""); // 이름 input 상태
-  const [alertMessage, setAlertMessage] = useState(""); // 알람창 메시지 상태
-  const [showAlert, setShowAlert] = useState(false); // 알람창 띄우기 상태
-  const [isFind, setIsFind] = useState(""); // 찾은 이메일 상태
-  const [doAxios, data, err, ok] = useAxiosAll(); // axios 요청 응답 에러여부 상태
+  const [phone, setPhone] = useState("");
+  const [name, setName] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [isFind, setIsFind] = useState("");
+  const [doAxios, data, err, ok] = useAxiosAll();
 
   const phoneHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    // 전환번호 입력 핸들러
-    //전환번호 양식대로 입력 작성되도록 유효성 검사 실시
     const val = e.target.value.replace(/[^\d]/g, "").match(/(\d{0,3})(\d{0,4})(\d{0,4})/);
     if (val) {
       setPhone(
@@ -26,27 +24,22 @@ const FindEmail = () => {
     }
   };
   const nameHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    // 이름 입력 핸들러
     setName(e.target.value);
   };
   useEffect(() => {
     if (err) {
-      //에러 실패 시
       setAlertMessage("이름과 전화번호에 해당하는 이메일이 없습니다!");
       setShowAlert(true);
     }
   }, [err]);
   useEffect(() => {
     if (ok) {
-      // 이메일 찾기 성공 시
       setAlertMessage("이메일을 찾았습니다!");
       setShowAlert(true);
     }
   }, [ok]);
   useEffect(() => {
     if (data && "email" in data) {
-      // data 상태에 정상 저장 되었을 시
-      // 받은 이메일을 marked 처리해 저장
       const email = data.email as string;
       const half = email.indexOf("@");
       const front = email.slice(0, Math.ceil(half / 2));
@@ -59,12 +52,11 @@ const FindEmail = () => {
     }
   }, [data]);
   const findEmailHandler = () => {
-    // 이메일 찾기 핸들러
     const body = {
       name,
       phone,
     };
-    doAxios("post", "/members/find-id", body, false); // post매소드로 이름과 번호를 담아 이메일 찾기 요청 실시
+    doAxios("post", "/members/find-id", body, false);
   };
   return (
     <Common.Container>

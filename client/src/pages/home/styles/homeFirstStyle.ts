@@ -18,7 +18,6 @@ export const HomefirstLayout = styled(Common.FlexCenterCol)`
   position: relative;
 `;
 
-// 개별 스타일 컴포넌트로 분리
 export const Imgtag = styled.div`
   width: 100%;
   position: relative;
