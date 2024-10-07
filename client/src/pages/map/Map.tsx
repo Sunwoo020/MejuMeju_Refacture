@@ -22,7 +22,7 @@ const MapComponent = ({ shoplist, setSelect }: Type.ShopProps) => {
   useEffect(() => {
     const container = document.getElementById("map");
     const options = {
-      center: new window.kakao.maps.LatLng(37.32569664033685, 127.10734442799804), //죽전역
+      center: new window.kakao.maps.LatLng(37.32569664033685, 127.10734442799804),
       level: 8,
     };
     const map = new window.kakao.maps.Map(container, options);
@@ -38,7 +38,7 @@ const MapComponent = ({ shoplist, setSelect }: Type.ShopProps) => {
         displayMarker(locPosition, message);
       });
     } else {
-      const locPosition = new window.kakao.maps.LatLng(37.57022168346011, 126.98314742271637), //종각역
+      const locPosition = new window.kakao.maps.LatLng(37.57022168346011, 126.98314742271637),
         message = "<div>여기아니에요</div>";
 
       displayMarker(locPosition, message);

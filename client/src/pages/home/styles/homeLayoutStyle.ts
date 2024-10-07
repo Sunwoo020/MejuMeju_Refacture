@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
-import * as Common from "@styles/Common"; // Adjust the import path as necessary
+import * as Common from "@styles/Common";
 
 export interface H2props {
   primary?: boolean;
@@ -12,7 +12,7 @@ export const Homelayoutstyled1 = styled(Common.FlexCenterRow)`
 
   .glad {
     width: 70%;
-    ${Common.FontSizeStyle} /* Apply dynamic font size */
+    ${Common.FontSizeStyle}
     justify-content: space-around;
   }
 

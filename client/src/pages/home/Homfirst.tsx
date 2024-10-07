@@ -3,15 +3,6 @@ import * as styled from "./styles";
 import iphone from "@assets/images/iphone.png";
 import { useNavigate } from "react-router";
 
-//** 반응형 코드 지금은 활용 X **//
-// const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-// useEffect(() => {
-//   const handleResize = () => setWindowWidth(window.innerWidth);
-
-//   window.addEventListener("resize", handleResize);
-//   return () => window.removeEventListener("resize", handleResize);
-// }, []);
 const getRandomItemId = () => Math.floor(Math.random() * 24) + 1;
 
 const getRandomImageNumber = () => Math.floor(Math.random() * 10) + 1;
