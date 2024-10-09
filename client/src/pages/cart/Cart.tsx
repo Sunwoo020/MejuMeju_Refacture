@@ -1,14 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import * as styled from "./styles";
-import * as Type from "@utils/types";
 import { ButtonDark, ButtonLight } from "@components/common/Button";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Progress from "../payment/Progress";
 import CartItemList from "./cartItemList";
 import CartSummary from "./cartSummary";
-import { authTokenExpired } from "./cartUtil/function";
 import * as Handler from "./cartUtil";
+import * as styled from "./styles";
+import * as Type from "@utils/types";
+import { authTokenExpired } from "@utils/authExpired";
+
 export const Cart = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState<Type.CartItemsProps>({ itemCarts: [] });
