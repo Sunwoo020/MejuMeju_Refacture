@@ -2,12 +2,12 @@ import styled from "styled-components";
 import { Route, Routes } from "react-router-dom";
 
 import Home from "@pages/home/Home";
-import Cart from "@pages/cart/Cart";
+import Cart from "@pages/cart/cart";
 import Place from "@pages/map/Place";
 import Alcohol from "@pages/salesItems/Alcohol";
 import HelpCenter from "@pages/myPage/HelpCenter";
 import AlcoholDetail from "@pages/salesItems/AlcoholDetail";
-import Login from "@pages/login/LoginForm";
+import Login from "@pages/login/login";
 import FindEmail from "@pages/login/FindEmail";
 import FindPassword from "@pages/login/FindPassword";
 import SignupInput from "@pages/signUp/SignupInput";
