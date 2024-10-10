@@ -1,19 +1,10 @@
-import * as styled from "./styles";
-import * as Common from "@styles/CommonConainer";
-import { useState, ChangeEvent, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import useAxiosAll from "@hooks/useAxiosAll";
-import { ButtonDark, ButtonLight } from "@components/common/Button";
-import Alert from "@components/common/AlertModal";
+import { useState, ChangeEvent } from "react";
+import FindForm from "./findForm";
 
-const Find = () => {
-  const navigate = useNavigate();
+const FindPassword = () => {
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [alertMessage, setAlertMessage] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
-  const [doAxios, , err, ok] = useAxiosAll();
 
   const phoneHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value.replace(/[^\d]/g, "").match(/(\d{0,3})(\d{0,4})(\d{0,4})/);
@@ -23,72 +14,36 @@ const Find = () => {
       );
     }
   };
-  const nameHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-  const emailHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-  const findHandler = () => {
-    const body = {
-      name,
-      phone,
-      email,
-    };
-    doAxios("post", "/members/find-", body, false);
-  };
-  useEffect(() => {
-    if (err) {
-      setAlertMessage("해당 정보로 가입된 회원정보가 없습니다!");
-      setShowAlert(true);
-    }
-  }, [err]);
-  useEffect(() => {
-    if (ok) {
-      setAlertMessage("해당 이메일로 임시 비밀번호를 발급했습니다!");
-      setShowAlert(true);
-    }
-  }, [ok]);
+
+  const inputs = [
+    {
+      placeholder: "이름",
+      type: "text",
+      value: name,
+      handler: (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value),
+    },
+    {
+      placeholder: "이메일",
+      type: "email",
+      value: email,
+      handler: (e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value),
+    },
+    { placeholder: "전화번호", type: "text", value: phone, handler: phoneHandler },
+  ];
+
   return (
-    <Common.Container>
-      {showAlert ? <Alert text={alertMessage} onClickOk={() => setShowAlert(false)} /> : null}
-      <styled.PasswordContentsContainer>
-        <Common.TopContainer>
-          <Common.Title className="label" fontSize="28px" fontWeight="500">
-            비밀번호 찾기
-          </Common.Title>
-        </Common.TopContainer>
-        <styled.PasswordMiddleContainer>
-          <Common.InputContainer>
-            <Common.Title fontSize="22px" fontWeight="400">
-              회원 비밀번호 찾기
-            </Common.Title>
-            <div className="flex-row">
-              <div className="flex-col">
-                <input placeholder="이름" type="text" onChange={nameHandler} />
-                <input placeholder="이메일" type="email" onChange={emailHandler} />
-                <input value={phone} placeholder="전화번호" onChange={phoneHandler} />
-              </div>
-              <div className="button">
-                <ButtonDark width="100%" height="100%" fontSize="18px" fontWeight="500" onClick={findHandler}>
-                  비밀번호 찾기
-                </ButtonDark>
-              </div>
-            </div>
-          </Common.InputContainer>
-          <styled.Contour />
-          <Common.BottomContainer>
-            <ButtonLight width="150px" height="45px" fontSize="18px" onClick={() => navigate("/findemail")}>
-              이메일찾기
-            </ButtonLight>
-            <ButtonDark width="150px" height="45px" fontSize="18px" onClick={() => navigate("/login")}>
-              로그인하기
-            </ButtonDark>
-          </Common.BottomContainer>
-        </styled.PasswordMiddleContainer>
-      </styled.PasswordContentsContainer>
-    </Common.Container>
+    <FindForm
+      title="비밀번호 찾기"
+      subtitle="회원 비밀번호 찾기"
+      buttonText="비밀번호 찾기"
+      inputs={inputs}
+      apiUrl="/members/find-password"
+      alertMessages={{
+        success: "해당 이메일로 임시 비밀번호를 발급했습니다!",
+        error: "해당 정보로 가입된 회원정보가 없습니다!",
+      }}
+    />
   );
 };
 
-export default Find;
+export default FindPassword;
