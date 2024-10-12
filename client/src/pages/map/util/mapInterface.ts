@@ -1,3 +1,4 @@
+import * as Type from "./";
 export interface LatLng {
   getLat: () => number;
   getLng: () => number;
@@ -47,4 +48,19 @@ export interface Shopitem {
 export interface ShopProps {
   shoplist: Shopitem[];
   setSelect: React.Dispatch<React.SetStateAction<Shopitem | null>>;
+}
+declare global {
+  interface Window {
+    kakao: {
+      maps: {
+        LatLng: new (lat: number, lng: number) => Type.LatLng;
+        Map: new (container: HTMLElement | null, options: Type.MapOptions) => Type.Map;
+        Marker: new (options: Type.MarkerOptions) => Type.Marker;
+        CustomOverlay: new (options: Type.CustomOverlayOptions) => Type.CustomOverlay;
+        event: {
+          addListener: (target: Type.Marker | Type.Map, type: string, callback: () => void) => void;
+        };
+      };
+    };
+  }
 }
