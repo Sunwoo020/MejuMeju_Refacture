@@ -7,6 +7,8 @@ interface CartItemListProps {
   handleCheckItem: (id: number) => void;
   handleIncreaseQuantity: (id: number) => void;
   handleDecreaseQuantity: (id: number) => void;
+  isCheckedAll: boolean;
+  handleCheckAll: () => void;
 }
 
 const CartItemList: React.FC<CartItemListProps> = ({
@@ -15,6 +17,8 @@ const CartItemList: React.FC<CartItemListProps> = ({
   handleCheckItem,
   handleIncreaseQuantity,
   handleDecreaseQuantity,
+  isCheckedAll,
+  handleCheckAll,
 }) => {
   return (
     <styled.ListContainer>

@@ -184,8 +184,11 @@ export const DecreaseButton = styled.button`
     transform: none;
   }
 `;
-
-export const CheckBox = styled.input.attrs({ type: "checkbox" })`
+export const CheckBox = styled.input.attrs((props) => ({
+  type: "checkbox",
+  checked: props.checked,
+  onChange: props.onChange,
+}))`
   width: 18px;
   height: 18px;
   margin: 0;
@@ -195,6 +198,7 @@ export const CheckBox = styled.input.attrs({ type: "checkbox" })`
   outline: none;
   border: 1px solid #dbdbdb;
   border-radius: 4px;
+  position: relative;
 
   &:checked {
     background-color: #1976d2;
