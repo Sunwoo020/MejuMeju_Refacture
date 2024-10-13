@@ -4,7 +4,7 @@ import { ButtonDark, ButtonLight } from "@components/common/Button";
 import Alert from "@components/common/AlertModal";
 import * as Common from "@styles/CommonConainer";
 import * as styled from "./styles";
-import useAxiosAll from "@hooks/useAxiosAll";
+import axiosInstance from "@utils/api/axiosInstance";
 
 interface FindFormProps {
   title: string;
@@ -20,31 +20,44 @@ const FindForm = ({ title, subtitle, buttonText, inputs, apiUrl, alertMessages, 
   const navigate = useNavigate();
   const [alertMessage, setAlertMessage] = useState("");
   const [showAlert, setShowAlert] = useState(false);
-  const [doAxios, data, err, ok] = useAxiosAll();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleFind = () => {
+  const handleFind = async () => {
     const body = inputs.reduce((acc, { placeholder, value }) => {
       acc[placeholder.toLowerCase()] = value;
       return acc;
     }, {} as Record<string, string>);
 
-    doAxios("post", apiUrl, body, false);
-  };
-
-  useEffect(() => {
-    if (err) {
+    try {
+      setIsLoading(true);
+      const response = await axiosInstance.post(apiUrl, body, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      setIsLoading(false);
+      if (response.status === 200) {
+        setAlertMessage(alertMessages.success);
+        setShowAlert(true);
+        if (successAction) {
+          successAction();
+        }
+      }
+    } catch (error) {
+      setIsLoading(false);
+      setError(true);
       setAlertMessage(alertMessages.error);
       setShowAlert(true);
     }
-  }, [err, alertMessages]);
+  };
 
   useEffect(() => {
-    if (ok) {
-      setAlertMessage(alertMessages.success);
+    if (error) {
+      setAlertMessage(alertMessages.error);
       setShowAlert(true);
-      successAction && successAction();
     }
-  }, [ok, alertMessages, successAction]);
+  }, [error, alertMessages]);
 
   return (
     <Common.Container>
@@ -67,8 +80,15 @@ const FindForm = ({ title, subtitle, buttonText, inputs, apiUrl, alertMessages, 
                 ))}
               </div>
               <div className="button">
-                <ButtonDark width="100%" height="100%" fontSize="18px" fontWeight="500" onClick={handleFind}>
-                  {buttonText}
+                <ButtonDark
+                  width="100%"
+                  height="100%"
+                  fontSize="18px"
+                  fontWeight="500"
+                  onClick={handleFind}
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Loading..." : buttonText}
                 </ButtonDark>
               </div>
             </div>

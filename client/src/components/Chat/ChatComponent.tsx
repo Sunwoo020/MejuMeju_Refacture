@@ -1,6 +1,6 @@
 import { useState, ChangeEvent } from "react";
 import * as styled from "./style";
-import axios from "axios";
+import instance from "@utils/api/axiosInstance";
 import spinner from "@assets/gif/spinner.gif";
 import { IoMdSend } from "react-icons/io";
 import { MdOutlineCancel } from "react-icons/md";
@@ -16,39 +16,38 @@ const ChatComponent = () => {
   function handleInput(e: ChangeEvent<HTMLInputElement>) {
     setInput(e.target.value);
   }
+
   async function handleSubmit() {
     await getAnswer();
   }
+
   const sendAxios = async () => {
     const body = {
       question: input,
     };
-    await axios
-      .post(`${process.env.REACT_APP_API_URL}/chat-gpt/question`, body, {
-        headers: {
-          "Content-Type": "application/json",
-          "ngrok-skip-browser-warning": "69420",
-        },
-      })
-      .then((res) => {
-        setIsLoading(true);
-        setQuestion(input);
-        const splittedText = res.data.choices[0].text.split("\n");
-        setAnswer(splittedText);
-      })
-      .catch(() => {
-        setIsLoading(false);
-      });
+    try {
+      setIsLoading(true);
+      const res = await instance.post("/chat-gpt/question", body);
+      setQuestion(input);
+      const splittedText = res.data.choices[0].text.split("\n");
+      setAnswer(splittedText);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
+
   async function getAnswer() {
-    sendAxios();
-    setIsLoading(false);
+    await sendAxios();
   }
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       handleSubmit();
     }
   };
+
   return (
     <>
       {isOpen ? (
