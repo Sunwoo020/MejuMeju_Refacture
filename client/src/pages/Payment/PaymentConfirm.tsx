@@ -6,29 +6,7 @@ import { ButtonLight } from "@components/common/Button";
 import { useSelector } from "react-redux";
 import * as styled from "./style";
 import * as Type from "@utils/types";
-
-function authTokenExpired(authToken: string) {
-  if (!authToken) {
-    // authToken is missing
-    return true; // treat as expired
-  }
-
-  // authToken is present
-  const decodedToken = decodeAuthToken(authToken);
-  const expSeconds = decodedToken.exp;
-  const nowSeconds = Math.floor(Date.now() / 1000);
-
-  return expSeconds < nowSeconds; // true if expired, false if valid
-}
-
-function decodeAuthToken(authToken: string) {
-  // Implement the logic to decode the authToken
-  // You can use a JWT decoding library or your own implementation
-  const payload = authToken.split(".")[1];
-  const decodedPayload = atob(payload);
-  const { exp } = JSON.parse(decodedPayload);
-  return { exp };
-}
+import { authTokenExpired } from "@utils/authExpired";
 
 const PaymentConfirm = () => {
   const [searchParams] = useSearchParams();
@@ -39,6 +17,7 @@ const PaymentConfirm = () => {
   const navigate = useNavigate();
   const [itemOrders, setItemOrders] = useState<{ itemId: number; quantity: number }[]>([]);
   const [itemCartdelete, setItemCartdelete] = useState<{ itemId: number }[]>([]);
+
   const pickupDate = useSelector((state: Type.DateProps) => {
     const date = state.dateState.Date;
     if (date) {
@@ -48,17 +27,14 @@ const PaymentConfirm = () => {
     return null;
   });
 
-  console.log(pickupDate);
-  // itemlist의 itemCarts 배열을 순회하면서 itemId와 quantity를 추출하여 itemOrders에 추가합니다.
-
   const authToken = localStorage.getItem("authToken");
+
   useEffect(() => {
-    // Check if the authToken is missing or expired
     if (!authToken || authTokenExpired(authToken)) {
       navigate("/login");
       return;
     }
-  });
+  }, [authToken, navigate]);
 
   const fetchData = async () => {
     const access_token = `Bearer ${localStorage.getItem("authToken")}`;
@@ -77,7 +53,6 @@ const PaymentConfirm = () => {
         const itemCartdelete = data.itemCarts.map(({ itemId }) => ({ itemId }));
         setItemCartdelete(itemCartdelete);
       })
-
       .catch((err) => {
         console.log(err);
       });
@@ -123,7 +98,7 @@ const PaymentConfirm = () => {
         console.log(err);
       }
     }
-  }, [itemOrders]);
+  }, [itemOrders, pickupDate]);
 
   useEffect(() => {
     const itemIds = itemCartdelete.map((item) => item.itemId);
@@ -140,7 +115,7 @@ const PaymentConfirm = () => {
     } catch (err) {
       console.log(err);
     }
-  });
+  }, [itemCartdelete]);
 
   return (
     <styled.PaymentConfirmContainer>
@@ -148,7 +123,7 @@ const PaymentConfirm = () => {
       <div className="main">
         <Progress />
         <div className="reason">{`주문 아이디: ${orderId}`}</div>
-        <div className="reason">{`결제 금액: ${Number(searchParams.get("amount")).toLocaleString()}원`}</div>
+        <div className="reason">{`결제 금액: ${amount.toLocaleString()}원`}</div>
         <div className="button">
           <ButtonLight width="160px" height="60px" fontSize="18px" onClick={() => navigate("/")}>
             홈으로

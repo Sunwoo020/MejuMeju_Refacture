@@ -1,12 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-export const authTokenExpired = () => {
-  const authToken = localStorage.getItem("authToken");
-  if (!authToken) return true;
-  const decodedToken = JSON.parse(atob(authToken.split(".")[1]));
-  return decodedToken.exp < Math.floor(Date.now() / 1000);
-};
+import { authTokenExpired } from "@utils/authExpired";
 
 const AuthMenu: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,10 +12,12 @@ const AuthMenu: React.FC = () => {
     navigate("/");
   };
 
+  const authToken = localStorage.getItem("authToken");
+
   return (
     <div>
-      {localStorage.getItem("authToken") ? (
-        authTokenExpired() ? (
+      {authToken ? (
+        authTokenExpired(authToken) ? (
           <div onClick={() => navigate("/login")}>로그인</div>
         ) : (
           <div onClick={handleLogout}>로그아웃</div>

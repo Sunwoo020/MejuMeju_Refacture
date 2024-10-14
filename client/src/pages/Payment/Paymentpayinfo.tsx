@@ -70,7 +70,6 @@ function Paymentpayinfo({ onDateChange }: Type.PayinfoProps) {
             </div>
           </div>
         </div>
-
         <div>
           <div className="thirdline">
             <div className="place">

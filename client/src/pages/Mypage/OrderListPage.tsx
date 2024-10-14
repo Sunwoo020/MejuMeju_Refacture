@@ -6,22 +6,7 @@ import { ButtonDark, ButtonLight } from "@components/common/Button";
 import Pagination from "@pages/salesItems/alcoholPage/Pagination";
 import * as Type from "./util";
 import * as styled from "./style";
-
-function authTokenExpired(authToken: string) {
-  if (!authToken) {
-    return true;
-  }
-  const decodedToken = decodeAuthToken(authToken);
-  const expSeconds = decodedToken.exp;
-  const nowSeconds = Math.floor(Date.now() / 1000);
-  return expSeconds < nowSeconds;
-}
-function decodeAuthToken(authToken: string) {
-  const payload = authToken.split(".")[1];
-  const decodedPayload = atob(payload);
-  const { exp } = JSON.parse(decodedPayload);
-  return { exp };
-}
+import { authTokenExpired } from "@utils/authExpired";
 
 const OrderPage = () => {
   const [orderlist, setOrderlist] = useState<Type.Orderitem[]>([]);
@@ -54,6 +39,7 @@ const OrderPage = () => {
       state: { reviewCreate },
     });
   };
+
   const authToken = localStorage.getItem("authToken");
 
   useEffect(() => {
@@ -61,7 +47,8 @@ const OrderPage = () => {
       navigate("/login");
       return;
     }
-  });
+  }, [authToken, navigate]);
+
   const OrderPatchHandle = (orderId: number) => {
     const access_token = `Bearer ${authToken}`;
     axios
@@ -81,8 +68,8 @@ const OrderPage = () => {
       })
       .catch((err) => console.error(err));
   };
+
   useEffect(() => {
-    const authToken = localStorage.getItem("authToken");
     const access_token = `Bearer ${authToken}`;
     axios
       .get(`${process.env.REACT_APP_API_URL}/members/orders`, {
@@ -122,7 +109,7 @@ const OrderPage = () => {
       })
       .then((res) => setUserName(res.data.data.displayName))
       .catch((err) => console.error(err));
-  }, []);
+  }, [authToken]);
 
   return (
     <>
@@ -206,4 +193,5 @@ const OrderPage = () => {
     </>
   );
 };
+
 export default OrderPage;

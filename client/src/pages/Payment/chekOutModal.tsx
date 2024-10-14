@@ -4,28 +4,11 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { ItemOrder } from "@utils/types";
 import { useNavigate } from "react-router-dom";
+import { authTokenExpired } from "@utils/authExpired";
 
 const clientKey = "test_ck_4vZnjEJeQVxQPQONwmMrPmOoBN0k";
 
-function authTokenExpired(authToken: string) {
-  if (!authToken) {
-    return true;
-  }
-
-  const decodedToken = decodeAuthToken(authToken);
-  const expSeconds = decodedToken.exp;
-  const nowSeconds = Math.floor(Date.now() / 1000);
-
-  return expSeconds < nowSeconds;
-}
-
-function decodeAuthToken(authToken: string) {
-  const payload = authToken.split(".")[1];
-  const decodedPayload = atob(payload);
-  const { exp } = JSON.parse(decodedPayload);
-  return { exp };
-}
-const checkOutModal = () => {
+const CheckOutModal = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const userInfo = location.state ? location.state.userInfo : [];
@@ -42,13 +25,14 @@ const checkOutModal = () => {
     { totalquantity: 0, totalPrice: 0 },
   );
   const authToken = localStorage.getItem("authToken");
+
   useEffect(() => {
     // Check if the authToken is missing or expired
     if (!authToken || authTokenExpired(authToken)) {
       navigate("/login");
       return;
     }
-  });
+  }, [authToken, navigate]);
 
   useEffect(() => {
     loadTossPayments(clientKey).then((tossPayments) => {
@@ -64,13 +48,15 @@ const checkOutModal = () => {
         })
         .catch(function (error) {
           if (error.code === "USER_CANCEL") {
+            // Handle user cancel
           } else if (error.code === "INVALID_CARD_COMPANY") {
+            // Handle invalid card company
           }
         });
     });
   }, [totalPrice, items, userInfo, selectedDate]);
 
-  return <script src="https://js.tosspayments.com/v1/payment%22%3E"></script>;
+  return <script src="https://js.tosspayments.com/v1/payment"></script>;
 };
 
-export default checkOutModal;
+export default CheckOutModal;
