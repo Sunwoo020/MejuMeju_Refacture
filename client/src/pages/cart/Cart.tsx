@@ -88,6 +88,8 @@ export const Cart = () => {
               handleCheckItem={handleToggleCheckItem}
               handleIncreaseQuantity={handleIncrease}
               handleDecreaseQuantity={handleDecrease}
+              isCheckedAll={isCheckedAll}
+              handleCheckAll={handleToggleCheckAll}
             />
             <CartSummary
               totalQuantity={totalQuantity}

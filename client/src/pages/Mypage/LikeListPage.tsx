@@ -7,22 +7,7 @@ import Pagination from "@pages/salesItems/alcoholPage/Pagination";
 import PriceDisplay from "@components/common/PriceDisplay";
 import * as styled from "./style";
 import * as Type from "./util";
-
-function authTokenExpired(authToken: string) {
-  if (!authToken) {
-    return true;
-  }
-  const decodedToken = decodeAuthToken(authToken);
-  const expSeconds = decodedToken.exp;
-  const nowSeconds = Math.floor(Date.now() / 1000);
-  return expSeconds < nowSeconds;
-}
-function decodeAuthToken(authToken: string) {
-  const payload = authToken.split(".")[1];
-  const decodedPayload = atob(payload);
-  const { exp } = JSON.parse(decodedPayload);
-  return { exp };
-}
+import { authTokenExpired } from "@utils/authExpired";
 
 const LikePage = () => {
   const [likelist, setLikelist] = useState<Type.Likeitem[]>([]);
@@ -37,7 +22,9 @@ const LikePage = () => {
       navigate("/login");
       return;
     }
-  });
+    LikeGetHandle();
+  }, [authToken, navigate]);
+
   const LikeGetHandle = () => {
     const access_token = `Bearer ${authToken}`;
     axios
@@ -53,10 +40,6 @@ const LikePage = () => {
       })
       .catch((err) => console.error(err));
   };
-
-  useEffect(() => {
-    LikeGetHandle();
-  }, []);
 
   const handleDeleteBtn = (itemId: number) => {
     const access_token = `Bearer ${authToken}`;
@@ -111,7 +94,7 @@ const LikePage = () => {
       })
       .then((res) => setUserName(res.data.data.displayName))
       .catch((err) => console.error(err));
-  }, []);
+  }, [authToken]);
 
   return (
     <>

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import * as styled from "./styles";
-import handleLogout, { authTokenExpired } from "./authMenu";
-
+import handleLogout from "./authMenu";
+import { authTokenExpired } from "@utils/authExpired";
 interface NavigationMenuProps {
   y: number;
   isHover: boolean;
@@ -9,6 +9,7 @@ interface NavigationMenuProps {
 
 const NavigationMenu: React.FC<NavigationMenuProps> = ({ y, isHover }) => {
   const navigate = useNavigate();
+  const authToken = localStorage.getItem("authToken");
 
   return (
     <styled.Ulist hovering={isHover.toString()} y={y}>
@@ -62,8 +63,8 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ y, isHover }) => {
       </ul>
 
       <ul className="banner6">
-        {localStorage.getItem("authToken") ? (
-          authTokenExpired() ? (
+        {authToken ? (
+          authTokenExpired(authToken) ? (
             <div onClick={() => navigate("/login")}>로그인</div>
           ) : (
             <div onClick={handleLogout}>로그아웃</div>

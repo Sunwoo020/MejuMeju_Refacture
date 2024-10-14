@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import * as styled from "./style";
-import useAxiosAll from "@hooks/useAxiosAll";
+import axiosInstance from "@utils/api/axiosInstance";
 import { useNavigate } from "react-router-dom";
 import Alert from "@components/common/AlertModal";
 import { ButtonLight } from "@components/common/Button";
@@ -8,7 +8,6 @@ import { ButtonLight } from "@components/common/Button";
 const Modal = ({ email }: { email: string }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [password, setPassword] = useState("");
-  const [doAxios, , err, ok] = useAxiosAll();
   const [alertMessage, setAlertMessage] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [isOk, setIsOk] = useState(false);
@@ -18,25 +17,20 @@ const Modal = ({ email }: { email: string }) => {
 
   const passwordHandler = (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
 
-  const DeleteHandler = () => {
-    doAxios("delete", "/members", { username: email, password });
-    ["authToken", "refresh", "memberId", "exp", "iat"].forEach((item) => localStorage.removeItem(item));
-  };
-
-  useEffect(() => {
-    if (err) {
-      setAlertMessage("비밀번호가 틀렸습니다");
-      setShowAlert(true);
-    }
-  }, [err]);
-
-  useEffect(() => {
-    if (ok) {
+  const DeleteHandler = async () => {
+    try {
+      await axiosInstance.delete("/members", {
+        data: { username: email, password },
+      });
+      ["authToken", "refresh", "memberId", "exp", "iat"].forEach((item) => localStorage.removeItem(item));
       setAlertMessage("탈퇴에 성공했습니다!");
       setShowAlert(true);
       setIsOk(true);
+    } catch (error) {
+      setAlertMessage("비밀번호가 틀렸습니다");
+      setShowAlert(true);
     }
-  }, [ok]);
+  };
 
   const okGotoMain = () => {
     setShowAlert(false);
