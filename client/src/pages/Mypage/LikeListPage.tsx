@@ -116,7 +116,7 @@ const LikePage = () => {
   return (
     <>
       <styled.TotalStyled>
-        <styled.LikepageContainer>
+        <styled.PageContainer>
           <styled.PageTitleStyled>
             <div>My Page</div>
             <MdOutlineKeyboardArrowRight size="20px" />
@@ -163,7 +163,7 @@ const LikePage = () => {
               totalData={likelist.length}
             />
           </styled.PagenationStyled>
-        </styled.LikepageContainer>
+        </styled.PageContainer>
       </styled.TotalStyled>
     </>
   );
