@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { ButtonDark, ButtonLight } from "@components/common/commonButton";
-import Pagination from "@pages/salesItems/alcoholPage/Pagination";
+import Pagination from "@pages/salesItems/alcoholPage/pagination";
 import PriceDisplay from "@components/common/priceDisplay";
 import * as styled from "./style";
-import * as Type from "./util";
+import * as Type from "./interface";
 import { authTokenExpired } from "@utils/authExpired";
 
 const LikePage = () => {

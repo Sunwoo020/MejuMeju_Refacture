@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as styled from "./styles";
 import { getItem } from "../../utils/api";
-import { AlcoholData } from "../../utils/types/AlcholInterfaces";
+import { AlcoholData } from "../../utils/types/alcoholInterface";
 import { useParams } from "react-router-dom";
 import AlcoholItemBuy from "./alcoholDetailComponent/itemBuy";
 import AlcoholItemReview from "./alcoholDetailComponent/itemReview";

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Alert from "@components/common/commonAlert";
 import * as styled from "./styles";
-import * as Common from "@styles/CommonConainer";
+import * as Common from "@styles/commonContainer";
 import LoginForm from "./loginForm";
 import OAuthButtons from "./oAuthButton";
 import FooterButtons from "./footerButton";

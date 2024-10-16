@@ -1,6 +1,6 @@
 import { ButtonDark, ButtonLight } from "@components/common/commonButton";
 import { useNavigate } from "react-router-dom";
-import * as Common from "@styles/CommonConainer";
+import * as Common from "@styles/commonContainer";
 
 const FooterButton = () => {
   const navigate = useNavigate();

@@ -2,8 +2,8 @@ import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 import { useEffect, useState, useRef } from "react";
 import { AlcoholListData } from "@utils/types";
 import { getItemsList } from "@utils/api";
-import AlcoholListItem from "@pages/salesItems/alcoholPage/AlcoholListItem";
-import * as Type from "../util";
+import AlcoholListItem from "@pages/salesItems/alcoholPage/alcoholListItem";
+import * as Type from "../interface";
 import * as styled from "../styles";
 
 export const AlcoholItemContent = ({ data }: Type.ItemDatailProps) => {

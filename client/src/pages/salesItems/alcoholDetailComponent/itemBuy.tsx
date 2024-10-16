@@ -9,7 +9,7 @@ import { ButtonLight, ButtonDark } from "@components/common/commonButton";
 import QuantityControl from "@pages/salesItems/alcoholDetailComponent/quantityControl";
 import Alert from "@components/common/commonAlert";
 import * as styled from "../styles";
-import { ItemDatailProps } from "../util";
+import { ItemDatailProps } from "../interface";
 
 const AlcoholItemBuy = ({ data }: ItemDatailProps) => {
   const [quantity, setQuantity] = useState<number>(1);

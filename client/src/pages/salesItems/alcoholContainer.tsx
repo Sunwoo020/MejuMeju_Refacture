@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { AlcoholListData } from "@utils/types/AlcholInterfaces";
+import { AlcoholListData } from "@utils/types/alcoholInterface";
 import { getItemsList } from "@utils/api";
-import AlcoholList from "@pages/salesItems/alcoholPage/AlcoholList";
-import SortingUtils from "@pages/salesItems/alcoholPage/SortingUtils";
-import ItemSearch from "@pages/salesItems/alcoholPage/ItemSearch";
+import AlcoholList from "@pages/salesItems/alcoholPage/alcoholList";
+import SortingUtils from "@pages/salesItems/alcoholPage/sortingUtil";
+import ItemSearch from "@pages/salesItems/alcoholPage/itemSearch";
 import * as styled from "./styles";
 
 const Alcohol = () => {

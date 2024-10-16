@@ -2,7 +2,7 @@ import { useState, ChangeEvent, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ButtonDark, ButtonLight } from "@components/common/commonButton";
 import Alert from "@components/common/commonAlert";
-import * as Common from "@styles/CommonConainer";
+import * as Common from "@styles/commonContainer";
 import * as styled from "./styles";
 import axiosInstance from "@utils/api/axiosInstance";
 

@@ -5,17 +5,8 @@ import InfoTable from "./infoTable";
 import Modal from "./modal";
 import Alert from "@components/common/commonAlert";
 import { ButtonDark } from "@components/common/commonButton";
-import * as Type from "./util";
+import * as Type from "./interface";
 import axiosInstance from "@utils/api/axiosInstance";
-
-export interface Datatype {
-  realName: string;
-  displayName: string;
-  birthDate: string;
-  phone: string;
-  email: string;
-  oauth2Registered?: boolean;
-}
 
 const ChangeInfoPage = () => {
   const navigate = useNavigate();
@@ -27,17 +18,16 @@ const ChangeInfoPage = () => {
   const [isPass, setIsPass] = useState(false);
   const [checkPassword, setCheckPassword] = useState("");
 
-  // 회원 정보 가져오기
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
         const response = await axiosInstance.get("/members");
-        const data: Datatype = response.data;
+        const data: Type.Datatype = response.data;
 
         setUserInfo({
           realName: data.realName,
           displayName: data.displayName,
-          birth: data.birthDate,
+          birth: data.birth,
           phone: data.phone,
           email: data.email,
         });

@@ -1,4 +1,4 @@
-import * as Type from "./";
+import * as Type from ".";
 export interface AlcoholListData {
   itemId: number;
   titleKor: string;

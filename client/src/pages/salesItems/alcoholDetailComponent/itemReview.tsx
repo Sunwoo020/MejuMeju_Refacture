@@ -3,7 +3,7 @@ import { BsArrowDownLeftCircleFill, BsArrowUpRightCircleFill } from "react-icons
 import { ItemReviewsType } from "@utils/types";
 import { getItemReview } from "@utils/api";
 import ReviewList from "@pages/salesItems/alcoholDetailComponent/reviewList";
-import { ItemReviewsProps } from "../util";
+import { ItemReviewsProps } from "../interface";
 import * as styled from "../styles";
 
 const AlcoholItemReview = ({ itemId }: ItemReviewsProps) => {

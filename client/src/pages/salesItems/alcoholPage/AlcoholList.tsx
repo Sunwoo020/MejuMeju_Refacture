@@ -1,8 +1,8 @@
 import * as styled from "../styles";
-import { AlcoholListProps } from "@utils/types/AlcholInterfaces";
+import { AlcoholListProps } from "@utils/types/alcoholInterface";
 import { Link } from "react-router-dom";
-import AlcoholListItem from "@pages/salesItems/alcoholPage/AlcoholListItem";
-import Pagination from "@pages/salesItems/alcoholPage/Pagination";
+import AlcoholListItem from "@pages/salesItems/alcoholPage/alcoholListItem";
+import Pagination from "@pages/salesItems/alcoholPage/pagination";
 
 const AlcoholList = ({ data, totalData, currentPage, setCurrentPage, size }: AlcoholListProps) => {
   return (
