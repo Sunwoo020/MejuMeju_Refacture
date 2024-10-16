@@ -1,40 +1,35 @@
-import styled from "styled-components";
-import { FaStar } from "react-icons/fa";
-import { FaStarHalf } from "react-icons/fa";
+import styled, { css } from "styled-components";
+import { FaStar, FaStarHalf } from "react-icons/fa";
 import * as Type from "@utils/types";
 
-const StyledFaStar = styled(FaStar)`
-  font-size: ${(props) => props.size}px;
+const sharedStarStyles = css<{ size?: number }>`
+  font-size: ${(props) => props.size || 16}px;
 
   @media ${(props) => props.theme.breakpoints.mobileMax} {
     font-size: 12px;
   }
+`;
+
+const StyledFaStar = styled(FaStar)`
+  ${sharedStarStyles}
 `;
 
 const StyledFaStarHalf = styled(FaStarHalf)`
-  @media ${(props) => props.theme.breakpoints.mobileMax} {
-    font-size: 12px;
-  }
+  ${sharedStarStyles}
 `;
 
-const ReviewRating = ({ reviewRating, size }: Type.reviewRatingProps) => {
+const ReviewRating = ({ reviewRating, size = 16 }: Type.reviewRatingProps) => {
   return (
     <>
       {[...Array(5)].map((_, index) =>
-        Math.floor(reviewRating) !== index || reviewRating === index ? (
-          <StyledFaStar
-            key={index}
-            size={size}
-            color={index < reviewRating ? "#e48b48" : "#e4e5e9"}
-            style={{ marginRight: 2 }}
-          />
+        index < reviewRating ? (
+          index < Math.floor(reviewRating) ? (
+            <StyledFaStar key={index} size={size} color="#e48b48" style={{ marginRight: 2 }} />
+          ) : (
+            <StyledFaStarHalf key={index} size={size} color="#e48b48" style={{ marginRight: 2 }} />
+          )
         ) : (
-          <StyledFaStarHalf
-            key={index}
-            size={size}
-            color={index < reviewRating ? "#e48b48" : "#e4e5e9"}
-            style={{ marginRight: 2 }}
-          />
+          <StyledFaStar key={index} size={size} color="#e4e5e9" style={{ marginRight: 2 }} />
         ),
       )}
     </>

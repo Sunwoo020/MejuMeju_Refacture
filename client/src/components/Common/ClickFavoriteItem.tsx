@@ -14,44 +14,33 @@ interface ClickFavoriteCProps {
 const ClickFavoriteItem = ({ itemId, icon: Icon, color, activeColor, size }: ClickFavoriteCProps) => {
   const navigate = useNavigate();
   const [isFavorited, setIsFavorited] = useState<boolean>(false);
-
-  const currentDate: Date = new Date();
-  const currentDateNum: number = Math.floor(currentDate.getTime() / 1000);
-
+  const currentDateNum: number = Math.floor(new Date().getTime() / 1000);
   const expDataNum: number | null = Number(localStorage.getItem("exp"));
 
+  const isLoggedIn = expDataNum && expDataNum > currentDateNum;
+
   useEffect(() => {
-    if (expDataNum && expDataNum > currentDateNum) {
-      fetchData();
-    }
-  }, []);
+    isLoggedIn && fetchData();
+  }, [isLoggedIn]);
 
   const fetchData = useCallback(async () => {
-    const response = await getItemLike(itemId);
     try {
+      const response = await getItemLike(itemId);
       setIsFavorited(response.data.data.like);
     } catch (err) {
       console.log(err);
     }
-  }, []);
+  }, [itemId]);
 
-  const onClickActive = () => {
-    if (expDataNum && expDataNum > currentDateNum) {
-      if (isFavorited) {
-        deleteItemLike(itemId);
-      } else {
-        createItemLike(itemId);
-      }
-      setIsFavorited(!isFavorited);
-    } else {
-      navigate("/login");
-    }
+  const handleFavoriteToggle = () => {
+    isLoggedIn ? (isFavorited ? deleteItemLike(itemId) : createItemLike(itemId)) : navigate("/login");
+
+    isLoggedIn && setIsFavorited(!isFavorited);
   };
 
   return (
     <Icon
-      onClick={onClickActive}
-      color={color}
+      onClick={handleFavoriteToggle}
       style={{ color: isFavorited ? activeColor : color, cursor: "pointer" }}
       size={size}
     />
