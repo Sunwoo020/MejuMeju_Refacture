@@ -14,3 +14,13 @@ export interface ModalProps {
   onClose: () => void;
   children: React.ReactNode;
 }
+export interface HeaderContainerProps {
+  children: React.ReactNode;
+  y: number;
+  pathname: string;
+}
+
+export interface LogoContainerProps {
+  y: number;
+  isHover: boolean;
+}

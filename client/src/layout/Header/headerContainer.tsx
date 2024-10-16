@@ -1,14 +1,9 @@
 import useHover from "@hooks/useHover";
 import { useRef } from "react";
 import * as styled from "./styles";
+import * as Type from "./util";
 
-interface HeaderContainerProps {
-  children: React.ReactNode;
-  y: number;
-  pathname: string;
-}
-
-const HeaderContainer: React.FC<HeaderContainerProps> = ({ children, y, pathname }) => {
+const HeaderContainer: React.FC<Type.HeaderContainerProps> = ({ children, y, pathname }) => {
   const hoverRef = useRef(null);
   const isHover = useHover(hoverRef);
 

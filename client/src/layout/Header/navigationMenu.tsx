@@ -1,13 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import * as styled from "./styles";
+import * as Type from "./util";
 import handleLogout from "./authMenu";
 import { authTokenExpired } from "@utils/authExpired";
-interface NavigationMenuProps {
-  y: number;
-  isHover: boolean;
-}
 
-const NavigationMenu: React.FC<NavigationMenuProps> = ({ y, isHover }) => {
+const NavigationMenu: React.FC<Type.LogoContainerProps> = ({ y, isHover }) => {
   const navigate = useNavigate();
   const authToken = localStorage.getItem("authToken");
 
