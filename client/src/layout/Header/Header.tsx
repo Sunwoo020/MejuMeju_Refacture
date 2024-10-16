@@ -5,12 +5,11 @@ import AuthMenu from "./authMenu";
 import * as Util from "./util";
 import { useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { useHover } from "usehooks-ts";
+import useHover from "@hooks/useHover";
 
 const Header: React.FC = () => {
   const { y } = Util.useScroll();
   const pathname = useLocation().pathname;
-
   const hoverRef = useRef(null);
   const isHover = useHover(hoverRef);
 

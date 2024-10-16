@@ -1,4 +1,4 @@
-import { useHover } from "usehooks-ts";
+import useHover from "@hooks/useHover";
 import { useRef } from "react";
 import * as styled from "./styles";
 
