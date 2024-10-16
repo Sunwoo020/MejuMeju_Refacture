@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ButtonDark, ButtonLight } from "@components/common/Button";
 import { useState, useEffect, useCallback } from "react";
-import axios from "axios";
+import instance from "@utils/api/axiosInstance";
 import Progress from "../payment/Progress";
 import CartItemList from "./cartItemList";
 import CartSummary from "./cartSummary";
@@ -24,12 +24,7 @@ export const Cart = () => {
     }
 
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/cart`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${authToken}`,
-        },
-      });
+      const response = await instance.get(`/cart`);
       setCartItems(response.data.data);
     } catch (error) {
       console.error("Failed to fetch cart items", error);
@@ -46,19 +41,14 @@ export const Cart = () => {
   const handleToggleCheckItem = (id: number) => Handler.handleCheckItem(id, isCheckedItems, setIsCheckedItems);
 
   const handleQuantityChange = async (id: number, action: "increase" | "decrease") => {
-    const handler = action === "increase" ? Handler.handleIncreaseQuantity : Handler.handleDecreaseQuantity;
-    await handler(id, authToken, cartItems, setCartItems);
+    await Handler.handleQuantityChange(id, action, authToken, cartItems, setCartItems);
   };
 
   const handleDelete = async () =>
     await Handler.handleDeleteSelectedItems(isCheckedItems, authToken, cartItems, setCartItems, setIsCheckedItems);
 
   const handleCheckout = () => {
-    if (cartItems.itemCarts.length === 0) {
-      alert("장바구니가 비어 있습니다.");
-      return;
-    }
-    navigate("/checkout");
+    cartItems.itemCarts.length === 0 ? alert("장바구니가 비어 있습니다.") : navigate("/checkout");
   };
 
   const handleCancel = () => navigate(-1);

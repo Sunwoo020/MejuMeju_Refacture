@@ -1,6 +1,13 @@
 import axios from "axios";
 import * as Type from "@utils/types";
 
+export const QuantityActions = {
+  INCREASE: "increase",
+  DECREASE: "decrease",
+} as const;
+
+type QuantityAction = (typeof QuantityActions)[keyof typeof QuantityActions];
+
 export const handleCheckAll = (
   cartItems: Type.CartItemsProps,
   isCheckedAll: boolean,
@@ -26,40 +33,26 @@ export const handleCheckItem = (
   }));
 };
 
-export const handleDecreaseQuantity = async (
+export const handleQuantityChange = async (
   id: number,
+  action: QuantityAction,
   access_token: string,
   cartItems: Type.CartItemsProps,
   setCartItems: React.Dispatch<React.SetStateAction<Type.CartItemsProps>>,
 ) => {
+  const url = `${process.env.REACT_APP_API_URL}/cart/${action}/${id}`;
   try {
-    await axios.put(`${process.env.REACT_APP_API_URL}/cart/decrease/${id}`, null, {
+    await axios.put(url, null, {
       headers: { Authorization: access_token },
     });
 
     setCartItems((prev) => ({
       ...prev,
-      itemCarts: prev.itemCarts.map((item) => (item.itemId === id ? { ...item, quantity: item.quantity - 1 } : item)),
-    }));
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const handleIncreaseQuantity = async (
-  id: number,
-  access_token: string,
-  cartItems: Type.CartItemsProps,
-  setCartItems: React.Dispatch<React.SetStateAction<Type.CartItemsProps>>,
-) => {
-  try {
-    await axios.put(`${process.env.REACT_APP_API_URL}/cart/increase/${id}`, null, {
-      headers: { Authorization: access_token },
-    });
-
-    setCartItems((prev) => ({
-      ...prev,
-      itemCarts: prev.itemCarts.map((item) => (item.itemId === id ? { ...item, quantity: item.quantity + 1 } : item)),
+      itemCarts: prev.itemCarts.map((item) =>
+        item.itemId === id
+          ? { ...item, quantity: action === QuantityActions.INCREASE ? item.quantity + 1 : item.quantity - 1 }
+          : item,
+      ),
     }));
   } catch (error) {
     console.log(error);
