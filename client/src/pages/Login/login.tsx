@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Alert from "@components/common/AlertModal";
+import Alert from "@components/common/commonAlert";
 import * as styled from "./styles";
 import * as Common from "@styles/CommonConainer";
 import LoginForm from "./loginForm";

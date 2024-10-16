@@ -4,10 +4,10 @@ import * as styled from "./style";
 import DatePicker from "react-datepicker";
 import { useState, memo, useCallback } from "react";
 import { useSelector } from "react-redux";
-import Place from "@pages/map/Place";
+import Place from "@pages/map/place";
 import { useDispatch } from "react-redux";
 import { setDate } from "../../utils/redux/slice/store";
-import Modal from "@layout/Header/Logoutmodal";
+import Modal from "@layout/header/Logoutmodal";
 
 function Paymentpayinfo({ onDateChange }: Type.PayinfoProps) {
   const location = useLocation();

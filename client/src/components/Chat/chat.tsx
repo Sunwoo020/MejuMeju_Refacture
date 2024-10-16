@@ -4,8 +4,8 @@ import instance from "@utils/api/axiosInstance";
 import spinner from "@assets/gif/spinner.gif";
 import { IoMdSend } from "react-icons/io";
 import { MdOutlineCancel } from "react-icons/md";
-import { ButtonDark } from "@components/common/Button";
-import { Action, State } from "./util";
+import { ButtonDark } from "@components/common/commonButton";
+import { Action, State } from "./interface";
 
 const initialState: State = {
   input: "null",

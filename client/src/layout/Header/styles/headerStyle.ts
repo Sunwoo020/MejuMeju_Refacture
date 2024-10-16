@@ -1,8 +1,12 @@
 import styled, { css, keyframes } from "styled-components";
-import * as Type from "../util";
+import * as Type from "../interface";
 import Headerback from "@assets/images/Headerback.png";
 import { ReactComponent as Mainlogo } from "@assets/images/Logo.svg";
 import * as Common from "@styles/Common";
+
+const flexTransition = css`
+  transition: all 0.3s ease-out;
+`;
 
 export const LogoContainer = styled(Common.FlexRow)<Type.IHeaderContainerProps>`
   position: absolute;
@@ -13,7 +17,7 @@ export const LogoContainer = styled(Common.FlexRow)<Type.IHeaderContainerProps>`
 
   & div.tag {
     padding-top: ${({ hovering }) => (hovering === "true" ? "30px" : "22px")};
-    transition: all 0.3s ease-out;
+    ${flexTransition}
     filter: drop-shadow(2px 4px 2px rgba(8, 8, 8, 0.5));
 
     &:hover {
@@ -29,7 +33,7 @@ export const LogoContainer = styled(Common.FlexRow)<Type.IHeaderContainerProps>`
 
     & div.tag {
       width: 75%;
-      padding-top: 0px;
+      padding-top: 0;
     }
   }
 `;
@@ -37,9 +41,9 @@ export const LogoContainer = styled(Common.FlexRow)<Type.IHeaderContainerProps>`
 export const HeaderContainer = styled(Common.FlexRow)<Type.IHeaderContainerProps>`
   width: 100%;
   position: fixed;
-  transition: all 0.3s ease-out;
   z-index: 999;
   justify-content: space-between;
+  ${flexTransition}
 
   & div.modal {
     color: #222;
@@ -93,16 +97,16 @@ export const Ulist = styled(Common.FlexCol)<Type.IHeaderContainerProps>`
   position: relative;
   padding: 0 5% 0 10%;
   width: 110%;
-  transition: all 0.3s ease-out;
   font-weight: bold;
   filter: drop-shadow(2px 2px 1px #ccc);
+  ${flexTransition}
 
   padding-top: ${({ hovering }) => (hovering === "true" ? "20px" : "30px")};
 
   & ul {
     ${Common.FlexCol};
     font-size: ${({ hovering }) => (hovering === "true" ? "18px" : "21px")};
-    transition: all 0.5s ease-out;
+    ${flexTransition}
 
     & li {
       height: 20px;
@@ -124,7 +128,7 @@ export const Ulist = styled(Common.FlexCol)<Type.IHeaderContainerProps>`
 `;
 
 export const StyledList = styled.li<Type.IHeaderContainerProps>`
-  transition: all 0.3s ease-out;
+  ${flexTransition}
   display: ${({ hovering }) => (hovering === "true" ? "flex" : "none")};
 
   &:hover {
@@ -153,7 +157,6 @@ export const AccordionMenu = styled(Common.FlexCol)<Type.IHeaderContainerProps>`
     border-radius: 5px;
     ${Common.fontSize(16)};
     color: #a84448;
-    background-color: none;
   }
 
   & div.onclick {
@@ -193,7 +196,7 @@ export const AccordionMenuItem = styled(Common.FlexRow)<Type.IHeaderContainerPro
   cursor: pointer;
   background-color: ${({ isOpen }) => (isOpen ? "none" : "rgba(247, 247, 247, 0.7)")};
   animation: ${({ isOpen }) => (isOpen ? slideIn : slideOut)} 0.3s ease;
-  transition: background-color 0.3s ease-out;
+  ${flexTransition}
   width: ${({ isOpen }) => (isOpen ? "0" : "150px")};
   height: ${({ isOpen }) => (isOpen ? "0" : "100px")};
   border: ${({ isOpen }) => (isOpen ? "none" : "1px solid rgba(8, 8, 8, 0.1)")};

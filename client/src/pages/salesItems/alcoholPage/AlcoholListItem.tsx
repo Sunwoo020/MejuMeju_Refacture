@@ -1,6 +1,6 @@
 import * as styled from "../styles";
-import ReviewRating from "@components/common/ReviewRating";
-import PriceDisplay from "@components/common/PriceDisplay";
+import ReviewRating from "@components/common/reviewRating";
+import PriceDisplay from "@components/common/priceDisplay";
 import * as Type from "../util";
 
 const AlcoholListItem = ({ item }: Type.ItemProps) => {

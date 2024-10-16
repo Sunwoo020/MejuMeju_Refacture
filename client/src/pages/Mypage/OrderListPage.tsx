@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import { ButtonDark, ButtonLight } from "@components/common/Button";
+import { ButtonDark, ButtonLight } from "@components/common/commonButton";
 import Pagination from "@pages/salesItems/alcoholPage/Pagination";
 import * as Type from "./util";
 import * as styled from "./style";

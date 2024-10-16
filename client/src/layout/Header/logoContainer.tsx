@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import * as styled from "./styles";
-import * as Type from "./util";
+import * as Type from "./interface";
 
 const LogoContainer: React.FC<Type.LogoContainerProps> = ({ y, isHover }) => {
   const navigate = useNavigate();

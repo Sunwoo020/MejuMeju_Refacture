@@ -2,7 +2,7 @@ import HeaderContainer from "./headerContainer";
 import LogoContainer from "./logoContainer";
 import NavigationMenu from "./navigationMenu";
 import AuthMenu from "./authMenu";
-import * as Util from "./util";
+import * as Util from "./useScroll";
 import { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import useHover from "@hooks/useHover";

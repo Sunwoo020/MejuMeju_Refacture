@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { ButtonDark } from "@components/common/Button";
+import { ButtonDark } from "@components/common/commonButton";
 
 interface LoginFormProps {
   username: string;

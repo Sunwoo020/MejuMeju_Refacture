@@ -1,6 +1,6 @@
 import * as styled from "./styles";
 import { AlertProps } from "@utils/types/Interfaces";
-import { ButtonLight, ButtonDark } from "./Button";
+import { ButtonLight, ButtonDark } from "./commonButton";
 
 const Alert = ({ title, text, onClickOk, onClickCancel }: AlertProps) => {
   const splittedText = text.split("\\");

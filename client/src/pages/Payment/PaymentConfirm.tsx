@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import Progress from "./Progress";
 import axios from "axios";
-import { ButtonLight } from "@components/common/Button";
+import { ButtonLight } from "@components/common/commonButton";
 import { useSelector } from "react-redux";
 import * as styled from "./style";
 import * as Type from "@utils/types";

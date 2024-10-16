@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { AiFillHeart } from "react-icons/ai";
 import { ItemOrder } from "@utils/types";
 import { createItemCart } from "@utils/api";
-import ClickFavoriteItem from "@components/common/ClickFavoriteItem";
-import PriceDisplay from "@components/common/PriceDisplay";
-import { ButtonLight, ButtonDark } from "@components/common/Button";
-import QuantityControl from "@pages/salesItems/alcoholDetailComponent/QuantityControl";
-import Alert from "@components/common/AlertModal";
+import ClickFavoriteItem from "@components/common/clickFavorite";
+import PriceDisplay from "@components/common/priceDisplay";
+import { ButtonLight, ButtonDark } from "@components/common/commonButton";
+import QuantityControl from "@pages/salesItems/alcoholDetailComponent/quantityControl";
+import Alert from "@components/common/commonAlert";
 import * as styled from "../styles";
 import { ItemDatailProps } from "../util";
 
@@ -53,10 +53,10 @@ const AlcoholItemBuy = ({ data }: ItemDatailProps) => {
 
   return (
     <>
-      <styled.AlcoholItemBuyContainer>
-        <styled.ItemImgBox>
+      <styled.AlcoholDetailContainer>
+        <styled.ReviewTitleBox>
           <img src={`${data.profile}?${new Date().getTime()}`} />
-        </styled.ItemImgBox>
+        </styled.ReviewTitleBox>
         <styled.StyledItemBuyBox>
           <div className="buy_titlebox">
             <p className="buy_title">{data.titleKor}</p>
@@ -104,7 +104,7 @@ const AlcoholItemBuy = ({ data }: ItemDatailProps) => {
             </ButtonDark>
           </div>
         </styled.StyledItemBuyBox>
-      </styled.AlcoholItemBuyContainer>
+      </styled.AlcoholDetailContainer>
       {isModal && (
         <Alert text="장바구니로 이동하시겠습니까?" onClickCancel={() => setIsModal(false)} onClickOk={HandlerCart} />
       )}

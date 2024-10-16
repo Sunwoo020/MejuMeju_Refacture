@@ -1,15 +1,5 @@
 import * as styled from "./styles";
-import * as Type from "@utils/types";
-
-interface CartItemListProps {
-  cartItems: Type.CartItemsProps;
-  isCheckedItems: Record<number, boolean>;
-  handleCheckItem: (id: number) => void;
-  handleIncreaseQuantity: (id: number) => void;
-  handleDecreaseQuantity: (id: number) => void;
-  isCheckedAll: boolean;
-  handleCheckAll: () => void;
-}
+import { CartItemListProps } from "./interface";
 
 const CartItemList: React.FC<CartItemListProps> = ({
   cartItems,

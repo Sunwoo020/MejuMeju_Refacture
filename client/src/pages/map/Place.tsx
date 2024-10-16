@@ -1,7 +1,7 @@
 import { useState, useEffect, lazy, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ButtonDark } from "@components/common/Button";
+import { ButtonDark } from "@components/common/commonButton";
 import { useDispatch } from "react-redux";
 import { setMarker } from "../../utils/redux/slice/store";
 import * as Type from "./util";

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import * as styled from "./styles";
-import * as Type from "./util";
+import * as Type from "./interface";
 import handleLogout from "./authMenu";
 import { authTokenExpired } from "@utils/authExpired";
 

@@ -1,4 +1,4 @@
-import { ButtonDark, ButtonLight } from "@components/common/Button";
+import { ButtonDark, ButtonLight } from "@components/common/commonButton";
 import { useNavigate } from "react-router-dom";
 import * as Common from "@styles/CommonConainer";
 

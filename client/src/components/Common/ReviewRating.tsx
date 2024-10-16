@@ -1,22 +1,5 @@
-import styled, { css } from "styled-components";
-import { FaStar, FaStarHalf } from "react-icons/fa";
+import { StyledFaStar, StyledFaStarHalf } from "./styles";
 import * as Type from "@utils/types";
-
-const sharedStarStyles = css<{ size?: number }>`
-  font-size: ${(props) => props.size || 16}px;
-
-  @media ${(props) => props.theme.breakpoints.mobileMax} {
-    font-size: 12px;
-  }
-`;
-
-const StyledFaStar = styled(FaStar)`
-  ${sharedStarStyles}
-`;
-
-const StyledFaStarHalf = styled(FaStarHalf)`
-  ${sharedStarStyles}
-`;
 
 const ReviewRating = ({ reviewRating, size = 16 }: Type.reviewRatingProps) => {
   return (

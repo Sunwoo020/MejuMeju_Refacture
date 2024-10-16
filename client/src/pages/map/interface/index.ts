@@ -1,4 +1,3 @@
-import * as Type from "./";
 export interface LatLng {
   getLat: () => number;
   getLng: () => number;
@@ -53,12 +52,13 @@ declare global {
   interface Window {
     kakao: {
       maps: {
-        LatLng: new (lat: number, lng: number) => Type.LatLng;
-        Map: new (container: HTMLElement | null, options: Type.MapOptions) => Type.Map;
-        Marker: new (options: Type.MarkerOptions) => Type.Marker;
-        CustomOverlay: new (options: Type.CustomOverlayOptions) => Type.CustomOverlay;
+        LatLng: new (lat: number, lng: number) => LatLng;
+        Map: new (container: HTMLElement | null, options: MapOptions) => Map;
+        Marker: new (options: MarkerOptions) => Marker;
+        CustomOverlay: new (options: CustomOverlayOptions) => CustomOverlay;
+        InfoWindow: new (options: InfoWindowOptions) => InfoWindow; // 추가된 부분
         event: {
-          addListener: (target: Type.Marker | Type.Map, type: string, callback: () => void) => void;
+          addListener: (target: Marker | Map, type: string, callback: () => void) => void;
         };
       };
     };

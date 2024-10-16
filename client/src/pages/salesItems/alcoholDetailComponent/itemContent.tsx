@@ -6,7 +6,7 @@ import AlcoholListItem from "@pages/salesItems/alcoholPage/AlcoholListItem";
 import * as Type from "../util";
 import * as styled from "../styles";
 
-const AlcoholItemContent = ({ data }: Type.ItemDatailProps) => {
+export const AlcoholItemContent = ({ data }: Type.ItemDatailProps) => {
   const [itemData, setItemData] = useState<AlcoholListData[] | null>(null);
   const scrollRef = useRef<HTMLUListElement | null>(null);
 
@@ -21,9 +21,9 @@ const AlcoholItemContent = ({ data }: Type.ItemDatailProps) => {
     };
 
     fetchData();
-  }, []);
+  }, [data.categories]);
 
-  const HandleScroll = (direction: "left" | "right") => {
+  const handleScroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({
         left: direction === "left" ? -200 : 200,
@@ -32,22 +32,22 @@ const AlcoholItemContent = ({ data }: Type.ItemDatailProps) => {
     }
   };
 
-  const HandleClickItem = (id: number): void => {
+  const handleClickItem = (id: number): void => {
     window.location.href = `/alcohol/detail/${id}`;
   };
 
   return (
-    <styled.ItemContentContainer>
-      <styled.ContentTitleBox>
+    <styled.AlcoholItemContainer>
+      <styled.ReviewTitleBox>
         <h2 className="content_titletext">DETAIL</h2>
-      </styled.ContentTitleBox>
+      </styled.ReviewTitleBox>
       <div className="detail_box">
-        <styled.ContentBox>
+        <styled.AlcoholListBox>
           <div>
             <p className="content_datail_title">TASTING NOTES</p>
             <ul className="content_text_box">
               <li>
-                <div className="content_note_bold"> Aroma</div>
+                <div className="content_note_bold">Aroma</div>
                 <div className="content_detail_text">{data.aroma}</div>
               </li>
               <li>
@@ -86,7 +86,7 @@ const AlcoholItemContent = ({ data }: Type.ItemDatailProps) => {
               </li>
             </ul>
           </div>
-        </styled.ContentBox>
+        </styled.AlcoholListBox>
         <styled.DetailInfoBox>
           <div className="info_img_box">
             <img src={`${data.detailedProfile}?${new Date().getTime()}`} alt="description" />
@@ -97,27 +97,27 @@ const AlcoholItemContent = ({ data }: Type.ItemDatailProps) => {
         </styled.SuggestionTitle>
         {itemData && (
           <styled.ScrollContainer>
-            {itemData.length >= 5 ? (
-              <styled.ScrollBtn onClick={() => HandleScroll("left")}>
+            {itemData.length >= 5 && (
+              <styled.ScrollBtn onClick={() => handleScroll("left")}>
                 <FaArrowAltCircleLeft size={45} color="lightgray" />
               </styled.ScrollBtn>
-            ) : null}
+            )}
             <styled.SuggestionBox ref={scrollRef}>
               {itemData.map((item) => (
-                <li key={item.itemId} onClick={() => HandleClickItem(item.itemId)}>
+                <li key={item.itemId} onClick={() => handleClickItem(item.itemId)}>
                   <AlcoholListItem item={item} />
                 </li>
               ))}
             </styled.SuggestionBox>
-            {itemData.length >= 4 ? (
-              <styled.ScrollBtn onClick={() => HandleScroll("right")}>
+            {itemData.length >= 4 && (
+              <styled.ScrollBtn onClick={() => handleScroll("right")}>
                 <FaArrowAltCircleRight size={45} color="lightgray" />
               </styled.ScrollBtn>
-            ) : null}
+            )}
           </styled.ScrollContainer>
         )}
       </div>
-    </styled.ItemContentContainer>
+    </styled.AlcoholItemContainer>
   );
 };
 

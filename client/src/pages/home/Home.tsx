@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import * as styled from "./styles";
 import { useNavigate } from "react-router-dom";
-import Homefirst from "./Homfirst";
+import Homefirst from "./homeMain";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();

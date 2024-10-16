@@ -2,11 +2,7 @@ import * as styled from "./styles";
 import { detailData } from "./termData";
 import { isScrolledToBottom } from "./scrollUtil";
 import React from "react";
-
-interface TermProps {
-  pos: number;
-  setIsRead: React.Dispatch<React.SetStateAction<boolean[]>>;
-}
+import { TermProps } from "./interface";
 
 const Term: React.FC<TermProps> = ({ pos, setIsRead }) => {
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {

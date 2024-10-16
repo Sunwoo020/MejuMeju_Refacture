@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import * as Type from "./util";
-import { displayMarker } from "./util/mapUtil";
+import * as Type from "./interface";
+import { displayMarker } from "./util";
 
 interface CurrentLocationMarkerProps {
   map: Type.Map;

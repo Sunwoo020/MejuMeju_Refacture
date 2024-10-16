@@ -2,9 +2,9 @@ import axios from "axios";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ButtonDark, ButtonLight } from "@components/common/Button";
-import Alert from "@components/common/AlertModal";
-import Term from "@components/signUpTerm/Term";
+import { ButtonDark, ButtonLight } from "@components/common/commonButton";
+import Alert from "@components/common/commonAlert";
+import Term from "@components/signUpTerm/termComponent";
 import * as styled from "./styles";
 import * as Common from "@styles/CommonConainer";
 

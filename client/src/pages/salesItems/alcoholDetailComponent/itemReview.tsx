@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { BsArrowDownLeftCircleFill, BsArrowUpRightCircleFill } from "react-icons/bs";
 import { ItemReviewsType } from "@utils/types";
 import { getItemReview } from "@utils/api";
-import ReviewList from "@pages/salesItems/alcoholDetailComponent/ReviewList";
+import ReviewList from "@pages/salesItems/alcoholDetailComponent/reviewList";
 import { ItemReviewsProps } from "../util";
 import * as styled from "../styles";
 

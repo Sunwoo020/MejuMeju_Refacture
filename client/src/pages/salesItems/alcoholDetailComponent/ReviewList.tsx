@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { deleteItemReview } from "@utils/api";
 import ReviewEdit from "@pages/myPage/ReviewEdit";
 import { FormattedDate } from "@utils/dateUtils";
-import Alert from "@components/common/AlertModal";
-import ReviewRating from "@components/common/ReviewRating";
+import Alert from "@components/common/commonAlert";
+import ReviewRating from "@components/common/reviewRating";
 import * as Type from "../util";
 import * as styled from "../styles";
 

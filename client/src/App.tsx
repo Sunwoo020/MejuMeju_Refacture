@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import { Route, Routes } from "react-router-dom";
 
-import Home from "@pages/home/Home";
+import Home from "@pages/home/home";
 import Cart from "@pages/cart/cart";
-import Place from "@pages/map/Place";
+import Place from "@pages/map/place";
 import Alcohol from "@pages/salesItems/Alcohol";
 import HelpCenter from "@pages/myPage/HelpCenter";
 import AlcoholDetail from "@pages/salesItems/AlcoholDetail";
 import Login from "@pages/login/login";
-import FindEmail from "@pages/login/FindEmail";
-import FindPassword from "@pages/login/FindPassword";
+import FindEmail from "@pages/login/findEmail";
+import FindPassword from "@pages/login/findPassword";
 import SignupInput from "@pages/signUp/SignupInput";
 import SignupSelection from "@pages/signUp/SignupSelection";
 import SignupTerm from "@pages/signUp/SignupTerm";
@@ -20,7 +20,7 @@ import Payment from "@pages/payment/Payment";
 import PaymentConfirm from "@pages/payment/PaymentConfirm";
 import FailPage from "@pages/payment/failPage";
 import CheckoutChang from "@pages/payment/chekOutModal";
-import ChatComponent from "@components/chat/ChatComponent";
+import ChatComponent from "@components/chat/chat";
 import Layout from "@layout/index";
 import ReviewEdit from "@pages/myPage/ReviewEdit";
 

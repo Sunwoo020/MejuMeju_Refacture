@@ -2,8 +2,8 @@ import React, { useState, useEffect, ChangeEvent } from "react";
 import * as styled from "./style";
 import axiosInstance from "@utils/api/axiosInstance";
 import { useNavigate } from "react-router-dom";
-import Alert from "@components/common/AlertModal";
-import { ButtonLight } from "@components/common/Button";
+import Alert from "@components/common/commonAlert";
+import { ButtonLight } from "@components/common/commonButton";
 
 const Modal = ({ email }: { email: string }) => {
   const [isOpen, setIsOpen] = useState(false);

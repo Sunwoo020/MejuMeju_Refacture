@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import * as styled from "./style";
 import InfoTable from "./infoTable";
 import Modal from "./modal";
-import Alert from "@components/common/AlertModal";
-import { ButtonDark } from "@components/common/Button";
+import Alert from "@components/common/commonAlert";
+import { ButtonDark } from "@components/common/commonButton";
 import * as Type from "./util";
 import axiosInstance from "@utils/api/axiosInstance";
 

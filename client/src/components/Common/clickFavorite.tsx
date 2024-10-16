@@ -1,15 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
-import { IconType } from "react-icons";
 import { getItemLike, createItemLike, deleteItemLike } from "@utils/api";
 import { useNavigate } from "react-router-dom";
-
-interface ClickFavoriteCProps {
-  itemId: number;
-  icon: IconType;
-  color: string;
-  activeColor: string;
-  size: number;
-}
+import { ClickFavoriteCProps } from "./interface";
 
 const ClickFavoriteItem = ({ itemId, icon: Icon, color, activeColor, size }: ClickFavoriteCProps) => {
   const navigate = useNavigate();
