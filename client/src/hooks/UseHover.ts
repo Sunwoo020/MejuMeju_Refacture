@@ -1,17 +1,13 @@
 import { RefObject, useState } from "react";
-
 import { useEventListener } from "usehooks-ts";
 
 function useHover<T extends HTMLElement = HTMLElement>(elementRef: RefObject<T>): boolean {
-  const [value, setValue] = useState<boolean>(false);
+  const [isHovered, setIsHovered] = useState(false);
 
-  const handleMouseEnter = () => setValue(true);
-  const handleMouseLeave = () => setValue(false);
+  useEventListener("mouseenter", () => setIsHovered(true), elementRef);
+  useEventListener("mouseleave", () => setIsHovered(false), elementRef);
 
-  useEventListener("mouseenter", handleMouseEnter, elementRef);
-  useEventListener("mouseleave", handleMouseLeave, elementRef);
-
-  return value;
+  return isHovered;
 }
 
 export default useHover;
