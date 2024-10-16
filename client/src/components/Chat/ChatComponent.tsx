@@ -1,46 +1,58 @@
-import { useState, ChangeEvent } from "react";
+import { useReducer, ChangeEvent } from "react";
 import * as styled from "./style";
 import instance from "@utils/api/axiosInstance";
 import spinner from "@assets/gif/spinner.gif";
 import { IoMdSend } from "react-icons/io";
 import { MdOutlineCancel } from "react-icons/md";
 import { ButtonDark } from "@components/common/Button";
+import { Action, State } from "./util";
+
+const initialState: State = {
+  input: "null",
+  answer: null,
+  isLoading: null,
+  isOpen: false,
+  question: "",
+};
+
+function chatReducer(state: State, action: Action): State {
+  return {
+    ...state,
+    [action.type]: action.payload,
+  };
+}
 
 const ChatComponent = () => {
-  const [input, setInput] = useState("null");
-  const [answer, setAnswer] = useState<string[] | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean | null>(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const [question, setQuestion] = useState("");
+  const [state, dispatch] = useReducer(chatReducer, initialState);
 
-  function handleInput(e: ChangeEvent<HTMLInputElement>) {
-    setInput(e.target.value);
-  }
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch({ type: "input", payload: e.target.value });
+  };
 
-  async function handleSubmit() {
+  const handleSubmit = async () => {
     await getAnswer();
-  }
+  };
 
   const sendAxios = async () => {
     const body = {
-      question: input,
+      question: state.input,
     };
     try {
-      setIsLoading(true);
+      dispatch({ type: "isLoading", payload: true });
       const res = await instance.post("/chat-gpt/question", body);
-      setQuestion(input);
+      dispatch({ type: "question", payload: state.input });
       const splittedText = res.data.choices[0].text.split("\n");
-      setAnswer(splittedText);
+      dispatch({ type: "answer", payload: splittedText });
     } catch (error) {
       console.error(error);
     } finally {
-      setIsLoading(false);
+      dispatch({ type: "isLoading", payload: false });
     }
   };
 
-  async function getAnswer() {
+  const getAnswer = async () => {
     await sendAxios();
-  }
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -50,12 +62,12 @@ const ChatComponent = () => {
 
   return (
     <>
-      {isOpen ? (
+      {state.isOpen ? (
         <styled.GptContainer>
           <styled.TopContainer>
             <button
               onClick={() => {
-                setIsOpen(false);
+                dispatch({ type: "isOpen", payload: false });
               }}
               className="cancel"
             >
@@ -64,18 +76,18 @@ const ChatComponent = () => {
             <div className="title">무엇이든 물어보세요!</div>
           </styled.TopContainer>
           <styled.MiddleContainer>
-            {isLoading ? (
+            {state.isLoading ? (
               <div className="col">
                 <div className="q-container">
-                  <div className="question">{question}</div>
+                  <div className="question">{state.question}</div>
                 </div>
                 <div className="answer">
-                  {answer?.map((el, idx) => (
+                  {state.answer?.map((el, idx) => (
                     <p key={idx}>{el}</p>
                   ))}
                 </div>
               </div>
-            ) : isLoading === null ? (
+            ) : state.isLoading === null ? (
               <div>편하게 질문하세요!</div>
             ) : (
               <img className="loading" src={spinner} alt="로딩중" />
@@ -90,7 +102,13 @@ const ChatComponent = () => {
         </styled.GptContainer>
       ) : (
         <styled.BtnContainer>
-          <ButtonDark width="60px" height="60px" fontSize="18px" borderRadius="50%" onClick={() => setIsOpen(true)}>
+          <ButtonDark
+            width="60px"
+            height="60px"
+            fontSize="18px"
+            borderRadius="50%"
+            onClick={() => dispatch({ type: "isOpen", payload: true })}
+          >
             Chat
           </ButtonDark>
         </styled.BtnContainer>
