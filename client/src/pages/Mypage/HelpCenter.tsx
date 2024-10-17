@@ -1,7 +1,7 @@
 import * as styled from "./style";
-import Answer from "@components/helpCenter/AnswerContainer";
+import Answer from "@components/helpCenter/answerContainer";
 import { useState } from "react";
-import { ButtonDark } from "@components/common/Button";
+import { ButtonDark } from "@components/common/commonButton";
 
 const HelpCenter = () => {
   const answerData = [

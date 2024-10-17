@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import * as Type from "./util";
+import * as Type from "./interface";
 
 interface ShopMarkersProps {
   map: Type.Map;

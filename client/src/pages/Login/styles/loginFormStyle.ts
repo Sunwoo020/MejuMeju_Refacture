@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import * as Common from "@styles/CommonConainer";
+import * as Common from "@styles/commonContainer";
 import * as LoginCommon from "./Common";
 
 export const FormContainer = styled(Common.Container)`

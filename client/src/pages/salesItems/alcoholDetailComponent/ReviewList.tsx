@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteItemReview } from "@utils/api";
-import ReviewEdit from "@pages/myPage/ReviewEdit";
+import ReviewEdit from "@pages/myPage/reviewEdit";
 import { FormattedDate } from "@utils/dateUtils";
-import Alert from "@components/common/AlertModal";
-import ReviewRating from "@components/common/ReviewRating";
-import * as Type from "../util";
+import Alert from "@components/common/commonAlert";
+import ReviewRating from "@components/common/reviewRating";
+import * as Type from "../interface";
 import * as styled from "../styles";
 
 const ReviewList = ({ reviews, itemId }: Type.ItemReviewListProps) => {

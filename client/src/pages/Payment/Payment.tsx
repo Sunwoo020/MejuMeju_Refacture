@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as styled from "./style";
-import { ButtonDark, ButtonLight } from "@components/common/Button";
+import { ButtonDark, ButtonLight } from "@components/common/commonButton";
 import "react-datepicker/dist/react-datepicker.css";
 import Progress from "./Progress";
-import PaymnetUserInfo from "./PaymentUserinfo";
-import Itemlist from "./Paymentitemlist";
-import Payinfo from "./Paymentpayinfo";
+import PaymnetUserInfo from "./paymentUserInfo";
+import Itemlist from "./paymentIemList";
+import Payinfo from "./paymentPayInfo";
 import { UserProps } from "@utils/types";
 import { useSelector } from "react-redux";
 import axiosInstance from "@utils/api/axiosInstance";
-import Modal from "@layout/Header/Logoutmodal";
+import Modal from "@layout/header/Logoutmodal";
 import * as Type from "@utils/types";
 
 const Payment = () => {

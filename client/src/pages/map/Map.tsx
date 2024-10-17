@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { initializeMap } from "./util/mapUtil";
+import { initializeMap } from "./util";
 import CurrentLocationMarker from "./currentLocationMarker";
 import ShopMarkers from "./shopMarkers";
-import * as Type from "./util";
+import * as Type from "./interface";
 
 const MapContainer = ({ shoplist, setSelect }: Type.ShopProps) => {
   const [map, setMap] = useState<Type.Map | null>(null);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import * as styled from "./style";
-import * as Type from "./util";
+import * as Type from "./interface";
 
 const InfoTable = ({ setBody, userInfo, isOauth }: Type.TableProsp) => {
   const subTitle = ["이름", "닉네임", "생년월일", "전화번호", "이메일"];

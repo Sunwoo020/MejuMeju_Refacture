@@ -27,7 +27,6 @@ const CheckOutModal = () => {
   const authToken = localStorage.getItem("authToken");
 
   useEffect(() => {
-    // Check if the authToken is missing or expired
     if (!authToken || authTokenExpired(authToken)) {
       navigate("/login");
       return;
@@ -48,9 +47,7 @@ const CheckOutModal = () => {
         })
         .catch(function (error) {
           if (error.code === "USER_CANCEL") {
-            // Handle user cancel
           } else if (error.code === "INVALID_CARD_COMPANY") {
-            // Handle invalid card company
           }
         });
     });

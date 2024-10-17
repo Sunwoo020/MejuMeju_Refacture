@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { MdRateReview } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
-import { RequestData } from "@utils/types/AlcholInterfaces";
+import { RequestData } from "@utils/types/alcoholInterface";
 import { createItemReview, getReviewDetail, updateItemReview, getItem } from "@utils/api";
-import Alert from "@components/common/AlertModal";
-import { ButtonLight } from "@components/common/Button";
+import Alert from "@components/common/commonAlert";
+import { ButtonLight } from "@components/common/commonButton";
 import * as styled from "./style";
 
 const ReviewEdit = () => {

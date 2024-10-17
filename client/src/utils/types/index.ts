@@ -1,4 +1,4 @@
-export * from "@utils/types/AlcholInterfaces";
+export * from "@utils/types/alcoholInterface";
 export * from "@utils/types/Interfaces";
-export * from "@utils/types/UsersInterfaces";
-export * from "@utils/types/Common";
+export * from "@utils/types/userInterface";
+export * from "@utils/types/common";

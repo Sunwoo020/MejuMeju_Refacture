@@ -1,12 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import * as styled from "./styles";
+import * as Type from "./interface";
 
-interface LogoContainerProps {
-  y: number;
-  isHover: boolean;
-}
-
-const LogoContainer: React.FC<LogoContainerProps> = ({ y, isHover }) => {
+const LogoContainer: React.FC<Type.LogoContainerProps> = ({ y, isHover }) => {
   const navigate = useNavigate();
 
   return (

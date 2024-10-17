@@ -1,5 +1,5 @@
 import * as styled from "../styles";
-import { QuantityProps } from "../util";
+import { QuantityProps } from "../interface";
 
 const QuantityControl = ({ quantity, maxQuantity, onQuantityChange }: QuantityProps) => {
   const handleIncrement = () => {

@@ -68,9 +68,7 @@ export default function chekOut() {
                   successUrl: `${window.location.origin}/paymentconfirm`,
                   failUrl: `${window.location.origin}/fail`,
                 });
-              } catch (error) {
-                // handle error
-              }
+              } catch (error) {}
             }}
           >
             결제하기

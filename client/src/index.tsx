@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import store from "@utils/redux/slice/store";
 import { ThemeProvider } from "styled-components";
-import GlobalStyle from "@styles/GlobalStyle";
+import GlobalStyle from "@styles/globalStyle";
 import theme from "@styles/theme";
 const rootElement = document.getElementById("root");
 if (rootElement) {

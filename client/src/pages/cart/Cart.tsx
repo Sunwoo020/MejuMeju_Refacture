@@ -1,75 +1,57 @@
 import { useNavigate } from "react-router-dom";
-import { ButtonDark, ButtonLight } from "@components/common/Button";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { ButtonDark, ButtonLight } from "@components/common/commonButton";
+import { useState, useEffect, useCallback } from "react";
+import instance from "@utils/api/axiosInstance";
 import Progress from "../payment/Progress";
 import CartItemList from "./cartItemList";
 import CartSummary from "./cartSummary";
-import * as Handler from "./cartUtil";
+import * as Handler from "./handler";
 import * as styled from "./styles";
 import * as Type from "@utils/types";
 import { authTokenExpired } from "@utils/authExpired";
 
-export const Cart = () => {
+const Cart = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState<Type.CartItemsProps>({ itemCarts: [] });
-  const authToken = localStorage.getItem("authToken");
-  const access_token = `Bearer ${authToken}`;
   const [isCheckedAll, setIsCheckedAll] = useState(true);
   const [isCheckedItems, setIsCheckedItems] = useState<Record<number, boolean>>({});
+  const authToken = localStorage.getItem("authToken") ?? "";
 
-  useEffect(() => {
+  const fetchCartItems = useCallback(async () => {
     if (!authToken || authTokenExpired(authToken)) {
       navigate("/login");
       return;
     }
+
+    try {
+      const response = await instance.get(`/cart`);
+      setCartItems(response.data.data);
+    } catch (error) {
+      console.error("Failed to fetch cart items", error);
+    }
   }, [authToken, navigate]);
 
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/cart`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: access_token,
-        },
-      })
-      .then((res) => {
-        setCartItems(res.data.data);
-      })
-      .catch((err) => console.log(err));
-  }, [access_token]);
+    fetchCartItems();
+  }, [fetchCartItems]);
 
-  const handleToggleCheckAll = () => {
+  const handleToggleCheckAll = () =>
     Handler.handleCheckAll(cartItems, isCheckedAll, setIsCheckedAll, setIsCheckedItems);
+
+  const handleToggleCheckItem = (id: number) => Handler.handleCheckItem(id, isCheckedItems, setIsCheckedItems);
+
+  const handleQuantityChange = async (id: number, action: "increase" | "decrease") => {
+    await Handler.handleQuantityChange(id, action, authToken, cartItems, setCartItems);
   };
 
-  const handleToggleCheckItem = (id: number) => {
-    Handler.handleCheckItem(id, isCheckedItems, setIsCheckedItems);
-  };
-
-  const handleDecrease = async (id: number) => {
-    await Handler.handleDecreaseQuantity(id, access_token, cartItems, setCartItems);
-  };
-
-  const handleIncrease = async (id: number) => {
-    await Handler.handleIncreaseQuantity(id, access_token, cartItems, setCartItems);
-  };
-
-  const handleDelete = async () => {
-    await Handler.handleDeleteSelectedItems(isCheckedItems, access_token, cartItems, setCartItems, setIsCheckedItems);
-  };
+  const handleDelete = async () =>
+    await Handler.handleDeleteSelectedItems(isCheckedItems, authToken, cartItems, setCartItems, setIsCheckedItems);
 
   const handleCheckout = () => {
-    if (cartItems.itemCarts.length === 0) {
-      alert("장바구니가 비어 있습니다.");
-      return;
-    }
-    navigate("/checkout");
+    cartItems.itemCarts.length === 0 ? alert("장바구니가 비어 있습니다.") : navigate("/checkout");
   };
 
-  const handleCancel = () => {
-    navigate(-1);
-  };
+  const handleCancel = () => navigate(-1);
 
   const checkedItems = cartItems.itemCarts.filter((item) => isCheckedItems[item.itemId]);
   const totalQuantity = checkedItems.reduce((acc, cur) => acc + cur.quantity, 0);
@@ -86,8 +68,8 @@ export const Cart = () => {
               cartItems={cartItems}
               isCheckedItems={isCheckedItems}
               handleCheckItem={handleToggleCheckItem}
-              handleIncreaseQuantity={handleIncrease}
-              handleDecreaseQuantity={handleDecrease}
+              handleIncreaseQuantity={(id) => handleQuantityChange(id, "increase")}
+              handleDecreaseQuantity={(id) => handleQuantityChange(id, "decrease")}
               isCheckedAll={isCheckedAll}
               handleCheckAll={handleToggleCheckAll}
             />
@@ -124,3 +106,4 @@ export const Cart = () => {
     </styled.CartContainer>
   );
 };
+export default Cart;
