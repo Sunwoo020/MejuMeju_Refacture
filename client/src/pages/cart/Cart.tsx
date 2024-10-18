@@ -17,6 +17,13 @@ const Cart = () => {
   const [isCheckedItems, setIsCheckedItems] = useState<Record<number, boolean>>({});
   const authToken = localStorage.getItem("authToken") ?? "";
 
+  const handlers = {
+    handleCheckItem: (id: number) => Handler.handleCheckItem(id, isCheckedItems, setIsCheckedItems),
+    handleIncreaseQuantity: (id: number) => handleQuantityChange(id, "increase"),
+    handleDecreaseQuantity: (id: number) => handleQuantityChange(id, "decrease"),
+    handleCheckAll: () => Handler.handleCheckAll(cartItems, isCheckedAll, setIsCheckedAll, setIsCheckedItems),
+  };
+
   const fetchCartItems = useCallback(async () => {
     if (!authToken || authTokenExpired(authToken)) {
       navigate("/login");
@@ -34,11 +41,6 @@ const Cart = () => {
   useEffect(() => {
     fetchCartItems();
   }, [fetchCartItems]);
-
-  const handleToggleCheckAll = () =>
-    Handler.handleCheckAll(cartItems, isCheckedAll, setIsCheckedAll, setIsCheckedItems);
-
-  const handleToggleCheckItem = (id: number) => Handler.handleCheckItem(id, isCheckedItems, setIsCheckedItems);
 
   const handleQuantityChange = async (id: number, action: "increase" | "decrease") => {
     await Handler.handleQuantityChange(id, action, authToken, cartItems, setCartItems);
@@ -75,11 +77,8 @@ const Cart = () => {
             <CartItemList
               cartItems={cartItems}
               isCheckedItems={isCheckedItems}
-              handleCheckItem={handleToggleCheckItem}
-              handleIncreaseQuantity={(id) => handleQuantityChange(id, "increase")}
-              handleDecreaseQuantity={(id) => handleQuantityChange(id, "decrease")}
               isCheckedAll={isCheckedAll}
-              handleCheckAll={handleToggleCheckAll}
+              handlers={handlers}
             />
             <CartSummary
               totalQuantity={totalQuantity}
@@ -114,4 +113,5 @@ const Cart = () => {
     </styled.CartContainer>
   );
 };
+
 export default Cart;
