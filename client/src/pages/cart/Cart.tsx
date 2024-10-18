@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { ButtonDark, ButtonLight } from "@components/common/commonButton";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import instance from "@utils/api/axiosInstance";
-import Progress from "../payment/Progress";
+import Progress from "../payment/progress";
 import CartItemList from "./cartItemList";
 import CartSummary from "./cartSummary";
 import * as Handler from "./handler";
@@ -53,9 +53,17 @@ const Cart = () => {
 
   const handleCancel = () => navigate(-1);
 
-  const checkedItems = cartItems.itemCarts.filter((item) => isCheckedItems[item.itemId]);
-  const totalQuantity = checkedItems.reduce((acc, cur) => acc + cur.quantity, 0);
-  const totalPrice = checkedItems.reduce((acc, cur) => acc + cur.price * cur.quantity, 0);
+  const checkedItems = useMemo(() => {
+    return cartItems.itemCarts.filter((item) => isCheckedItems[item.itemId]);
+  }, [cartItems, isCheckedItems]);
+
+  const totalQuantity = useMemo(() => {
+    return checkedItems.reduce((acc, cur) => acc + cur.quantity, 0);
+  }, [checkedItems]);
+
+  const totalPrice = useMemo(() => {
+    return checkedItems.reduce((acc, cur) => acc + cur.price * cur.quantity, 0);
+  }, [checkedItems]);
 
   return (
     <styled.CartContainer isEmpty={cartItems.itemCarts.length === 0}>
