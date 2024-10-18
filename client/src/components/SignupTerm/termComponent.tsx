@@ -8,13 +8,12 @@ const Term: React.FC<TermProps> = ({ pos, setIsRead }) => {
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, clientHeight, scrollHeight } = e.currentTarget;
 
-    if (isScrolledToBottom(scrollTop, clientHeight, scrollHeight)) {
+    isScrolledToBottom(scrollTop, clientHeight, scrollHeight) &&
       setIsRead((prevState) => {
         const newState = [...prevState];
         newState[pos] = false;
         return newState;
       });
-    }
   };
 
   return <styled.TermDetail onScroll={handleScroll}>{detailData[pos]}</styled.TermDetail>;
