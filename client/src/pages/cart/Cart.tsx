@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { ButtonDark, ButtonLight } from "@components/common/commonButton";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import instance from "@utils/api/axiosInstance";
-import Progress from "../payment/Progress";
+import Progress from "../payment/progress";
 import CartItemList from "./cartItemList";
 import CartSummary from "./cartSummary";
 import * as Handler from "./handler";
@@ -16,6 +16,13 @@ const Cart = () => {
   const [isCheckedAll, setIsCheckedAll] = useState(true);
   const [isCheckedItems, setIsCheckedItems] = useState<Record<number, boolean>>({});
   const authToken = localStorage.getItem("authToken") ?? "";
+
+  const handlers = {
+    handleCheckItem: (id: number) => Handler.handleCheckItem(id, isCheckedItems, setIsCheckedItems),
+    handleIncreaseQuantity: (id: number) => handleQuantityChange(id, "increase"),
+    handleDecreaseQuantity: (id: number) => handleQuantityChange(id, "decrease"),
+    handleCheckAll: () => Handler.handleCheckAll(cartItems, isCheckedAll, setIsCheckedAll, setIsCheckedItems),
+  };
 
   const fetchCartItems = useCallback(async () => {
     if (!authToken || authTokenExpired(authToken)) {
@@ -35,11 +42,6 @@ const Cart = () => {
     fetchCartItems();
   }, [fetchCartItems]);
 
-  const handleToggleCheckAll = () =>
-    Handler.handleCheckAll(cartItems, isCheckedAll, setIsCheckedAll, setIsCheckedItems);
-
-  const handleToggleCheckItem = (id: number) => Handler.handleCheckItem(id, isCheckedItems, setIsCheckedItems);
-
   const handleQuantityChange = async (id: number, action: "increase" | "decrease") => {
     await Handler.handleQuantityChange(id, action, authToken, cartItems, setCartItems);
   };
@@ -53,9 +55,17 @@ const Cart = () => {
 
   const handleCancel = () => navigate(-1);
 
-  const checkedItems = cartItems.itemCarts.filter((item) => isCheckedItems[item.itemId]);
-  const totalQuantity = checkedItems.reduce((acc, cur) => acc + cur.quantity, 0);
-  const totalPrice = checkedItems.reduce((acc, cur) => acc + cur.price * cur.quantity, 0);
+  const checkedItems = useMemo(() => {
+    return cartItems.itemCarts.filter((item) => isCheckedItems[item.itemId]);
+  }, [cartItems, isCheckedItems]);
+
+  const totalQuantity = useMemo(() => {
+    return checkedItems.reduce((acc, cur) => acc + cur.quantity, 0);
+  }, [checkedItems]);
+
+  const totalPrice = useMemo(() => {
+    return checkedItems.reduce((acc, cur) => acc + cur.price * cur.quantity, 0);
+  }, [checkedItems]);
 
   return (
     <styled.CartContainer isEmpty={cartItems.itemCarts.length === 0}>
@@ -67,11 +77,8 @@ const Cart = () => {
             <CartItemList
               cartItems={cartItems}
               isCheckedItems={isCheckedItems}
-              handleCheckItem={handleToggleCheckItem}
-              handleIncreaseQuantity={(id) => handleQuantityChange(id, "increase")}
-              handleDecreaseQuantity={(id) => handleQuantityChange(id, "decrease")}
               isCheckedAll={isCheckedAll}
-              handleCheckAll={handleToggleCheckAll}
+              handlers={handlers}
             />
             <CartSummary
               totalQuantity={totalQuantity}
@@ -106,4 +113,5 @@ const Cart = () => {
     </styled.CartContainer>
   );
 };
+
 export default Cart;
