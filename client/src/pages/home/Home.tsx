@@ -3,7 +3,7 @@ import * as styled from "./styles";
 import { useNavigate } from "react-router-dom";
 import Homefirst from "./homeMain";
 
-const Home: React.FC = () => {
+const Home = () => {
   const navigate = useNavigate();
 
   function convertToSeconds(dateString: string): string {

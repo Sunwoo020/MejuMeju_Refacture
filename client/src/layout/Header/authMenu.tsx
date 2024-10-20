@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authTokenExpired } from "@utils/authExpired";
 
-const AuthMenu: React.FC = () => {
+const AuthMenu = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 

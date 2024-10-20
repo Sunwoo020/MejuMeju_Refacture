@@ -2,7 +2,7 @@ import React from "react";
 import * as styled from "./styles";
 import * as Type from "./interface";
 
-const Modal: React.FC<Type.ModalProps> = ({ children, onClose }) => {
+const Modal = ({ children, onClose }: Type.ModalProps) => {
   return (
     <styled.ModalContainer>
       <styled.ModalContent>

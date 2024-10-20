@@ -2,7 +2,7 @@ import * as styled from "./styles";
 import { ButtonLight } from "@components/common/commonButton";
 import { CartSummaryProps } from "./interface";
 
-const CartSummary: React.FC<CartSummaryProps> = ({ totalQuantity, totalPrice, handleDeleteSelectedItems }) => {
+const CartSummary = ({ totalQuantity, totalPrice, handleDeleteSelectedItems }: CartSummaryProps) => {
   return (
     <styled.DeleteLine>
       <ButtonLight width="120px" height="50px" fontSize="12px" onClick={handleDeleteSelectedItems}>

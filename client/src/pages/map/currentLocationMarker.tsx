@@ -6,7 +6,7 @@ interface CurrentLocationMarkerProps {
   map: Type.Map;
 }
 
-const CurrentLocationMarker: React.FC<CurrentLocationMarkerProps> = ({ map }) => {
+const CurrentLocationMarker = ({ map }: CurrentLocationMarkerProps) => {
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
