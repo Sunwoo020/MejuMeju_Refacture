@@ -1,7 +1,7 @@
 import * as styled from "./styles";
 import { CartItemListProps } from "./interface";
 
-const CartItemList: React.FC<CartItemListProps> = ({ cartItems, isCheckedItems, isCheckedAll, handlers }) => {
+const CartItemList = ({ cartItems, isCheckedItems, isCheckedAll, handlers }: CartItemListProps) => {
   const { handleCheckItem, handleIncreaseQuantity, handleDecreaseQuantity, handleCheckAll } = handlers;
 
   return (

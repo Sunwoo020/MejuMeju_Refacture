@@ -4,7 +4,7 @@ import * as Type from "./interface";
 import handleLogout from "./authMenu";
 import { authTokenExpired } from "@utils/authExpired";
 
-const NavigationMenu: React.FC<Type.LogoContainerProps> = ({ y, isHover }) => {
+const NavigationMenu = ({ y, isHover }: Type.LogoContainerProps) => {
   const navigate = useNavigate();
   const authToken = localStorage.getItem("authToken");
 

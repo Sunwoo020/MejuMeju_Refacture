@@ -7,7 +7,7 @@ interface ShopMarkersProps {
   setSelect: (el: Type.Shopitem) => void;
 }
 
-const ShopMarkers: React.FC<ShopMarkersProps> = ({ map, shoplist, setSelect }) => {
+const ShopMarkers = ({ map, shoplist, setSelect }: ShopMarkersProps) => {
   useEffect(() => {
     shoplist.forEach((el) => {
       const marker = new window.kakao.maps.Marker({

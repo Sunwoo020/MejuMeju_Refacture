@@ -3,7 +3,7 @@ import { useRef } from "react";
 import * as styled from "./styles";
 import * as Type from "./interface";
 
-const HeaderContainer: React.FC<Type.HeaderContainerProps> = ({ children, y, pathname }) => {
+const HeaderContainer = ({ children, y, pathname }: Type.HeaderContainerProps) => {
   const hoverRef = useRef(null);
   const isHover = useHover(hoverRef);
 

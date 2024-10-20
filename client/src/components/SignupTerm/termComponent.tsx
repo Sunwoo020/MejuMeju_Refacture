@@ -4,7 +4,7 @@ import { isScrolledToBottom } from "./scrollUtil";
 import React from "react";
 import { TermProps } from "./interface";
 
-const Term: React.FC<TermProps> = ({ pos, setIsRead }) => {
+const Term = ({ pos, setIsRead }: TermProps) => {
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, clientHeight, scrollHeight } = e.currentTarget;
 

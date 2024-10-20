@@ -2,7 +2,7 @@ import React from "react";
 import * as styled from "../styles";
 import { PaginationProps } from "@utils/types";
 
-const Pagination: React.FC<PaginationProps> = ({ currentPage, setCurrentPage, itemsPerPage, totalData }) => {
+const Pagination = ({ currentPage, setCurrentPage, itemsPerPage, totalData }: PaginationProps) => {
   const totalPgaes = Math.ceil(totalData / itemsPerPage);
 
   const handleClickPage = (pageNum: number): void => {

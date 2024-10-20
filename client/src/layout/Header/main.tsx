@@ -7,7 +7,7 @@ import { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import useHover from "@hooks/useHover";
 
-const Header: React.FC = () => {
+const Header = () => {
   const { y } = Util.useScroll();
   const pathname = useLocation().pathname;
   const hoverRef = useRef(null);
