@@ -1,8 +1,11 @@
 ## Repository Purpose
 
 This repository was created with the intention of practicing code refactoring on a project that was originally developed through collaboration among four frontend developers during an educational program.
-
-
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 
